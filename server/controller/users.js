@@ -45,3 +45,27 @@ module.exports.registerUser = catchAsync(async (req, res) => {
     }
   })
 })
+
+// @ POST
+// @ Login user
+module.exports.loginUser = (req, res) => {
+  const user = req.user
+
+  if (user) {
+    // generate token
+    const accessToken = generateToken({
+      _id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    })
+
+    // send back token
+    res.send({ accessToken })
+    return
+  }
+
+  res.send({
+    message: "Error loggin in",
+  })
+}
