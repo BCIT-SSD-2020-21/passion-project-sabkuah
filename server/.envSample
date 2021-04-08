@@ -1,0 +1,4 @@
+SESSION=<secret>
+ACCESS_TOKEN_SECRET=<secret>
+LOCAL_DB=mongodb://localhost:27017/<DB-name>
+DB=<connection string>
