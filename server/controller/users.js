@@ -69,3 +69,11 @@ module.exports.loginUser = (req, res) => {
     message: "Error loggin in",
   })
 }
+
+// @ POST
+// @ Logout user
+module.exports.logoutUser = (req, res) => {
+  req.logout()
+  req.session.destroy()
+  res.send({ message: "Successfully logged out" })
+}
