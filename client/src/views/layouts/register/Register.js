@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     makeStyles,
     TextField,
@@ -6,6 +6,7 @@ import {
     Card,
     Typography,
 } from '@material-ui/core';
+import BlockwatchLogo from '../../../components/BlockWatchLogo';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
@@ -24,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
         width: '90%',
         marginBottom: 20,
     },
-    button: {},
+    title: {
+        color: '#1cc47d',
+        marginBottom: '2%',
+    },
 }));
 
 const Register = () => {
@@ -34,6 +38,10 @@ const Register = () => {
         <div>
             <Card>
                 <form className={classes.registerForm}>
+                    <BlockwatchLogo />
+                    <Typography className={classes.title} variant="h3">
+                        Blockwatch
+                    </Typography>
                     <TextField
                         required
                         label="Email"
