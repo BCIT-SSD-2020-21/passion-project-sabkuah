@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 10,
     },
     input: {
-        width: '90%',
+        width: '80%',
         marginBottom: 20,
     },
     title: {
@@ -61,6 +61,7 @@ const Register = () => {
                         variant="outlined"
                         label="Email"
                         placeholder="Email"
+                        className={classes.input}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -69,13 +70,13 @@ const Register = () => {
                             ),
                         }}
                     />
-                    <br />
 
                     <TextField
                         required={true}
                         label="password"
                         variant="outlined"
                         placeholder="password"
+                        className={classes.input}
                         type="password"
                         id="password"
                         InputProps={{
@@ -86,12 +87,13 @@ const Register = () => {
                             ),
                         }}
                     />
-                    <br />
+
                     <TextField
                         required={true}
                         variant="outlined"
                         label="Confirm Password"
                         placeholder="Confirm Password"
+                        className={classes.input}
                         type="password"
                         id="email"
                         InputProps={{
@@ -102,12 +104,13 @@ const Register = () => {
                             ),
                         }}
                     />
-                    <br />
+
                     <TextField
                         required={true}
                         variant="outlined"
                         label="First Name"
                         placeholder="First name"
+                        className={classes.input}
                         type="text"
                         id="firstName"
                         InputProps={{
@@ -118,12 +121,13 @@ const Register = () => {
                             ),
                         }}
                     />
-                    <br />
+
                     <TextField
                         required={true}
                         variant="outlined"
                         label="Last Name"
                         placeholder="Last Name"
+                        className={classes.input}
                         type="text"
                         id="lastName"
                         InputProps={{
@@ -134,12 +138,13 @@ const Register = () => {
                             ),
                         }}
                     />
-                    <br />
+
                     <TextField
                         required={true}
                         variant="outlined"
                         label="Location"
                         placeholder="Location"
+                        className={classes.input}
                         id="location"
                         InputProps={{
                             startAdornment: (
