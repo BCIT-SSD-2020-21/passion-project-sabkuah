@@ -156,6 +156,12 @@ const Register = () => {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={(e) =>
+                            setUser({
+                                ...user,
+                                email: e.target.value,
+                            })
+                        }
                     />
 
                     <TextField
@@ -173,6 +179,12 @@ const Register = () => {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={(e) =>
+                            setUser({
+                                ...user,
+                                password: e.target.value,
+                            })
+                        }
                     />
 
                     <TextField
@@ -190,6 +202,12 @@ const Register = () => {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={(e) =>
+                            setUser({
+                                ...user,
+                                confirmPassword: e.target.value,
+                            })
+                        }
                     />
 
                     <TextField
@@ -246,6 +264,12 @@ const Register = () => {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={(e) =>
+                            setUser({
+                                ...user,
+                                location: e.target.value,
+                            })
+                        }
                     />
                     <Button
                         variant="contained"
