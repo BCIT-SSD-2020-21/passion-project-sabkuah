@@ -7,7 +7,7 @@ import {
     Typography,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import BlockwatchLogo from '../../../components/BlockWatchLogo';
+import LandingSvg from '../../../components/LandingSvg';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     title: {
         color: '#1cc47d',
         marginBottom: '2%',
+        fontWeight: 800,
     },
     button: {
         marginTop: '2%',
@@ -62,12 +63,12 @@ const Register = () => {
         let tempArr = [];
 
         //Email Validation
-        // let email = new RegExp(
-        //     /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-        // );
-        // if (!email.test(user.email)) {
-        //     tempArr.push('Please enter a valid email address');
-        // }
+        let email = new RegExp(
+            /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+        );
+        if (!email.test(user.email)) {
+            tempArr.push('Please enter a valid email address');
+        }
 
         //Password length validation;
         if (user.password.length < 8) {
@@ -126,13 +127,15 @@ const Register = () => {
         } else {
             setErrorMsgs([]);
         }
+
+        // Server regitration
     };
 
     return (
         <div>
             <Card>
                 <form onSubmit={handleSubmit} className={classes.registerForm}>
-                    <BlockwatchLogo />
+                    <LandingSvg />
                     <Typography className={classes.title} variant="h3">
                         Blockwatch
                     </Typography>
@@ -144,10 +147,11 @@ const Register = () => {
                     ))}
 
                     <TextField
-                        type="email"
                         variant="outlined"
-                        label="Email"
-                        placeholder="Email"
+                        value={user.email}
+                        label="email"
+                        placeholder="email"
+                        id="email"
                         className={classes.input}
                         InputProps={{
                             startAdornment: (
@@ -225,12 +229,6 @@ const Register = () => {
                                 </InputAdornment>
                             ),
                         }}
-                        onChange={(e) =>
-                            setUser({
-                                ...user,
-                                email: e.target.value,
-                            })
-                        }
                     />
 
                     <TextField
