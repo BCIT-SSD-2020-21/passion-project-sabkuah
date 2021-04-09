@@ -66,7 +66,7 @@ const seedDb = async () => {
     location: "Richmond",
     contents: [],
     members: [user2._id],
-    author: user2._id,
+    creator: user2._id,
   })
 
   const comm2 = new Community({
@@ -75,7 +75,7 @@ const seedDb = async () => {
     location: "Vancouver",
     contents: [],
     members: [user3._id],
-    author: user3._id,
+    creator: user3._id,
   })
 
   //   Save created communities

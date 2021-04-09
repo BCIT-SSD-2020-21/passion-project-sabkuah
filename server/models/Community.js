@@ -33,7 +33,7 @@ const communitySchema = new Schema({
       ref: "User",
     },
   ],
-  author: {
+  creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
