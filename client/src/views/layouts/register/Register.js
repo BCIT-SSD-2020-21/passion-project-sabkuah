@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
     makeStyles,
     TextField,
@@ -43,6 +43,68 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = () => {
     const classes = useStyles();
+    const [errorMsgs, setErrorMsgs] = useState([]);
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        location: '',
+    });
+
+    //========================
+    // Handle errors function=
+    //========================
+    const handleErrors = () => {
+        let tempArr = [];
+
+        //Password length validation;
+        if (user.password.length < 8) {
+            tempArr.push('Password needs to be a minimum of 8 characters');
+        }
+
+        // Uppercase validation
+        let upperCase = new RegExp(/^(?=.*[A-Z])/);
+        if (!upperCase.test(user.password)) {
+            tempArr.push('Password needs an UPPERCASE letter');
+        }
+
+        //Lowercase validation
+        let lowerCase = new RegExp(/^(?=.*[a-z])/);
+        if (!lowerCase.test(user.password)) {
+            tempArr.push('Password needs an lowercase letter');
+        }
+        //Number validation
+        let digits = new RegExp(/^(?=.*[0-9])/);
+        if (!digits.test(user.password)) {
+            tempArr.push('Password needs to include a number');
+        }
+        //Special character validaton
+        let special = new RegExp(/^(?=.*?[#?!@$%^&*-])/);
+        if (!special.test(user.password)) {
+            tempArr.push('Password needs to include a special character');
+        }
+
+        //Password match validation
+        if (user.password !== user.confirmPassword) {
+            tempArr.push('Password & Confirm Password does not match');
+        }
+
+        // Location Validation
+        if (user.location.length === '' || user.location.length === null) {
+            tempArr.push('Location is required');
+        }
+
+        return tempArr;
+    };
+
+    //Register form submit
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Check user input errors before database
+        const errors = handleErrors();
+    };
 
     return (
         <div>
