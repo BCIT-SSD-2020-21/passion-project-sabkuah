@@ -3,37 +3,45 @@
 //==========================================
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
-const passportLocalMongoose = require("passport-local-mongoose")
+const User = require("./User")
+const Post = require("./Post")
 
 //==========================================
 // SCHEMA
 //==========================================
-const userSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  firstName: {
+const communitySchema = new Schema({
+  title: {
     type: String,
     required: true,
   },
-  lastName: {
+  description: {
     type: String,
     required: true,
   },
   location: {
     type: String,
-    required: true,
+  },
+  contents: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
+  members: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 })
-
-// this plugin adds a username, hash and salt field to store the username, the hashed password and the salt value.
-userSchema.plugin(passportLocalMongoose)
 
 //==========================================
 // SET UP MODEL
 //==========================================
-const User = mongoose.model("User", userSchema)
+const Community = mongoose.model("Community", communitySchema)
 
-module.exports = User
+module.exports = Community
