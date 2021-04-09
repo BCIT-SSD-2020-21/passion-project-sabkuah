@@ -6,10 +6,13 @@ import {
     Card,
     Typography,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import BlockwatchLogo from '../../../components/BlockWatchLogo';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PersonIcon from '@material-ui/icons/Person';
 
 const useStyles = makeStyles((theme) => ({
     registerForm: {
@@ -29,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
         color: '#1cc47d',
         marginBottom: '2%',
     },
+    button: {
+        marginTop: '2%',
+        backgroundColor: '#192935',
+        color: '#fff',
+        padding: 10,
+        width: '50%',
+    },
 }));
 
 const Register = () => {
@@ -42,8 +52,13 @@ const Register = () => {
                     <Typography className={classes.title} variant="h3">
                         Blockwatch
                     </Typography>
+                    <text style={{ marginBottom: '3%' }}>
+                        Building safe communities
+                    </text>
+
                     <TextField
                         required
+                        variant="outlined"
                         label="Email"
                         placeholder="Email"
                         InputProps={{
@@ -54,9 +69,12 @@ const Register = () => {
                             ),
                         }}
                     />
+                    <br />
+
                     <TextField
                         required={true}
                         label="password"
+                        variant="outlined"
                         placeholder="password"
                         type="password"
                         id="password"
@@ -68,8 +86,10 @@ const Register = () => {
                             ),
                         }}
                     />
+                    <br />
                     <TextField
                         required={true}
+                        variant="outlined"
                         label="Confirm Password"
                         placeholder="Confirm Password"
                         type="password"
@@ -82,8 +102,10 @@ const Register = () => {
                             ),
                         }}
                     />
+                    <br />
                     <TextField
                         required={true}
+                        variant="outlined"
                         label="First Name"
                         placeholder="First name"
                         type="text"
@@ -91,13 +113,15 @@ const Register = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <LockIcon />
+                                    <PersonIcon />
                                 </InputAdornment>
                             ),
                         }}
                     />
+                    <br />
                     <TextField
                         required={true}
+                        variant="outlined"
                         label="Last Name"
                         placeholder="Last Name"
                         type="text"
@@ -105,27 +129,36 @@ const Register = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <LockIcon />
+                                    <PersonIcon />
                                 </InputAdornment>
                             ),
                         }}
                     />
+                    <br />
                     <TextField
                         required={true}
+                        variant="outlined"
                         label="Location"
                         placeholder="Location"
                         id="location"
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <LockIcon />
+                                    <LocationOnIcon />
                                 </InputAdornment>
                             ),
                         }}
                     />
-                    <Button variant="contained" type="submit" id="Register">
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        id="Register"
+                        className={classes.button}
+                    >
                         Register
                     </Button>
+
+                    <h4>Back to Sign in</h4>
                 </form>
             </Card>
         </div>
