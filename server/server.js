@@ -6,6 +6,15 @@ const dotenv = require("dotenv")
 const session = require("express-session")
 const ExpressError = require("./utils/ExpressError")
 const { connectDb } = require("./utils/db")
+// REQUIRE-AUTH
+//---------------
+const passport = require("passport")
+const LocalStrategy = require("passport-local")
+const User = require("./models/User")
+
+// REQUIRE ROUTES
+//----------------------------------------------
+const userRoutes = require("./routes/users")
 
 //==============================================
 // CONFIG
@@ -36,12 +45,17 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig))
 
+// Passport/Auth
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 //==============================================
 // ROUTES
 //==============================================
-app.get("/", (req, res) => {
-  res.send({ message: "It works !!" })
-})
+app.use("/api/users", userRoutes)
 
 //==============================================
 // Error Handlers
