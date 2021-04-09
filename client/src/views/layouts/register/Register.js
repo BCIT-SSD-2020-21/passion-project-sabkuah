@@ -39,13 +39,16 @@ const useStyles = makeStyles((theme) => ({
         padding: 10,
         width: '50%',
     },
+    errorMsg: {
+        color: 'red',
+        fontWeight: 400,
+    },
 }));
 
 const Register = () => {
     const classes = useStyles();
     const [errorMsgs, setErrorMsgs] = useState([]);
     const [user, setUser] = useState({
-        name: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -58,28 +61,36 @@ const Register = () => {
     const handleErrors = () => {
         let tempArr = [];
 
+        //Email Validation
+        // let email = new RegExp(
+        //     /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+        // );
+        // if (!email.test(user.email)) {
+        //     tempArr.push('Please enter a valid email address');
+        // }
+
         //Password length validation;
         if (user.password.length < 8) {
             tempArr.push('Password needs to be a minimum of 8 characters');
         }
 
-        // Uppercase validation
+        // Password Uppercase validation
         let upperCase = new RegExp(/^(?=.*[A-Z])/);
         if (!upperCase.test(user.password)) {
             tempArr.push('Password needs an UPPERCASE letter');
         }
 
-        //Lowercase validation
+        // Password Lowercase validation
         let lowerCase = new RegExp(/^(?=.*[a-z])/);
         if (!lowerCase.test(user.password)) {
             tempArr.push('Password needs an lowercase letter');
         }
-        //Number validation
+        //Password Number validation
         let digits = new RegExp(/^(?=.*[0-9])/);
         if (!digits.test(user.password)) {
             tempArr.push('Password needs to include a number');
         }
-        //Special character validaton
+        //Password Special character validaton
         let special = new RegExp(/^(?=.*?[#?!@$%^&*-])/);
         if (!special.test(user.password)) {
             tempArr.push('Password needs to include a special character');
@@ -91,7 +102,7 @@ const Register = () => {
         }
 
         // Location Validation
-        if (user.location.length === '' || user.location.length === null) {
+        if (user.location.length === 0) {
             tempArr.push('Location is required');
         }
 
@@ -104,12 +115,23 @@ const Register = () => {
 
         // Check user input errors before database
         const errors = handleErrors();
+
+        if (errors.length > 0) {
+            setErrorMsgs(errors);
+
+            // Auto Scrolls to top if there are error(s)
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            return;
+        } else {
+            setErrorMsgs([]);
+        }
     };
 
     return (
         <div>
             <Card>
-                <form className={classes.registerForm}>
+                <form onSubmit={handleSubmit} className={classes.registerForm}>
                     <BlockwatchLogo />
                     <Typography className={classes.title} variant="h3">
                         Blockwatch
@@ -117,9 +139,12 @@ const Register = () => {
                     <text style={{ marginBottom: '3%' }}>
                         Building safe communities
                     </text>
+                    {errorMsgs.map((errorMsg) => (
+                        <p className={classes.errorMsg}>{errorMsg}</p>
+                    ))}
 
                     <TextField
-                        required
+                        type="email"
                         variant="outlined"
                         label="Email"
                         placeholder="Email"
@@ -134,8 +159,8 @@ const Register = () => {
                     />
 
                     <TextField
-                        required={true}
                         label="password"
+                        value={user.password}
                         variant="outlined"
                         placeholder="password"
                         className={classes.input}
@@ -151,8 +176,8 @@ const Register = () => {
                     />
 
                     <TextField
-                        required={true}
                         variant="outlined"
+                        value={user.confirmPassword}
                         label="Confirm Password"
                         placeholder="Confirm Password"
                         className={classes.input}
@@ -168,7 +193,7 @@ const Register = () => {
                     />
 
                     <TextField
-                        required={true}
+                        required
                         variant="outlined"
                         label="First Name"
                         placeholder="First name"
@@ -182,10 +207,16 @@ const Register = () => {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={(e) =>
+                            setUser({
+                                ...user,
+                                email: e.target.value,
+                            })
+                        }
                     />
 
                     <TextField
-                        required={true}
+                        required
                         variant="outlined"
                         label="Last Name"
                         placeholder="Last Name"
@@ -202,8 +233,8 @@ const Register = () => {
                     />
 
                     <TextField
-                        required={true}
                         variant="outlined"
+                        value={user.location}
                         label="Location"
                         placeholder="Location"
                         className={classes.input}
