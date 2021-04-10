@@ -6,7 +6,7 @@ import {
   Card,
   Typography,
 } from '@material-ui/core';
-import LandingSvg from '../../components/LandingSvg';
+import LandingLogo from '../../components/LandingLogo';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
@@ -20,7 +20,7 @@ const RegisterScreen = ({ handleSubmit, errorMsgs, user, setUser }) => {
     <div>
       <Card>
         <form onSubmit={handleSubmit} className={classes.registerForm}>
-          <LandingSvg />
+          <LandingLogo />
           <Typography className={classes.title} variant='h3'>
             Blockwatch
           </Typography>
