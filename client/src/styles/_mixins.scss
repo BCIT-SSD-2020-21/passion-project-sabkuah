@@ -1,0 +1,37 @@
+// Headings
+@mixin heading-lg {
+  font-family: $brand-font;
+  color: $brand-green;
+  font-size: 2.5rem;
+}
+
+// @mixin heading-md {
+//     font-family: $brand-font;
+//     color: $brand-green;
+//     font-size: 2.5rem;
+//   }
+
+//   @mixin heading-sm {
+//     font-family: $brand-font;
+//     color: $brand-green;
+//     font-size: 2.5rem;
+//   }
+
+// Brand Buttons
+@mixin brand-button-lg {
+  background: $brand-blue;
+  font-family: $brand-font;
+  font-size: 1rem;
+  color: white;
+  border-radius: 30px;
+  padding: 0.5em 1.5em;
+  font-weight: bold;
+}
+
+// Brand Icons
+
+//Spacing
+@mixin flex-container {
+  display: flex;
+  justify-content: center;
+}

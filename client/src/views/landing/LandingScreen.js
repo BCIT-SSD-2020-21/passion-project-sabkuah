@@ -1,10 +1,15 @@
 import React from 'react';
-import SearchBar from '../components/SearchInput';
+import SearchBar from '../../components/SearchInput';
 
-const Landing = () => {
+const LandingScreen = () => {
   return (
-    <div>
-      Hello! Welcome to BlockWatch! This is the landing page <SearchBar />
+    <div id='landing-pg'>
+      <p className='heading-test'>
+        Hello! Welcome to BlockWatch! This is the landing page!
+      </p>
+      <button className='button-test'>Test button</button>
+      <SearchBar />
+
       <svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'>
         <path
           fill='#D0E2FF'
@@ -16,4 +21,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default LandingScreen;

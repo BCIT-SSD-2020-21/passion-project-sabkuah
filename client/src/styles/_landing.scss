@@ -1,0 +1,8 @@
+.heading-test {
+  @include heading-lg;
+}
+
+.button-test {
+  @include brand-button-lg;
+  margin-left: 20px;
+}
