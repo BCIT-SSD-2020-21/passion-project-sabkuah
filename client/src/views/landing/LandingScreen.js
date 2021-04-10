@@ -5,14 +5,19 @@ import { Container } from '@material-ui/core';
 
 const LandingScreen = () => {
   return (
-    <Container id='landing-pg container'>
-      <section className='hero'>
-        <div className='hero-content'>
-          <h1 className='heading-test text-center'>welcome to blockwatch</h1>
-          <p>A modern approach to safe, connected neighborhoods</p>
-          <button className='button-test '>Test button</button>
+    <Container id='landing-pg'>
+      <section className='hero row'>
+        <div className='hero-content col-sm-12 col-md-5 '>
+          <h1 className='heading-test text-center'>
+            welcome to <br />
+            <span style={{ fontSize: '3.5rem' }}>blockwatch</span>
+          </h1>
+          <p className='tagline text-center mt-3 mb-3'>
+            A modern approach to safe and connected neighborhoods
+          </p>
+          <button className='button-test mt-3 w-50'>Login</button>
         </div>
-        <div className='hero-img'>
+        <div className='hero-img col-sm-12 col-md-6'>
           <LandingLogo />
         </div>
       </section>
