@@ -1,13 +1,21 @@
 import React from 'react';
 import SearchBar from '../../components/SearchInput';
+import LandingLogo from '../../components/LandingLogo';
+import { Container } from '@material-ui/core';
 
 const LandingScreen = () => {
   return (
-    <div id='landing-pg container'>
-      <h1 className='heading-test animate__animated animate__bounce'>
-        welcome to blockwatch
-      </h1>
-      <button className='button-test'>Test button</button>
+    <Container id='landing-pg container'>
+      <section className='hero'>
+        <div className='hero-content'>
+          <h1 className='heading-test text-center'>welcome to blockwatch</h1>
+          <p>A modern approach to safe, connected neighborhoods</p>
+          <button className='button-test '>Test button</button>
+        </div>
+        <div className='hero-img'>
+          <LandingLogo />
+        </div>
+      </section>
       <SearchBar />
 
       {/* <svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'>
@@ -17,7 +25,7 @@ const LandingScreen = () => {
           transform='translate(100 100)'
         />
       </svg> */}
-    </div>
+    </Container>
   );
 };
 

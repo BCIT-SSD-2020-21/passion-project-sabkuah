@@ -6,3 +6,48 @@
   @include brand-button-lg;
   margin-left: 20px;
 }
+
+.hero {
+  width: 100%;
+  max-width: 65rem;
+  margin: 8rem auto;
+  position: relative;
+  color: $brand-blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.hero:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    //$brand-blue-light 70%,
+    $grey-light 100%
+  );
+  z-index: -1;
+  border-radius: 4rem;
+  transform: skew(0, 4deg) translateY(-1.2rem);
+  box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
+}
+
+.hero-content {
+  padding: 2rem 0 2rem 2.5rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.hero-img {
+  align-self: flex-start;
+  width: 50%;
+  height: auto;
+  margin: 0 5% 0 0;
+}
