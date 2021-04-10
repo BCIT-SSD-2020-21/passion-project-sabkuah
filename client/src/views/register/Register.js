@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import User from '../../layouts/User';
 import RegisterScreen from './RegisterScreen';
 
-const RegisterController = () => {
+const Register = () => {
   const [errorMsgs, setErrorMsgs] = useState([]);
   const [user, setUser] = useState({
     email: '',
@@ -94,4 +94,4 @@ const RegisterController = () => {
   );
 };
 
-export default RegisterController;
+export default Register;

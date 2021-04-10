@@ -1,8 +1,8 @@
 import React from 'react';
 import LandingScreen from './LandingScreen';
 
-const LandingController = () => {
+const Landing = () => {
   return <LandingScreen />;
 };
 
-export default LandingController;
+export default Landing;

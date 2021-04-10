@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Register from './components/register/register';
 import Public from './layouts/Public';
 import User from './layouts/User';
-import Landing from './views/landing/LandingScreen';
-import Dashboard from './views/Dashboard';
+import Landing from './views/landing/Landing';
+import Dashboard from './views/dashboard/Dashboard';
+import Register from './views/register/Register';
 
 function App() {
   return (
