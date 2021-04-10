@@ -24,7 +24,7 @@ const LandingScreen = () => {
           <LandingLogo />
         </div>
       </section>
-      <section id='landing-info'>
+      <section id='landing-info' className='mb-3'>
         <div className='row'>
           <div className='d-flex flex-column align-items-center col-xs-12 col-sm-4 py-4'>
             <div className='landing-icon-highlight'>
