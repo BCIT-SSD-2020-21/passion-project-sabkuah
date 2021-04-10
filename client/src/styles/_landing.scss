@@ -42,6 +42,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  left: 20px;
 }
 
 .hero-img {
@@ -55,4 +56,29 @@
 
 .tagline {
   font-family: $brand-font;
+}
+
+#landing-info {
+  margin-top: 15%;
+
+  .landing-icons {
+    font-size: 5rem;
+    color: $brand-green;
+    margin: 10%;
+  }
+
+  .landing-icon-highlight {
+    background-color: $brand-blue-light;
+    border-radius: 50px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 6rem;
+  }
+
+  .landing-desc {
+    padding: 10%;
+    width: 90%;
+
+    color: $brand-blue;
+    font-family: $brand-font;
+  }
 }
