@@ -21,7 +21,9 @@ const LandingScreen = () => {
           <LandingLogo />
         </div>
       </section>
-      <SearchBar />
+      <section className='my-5'>
+        <SearchBar />
+      </section>
 
       {/* <svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'>
         <path
