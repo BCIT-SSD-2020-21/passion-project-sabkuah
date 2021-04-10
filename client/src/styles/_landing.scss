@@ -4,5 +4,62 @@
 
 .button-test {
   @include brand-button-lg;
-  margin-left: 20px;
+}
+
+.hero {
+  padding: 1rem;
+  color: $brand-blue;
+  background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
+  border-radius: 4rem;
+  box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
+}
+
+.hero-content {
+  padding: 2rem 0 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-img {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  height: auto;
+}
+
+.tagline {
+  font-family: $brand-font;
+}
+
+#landing-info {
+  margin-top: 5%;
+
+  .landing-icons {
+    font-size: 5rem;
+    color: $brand-green;
+    margin: 10%;
+  }
+
+  .landing-icon-highlight {
+    background-color: $brand-blue-light;
+    border-radius: 50px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 6rem;
+  }
+
+  .landing-desc {
+    padding-top: 5%;
+    width: 90%;
+    color: $brand-blue;
+    font-family: $brand-font;
+    font-size: 1.25rem;
+  }
+
+  .landing-quote {
+    color: $brand-green;
+    font-family: $brand-font;
+  }
 }
