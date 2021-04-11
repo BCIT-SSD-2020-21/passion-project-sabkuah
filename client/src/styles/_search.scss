@@ -1,0 +1,13 @@
+#search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.search-result-card {
+  background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
+}
+
+#welcome-user {
+  font-family: $brand-font;
+  font-size: 1.25rem;
+}

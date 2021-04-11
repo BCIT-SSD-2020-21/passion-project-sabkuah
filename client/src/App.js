@@ -5,6 +5,7 @@ import User from './layouts/User';
 import Landing from './views/landing/Landing';
 import Dashboard from './views/dashboard/Dashboard';
 import Register from './views/register/Register';
+import Search from './views/search/Search';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Public>
             <Switch>
               <Route path='/register' component={Register} />
+              <Route path='/search' component={Search} />
               {/* <Route path='/login' component={Login} /> */}
               <Route path='/' exact component={Landing} />
             </Switch>
