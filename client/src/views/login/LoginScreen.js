@@ -12,11 +12,11 @@ import LandingLogo from '../../components/LandingLogo';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
     return (
         <Container>
             <div id="login-pg">
-                <form className="login-form">
+                <form onSubmit={handleLogin} className="login-form">
                     <LandingLogo />
                     <h1 className="login-title">Blockwatch</h1>
                     <p className="login-tagline">Building safe communities</p>
