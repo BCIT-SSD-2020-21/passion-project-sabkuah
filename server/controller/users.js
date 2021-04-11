@@ -11,6 +11,7 @@ const { generateToken } = require("../utils/jwt")
 /**
  * Register user
  * @function
+ * @POST
  * @param req.body {Object} email, firstName, lastName, location, password.
  * @returns {Object} Access token
  */
@@ -53,6 +54,7 @@ module.exports.registerUser = catchAsync(async (req, res) => {
 /**
  * Login user
  * @function
+ * @POST
  * @param req.body {Object} username, password
  * @returns {Object} Access token
  */
@@ -81,6 +83,7 @@ module.exports.loginUser = (req, res) => {
 /**
  * Logout user
  * @function
+ * @POST
  * @returns {Object} Logout success message
  */
 module.exports.logoutUser = (req, res) => {
