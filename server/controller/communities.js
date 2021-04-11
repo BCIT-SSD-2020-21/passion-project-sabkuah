@@ -113,11 +113,11 @@ module.exports.createCommunity = catchAsync(async (req, res) => {
  * Join a community
  * @function
  * @PATCH
- * @param req.param {String} :id, Community id
+ * @param req.params {String} :id, Community id
  * @returns {Object} Success message
  * @throws Will throw an error if user is already a member of community
  */
-module.exports.joinCommunity = async (req, res) => {
+module.exports.joinCommunity = catchAsync(async (req, res) => {
   const { id } = req.params
   const user = await req.decodedUser
   const userId = user._id
@@ -137,5 +137,32 @@ module.exports.joinCommunity = async (req, res) => {
   //    $push user in community.members
   await Community.updateOne({ _id: id }, { $push: { members: userId } })
 
-  res.send({ message: `Successfully joined ${community.title}` })
-}
+  res.send({ message: `Successfully joined ${community.title} community` })
+})
+
+/**
+ * Edit title/description/location of community
+ * @function
+ * @PATCH
+ * @param req.body title/description/location
+ * @param req.params {String} :id, Community id
+ * @returns {Object} Success message
+ * @throws Will throw an error if user editing is not the creator of community
+ */
+module.exports.editCommunity = catchAsync(async (req, res) => {
+  const { id } = req.params
+  const user = await req.decodedUser
+  const userId = user._id
+
+  const community = await Community.findById(id)
+
+  //   Check if user editing is the creator of community
+  if (!community.creator._id.equals(userId)) {
+    res.send({ error: "You are not authorized to perform this action" })
+    return
+  }
+
+  await Community.findByIdAndUpdate(id, req.body)
+
+  res.send({ message: `Successfully updated community` })
+})
