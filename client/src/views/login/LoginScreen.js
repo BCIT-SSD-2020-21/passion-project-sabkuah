@@ -6,6 +6,9 @@ import {
     Card,
     Typography,
 } from '@material-ui/core';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import LandingLogo from '../../components/LandingLogo';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 
@@ -41,7 +44,7 @@ const Login = () => {
         <div>
             <Card>
                 <form className={classes.registerForm}>
-                    <BlockwatchLogo />
+                    <LandingLogo />
                     <Typography className={classes.title} variant="h3">
                         Blockwatch
                     </Typography>
@@ -89,7 +92,7 @@ const Login = () => {
                         Login
                     </Button>
 
-                    <h4>Sign Up here</h4>
+                    <Link to="/register">Sign Up here</Link>
                 </form>
             </Card>
         </div>
