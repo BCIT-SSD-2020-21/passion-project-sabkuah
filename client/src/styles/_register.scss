@@ -1,11 +1,23 @@
+.flex-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 #register-pg {
     background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
     border-radius: 4rem;
     box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
     margin-top: 2%;
     margin-bottom: 5%;
+    min-width: 70%;
 }
 
+@media only screen and (min-width: 992px) {
+    #register-pg {
+        width: 50%;
+    }
+}
 .reg-img {
     height: auto;
     display: flex;
