@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+import Messaging from '../../components/Messaging';
 
 const Dashboard = ({ children }) => {
   const [value, onChange] = useState(new Date());
@@ -9,9 +10,10 @@ const Dashboard = ({ children }) => {
       <div className='col-xs-12 col-lg-9'>{children}</div>
       <div
         className='col-xs-12 col-lg-3'
-        style={{ backgroundColor: 'lightgrey' }}
+        // style={{ backgroundColor: 'lightgrey' }}
       >
         <Calendar onChange={onChange} value={value} />
+        <Messaging />
       </div>
     </div>
   );
