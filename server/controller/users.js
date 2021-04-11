@@ -8,8 +8,12 @@ const { generateToken } = require("../utils/jwt")
 // =============================================
 // Logic
 // =============================================
-// @ POST
-// @ Create (Register) user
+/**
+ * Register user
+ * @function
+ * @param req.body {Object} email, firstName, lastName, location, password.
+ * @returns {Object} Access token
+ */
 module.exports.registerUser = catchAsync(async (req, res) => {
   // get body from form
   const { email, firstName, lastName, location, password } = req.body
@@ -46,8 +50,12 @@ module.exports.registerUser = catchAsync(async (req, res) => {
   })
 })
 
-// @ POST
-// @ Login user
+/**
+ * Login user
+ * @function
+ * @param req.body {Object} username, password
+ * @returns {Object} Access token
+ */
 module.exports.loginUser = (req, res) => {
   const user = req.user
 
@@ -70,8 +78,11 @@ module.exports.loginUser = (req, res) => {
   })
 }
 
-// @ POST
-// @ Logout user
+/**
+ * Logout user
+ * @function
+ * @returns {Object} Logout success message
+ */
 module.exports.logoutUser = (req, res) => {
   req.logout()
   req.session.destroy()
