@@ -83,7 +83,7 @@ module.exports.getCommunityById = catchAsync(async (req, res) => {
  * @function
  * @POST
  * @param req.body {Object} title, description, location
- * @returns {Object} Community obj
+ * @returns {Object} Success message
  * @throws Will throw an error if Community obj fails validation
  */
 module.exports.createCommunity = catchAsync(async (req, res) => {
@@ -108,3 +108,34 @@ module.exports.createCommunity = catchAsync(async (req, res) => {
   await community.save()
   res.send({ message: `Successfully created ${community.title} community` })
 })
+
+/**
+ * Join a community
+ * @function
+ * @PATCH
+ * @param req.param {String} :id, Community id
+ * @returns {Object} Success message
+ * @throws Will throw an error if user is already a member of community
+ */
+module.exports.joinCommunity = async (req, res) => {
+  const { id } = req.params
+  const user = await req.decodedUser
+  const userId = user._id
+
+  const community = await Community.findById(id)
+
+  const memberExists = community.members.indexOf(userId)
+
+  //    Check if user is already a member of community
+  if (memberExists > -1) {
+    res.send({
+      error: `You're already a member of ${community.title} community`,
+    })
+    return
+  }
+
+  //    $push user in community.members
+  await Community.updateOne({ _id: id }, { $push: { members: userId } })
+
+  res.send({ message: `Successfully joined ${community.title}` })
+}
