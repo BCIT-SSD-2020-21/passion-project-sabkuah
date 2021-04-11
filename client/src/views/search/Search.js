@@ -7,7 +7,7 @@ const Search = () => {
     {
       title: 'Lansdowne',
       description: 'Awesome community near the mall and skytrain',
-      location: 'Richmond',
+      location: 'Richmond, BC',
       contents: [],
       members: [],
       creator: 'Bob',
@@ -15,7 +15,7 @@ const Search = () => {
     {
       title: 'Kitsilano',
       description: 'Safe community by the beach',
-      location: 'Vancouver',
+      location: 'Vancouver, BC',
       contents: [],
       members: [],
       creator: 'Lindsay',
