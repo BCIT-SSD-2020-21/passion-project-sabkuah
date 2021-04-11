@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../src/styles/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-calendar/dist/Calendar.css';
 
 ReactDOM.render(
   <React.StrictMode>
