@@ -8,3 +8,20 @@
 }
 
 //===== DRAWER NAV STYLES =====//
+
+.dNav-icon {
+  color: white;
+}
+
+#dNav-user {
+  background-color: white;
+  height: 15vh;
+  color: black;
+  font-family: $brand-font;
+  padding: 5%;
+}
+
+#dNav-logo {
+  font-family: $brand-font;
+  color: $brand-green;
+}

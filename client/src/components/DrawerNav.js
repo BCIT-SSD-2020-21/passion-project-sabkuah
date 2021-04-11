@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,11 +19,13 @@ import ChatIcon from '@material-ui/icons/Chat';
 import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import { Avatar, IconButton } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
-  const { window, children } = props;
+  const { window, children, user } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -35,30 +36,45 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      {/* <div className={classes.toolbar} /> */}
+      <div id='dNav-user' className='d-flex flex-column justify-content-end'>
+        <div className='mb-3'>
+          <Avatar />
+        </div>
+        <div className='d-flex justify-content-between align-items-center'>
+          <h5 className='mb-0'>
+            {user.firstName} {user.lastName}
+          </h5>
+          <IconButton>
+            <ExpandMoreIcon
+              style={{ color: 'white', backgroundColor: '#0acf83' }}
+            />
+          </IconButton>
+        </div>
+      </div>
       <Divider />
       <List>
         <ListItem button>
           <ListItemIcon>
-            <DashboardIcon />
+            <DashboardIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Communities' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <QuestionAnswerIcon />
+            <QuestionAnswerIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Discussions' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <WarningIcon />
+            <WarningIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Alerts' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <ChatIcon />
+            <ChatIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Messages' />
         </ListItem>
@@ -67,13 +83,13 @@ function ResponsiveDrawer(props) {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <SettingsIcon />
+            <SettingsIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Settings' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <NotificationsActiveIcon />
+            <NotificationsActiveIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Notifications' />
         </ListItem>
@@ -98,8 +114,8 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' noWrap>
-            Responsive drawer
+          <Typography variant='h6' noWrap id='dNav-logo'>
+            blockwatch
           </Typography>
         </Toolbar>
       </AppBar>
@@ -157,6 +173,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    backgroundColor: '#192935',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -168,19 +185,13 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: '#192935',
+    color: 'white',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
 }));
-
-ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
 export default ResponsiveDrawer;
