@@ -1,30 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import {
+  Divider,
+  CssBaseline,
+  Drawer,
+  Hidden,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+  AppBar,
+  Avatar,
+  IconButton,
+} from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ChatIcon from '@material-ui/icons/Chat';
 import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import { Avatar, IconButton } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const drawerWidth = 240;
 
-function ResponsiveDrawer(props) {
+function DrawerNav(props) {
   const { window, children, user } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -120,7 +122,6 @@ function ResponsiveDrawer(props) {
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation='css'>
           <Drawer
             container={container}
@@ -193,4 +194,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ResponsiveDrawer;
+export default DrawerNav;
