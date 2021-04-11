@@ -5,10 +5,12 @@ import { Container } from '@material-ui/core';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ReportIcon from '@material-ui/icons/Report';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import { Link } from 'react-router-dom';
 
 const LandingScreen = () => {
   return (
     <Container id='landing-pg'>
+      {/* ===== Hero Image ===== */}
       <section className='hero row'>
         <div className='hero-content col-sm-12 col-md-6'>
           <h1 className='heading-test text-center'>
@@ -18,12 +20,18 @@ const LandingScreen = () => {
           <p className='tagline text-center mt-3 mb-3'>
             A modern approach to safe and connected neighborhoods
           </p>
-          <button className='button-test mt-3 w-50'>Find a community</button>
+
+          <button className='button-test mt-3 w-50'>
+            <Link to='/search' className='link'>
+              Find a community
+            </Link>
+          </button>
         </div>
         <div className='hero-img col-sm-12 col-md-6'>
           <LandingLogo />
         </div>
       </section>
+      {/* ===== Landing Icons ===== */}
       <section id='landing-info' className='mb-3'>
         <div className='row'>
           <div className='d-flex flex-column align-items-center col-xs-12 col-sm-4 py-4'>
@@ -66,7 +74,6 @@ const LandingScreen = () => {
             </p>
           </div>
         </div>
-        {/* <SearchBar /> */}
       </section>
     </Container>
   );

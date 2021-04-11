@@ -1,3 +1,8 @@
 .search-result-card {
   background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
 }
+
+#welcome-user {
+  font-family: $brand-font;
+  font-size: 1.25rem;
+}

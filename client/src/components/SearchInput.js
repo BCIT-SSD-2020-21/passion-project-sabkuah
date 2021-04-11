@@ -9,7 +9,11 @@ const SearchBar = () => {
   return (
     <Container>
       <div className='search'>
-        <Paper component='form' className='search-bar'>
+        <Paper
+          component='form'
+          className='search-bar'
+          style={{ backgroundColor: '#f3f3f3' }}
+        >
           <IconButton className='iconButton' aria-label='search'>
             <SearchIcon />
           </IconButton>
