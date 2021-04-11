@@ -1,0 +1,42 @@
+#login-pg {
+    background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
+    border-radius: 4rem;
+    box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-title {
+    color: $brand-green;
+    font-family: $brand-font;
+    font-size: 3.5rem;
+}
+.login-tagline {
+    font-family: $brand-font;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .login-form-input {
+        width: 65%;
+        margin-bottom: 1.5%;
+    }
+
+    .errorMsg {
+        color: red;
+        font-weight: 400;
+    }
+    .login-button {
+        @include brand-button-lg;
+    }
+}

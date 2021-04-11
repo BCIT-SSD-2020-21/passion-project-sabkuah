@@ -153,7 +153,7 @@ const RegisterScreen = ({ handleSubmit, errorMsgs, user, setUser }) => {
                             })
                         }
                     />
-                    <button type="submit" className="button-test">
+                    <button type="submit" className="reg-button">
                         Register
                     </button>
 

@@ -29,7 +29,7 @@
     align-items: center;
 
     .reg-form-input {
-        width: 55%;
+        width: 65%;
         margin-bottom: 1.5%;
     }
 
@@ -37,7 +37,7 @@
         color: red;
         font-weight: 400;
     }
-    .button-test {
+    .reg-button {
         @include brand-button-lg;
     }
 }
