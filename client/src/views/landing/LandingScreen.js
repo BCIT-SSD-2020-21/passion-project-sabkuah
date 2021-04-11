@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBar from '../../components/SearchInput';
 import LandingLogo from '../../components/LandingLogo';
 import { Container } from '@material-ui/core';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';

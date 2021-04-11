@@ -17,7 +17,7 @@ const SearchResultCard = ({ community }) => {
   const [liked, setLiked] = useState(false);
 
   return (
-    <Card className='my-3 search-result-card'>
+    <Card className='my-3 search-result-card col-xs-10 col-md-5'>
       <CardHeader
         avatar={
           <Avatar
