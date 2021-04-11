@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Divider,
   CssBaseline,
@@ -57,12 +58,14 @@ function DrawerNav(props) {
       </div>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon className='dNav-icon' />
-          </ListItemIcon>
-          <ListItemText primary='Communities' />
-        </ListItem>
+        <Link to='/user/communities'>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon className='dNav-icon' />
+            </ListItemIcon>
+            <ListItemText primary='Communities' />
+          </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon>
             <QuestionAnswerIcon className='dNav-icon' />
