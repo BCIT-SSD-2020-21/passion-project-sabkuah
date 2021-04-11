@@ -77,3 +77,34 @@ module.exports.getCommunityById = catchAsync(async (req, res) => {
 
   res.send({ community })
 })
+
+/**
+ * Create a community
+ * @function
+ * @POST
+ * @param req.body {Object} title, description, location
+ * @returns {Object} Community obj
+ * @throws Will throw an error if Community obj fails validation
+ */
+module.exports.createCommunity = catchAsync(async (req, res) => {
+  const { title, description, location } = req.body
+  const user = await req.decodedUser
+  const userId = user._id
+
+  const community = new Community({
+    title,
+    description,
+    location,
+    contents: [],
+    members: [userId],
+    creator: userId,
+  })
+
+  if (!community) {
+    res.send({ error: "Error creating Community" })
+    return
+  }
+
+  await community.save()
+  res.send({ message: `Successfully created ${community.title} community` })
+})

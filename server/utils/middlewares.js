@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 /**
  * Require user to authenticate before reaching an endpoint
  * @function
+ * @requires authentication reach /api/users/login first
  * @param req.headers.authorization Bearer ${token}
  * @throws Will throw an error if no user in session
  * @throws Will throw an error if no token sent to server
