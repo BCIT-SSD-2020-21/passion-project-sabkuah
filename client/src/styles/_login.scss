@@ -1,46 +1,41 @@
-.flex-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-#register-pg {
+#login-pg {
     background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
     border-radius: 4rem;
     box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
     margin-top: 2%;
     margin-bottom: 5%;
+    padding-bottom: 2%;
     min-width: 70%;
 }
 
 @media only screen and (min-width: 992px) {
-    #register-pg {
+    #login-pg {
         width: 50%;
     }
 }
-.reg-img {
-    height: auto;
+
+.login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.reg-title {
+.login-title {
     color: $brand-green;
     font-family: $brand-font;
     font-size: 3.5rem;
 }
-.reg-tagline {
+.login-tagline {
     font-family: $brand-font;
 }
 
-.registerForm {
+.login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .reg-form-input {
+    .login-form-input {
         width: 65%;
         margin-bottom: 1.5%;
     }
@@ -49,7 +44,7 @@
         color: red;
         font-weight: 400;
     }
-    .reg-button {
+    .login-button {
         @include brand-button-lg;
     }
 }
