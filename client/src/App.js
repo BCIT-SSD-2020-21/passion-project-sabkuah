@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Public from './layouts/Public';
 import User from './layouts/User';
 import Landing from './views/landing/Landing';
-import Dashboard from './views/dashboard/Dashboard';
 import Register from './views/register/Register';
 import Search from './views/search/Search';
+import UserCommunities from './views/userCommunities/UserCommunities';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path='/user/:path?'>
           <User>
             <Switch>
-              <Route path='/user' component={Dashboard} />
+              <Route path='/user/communities' component={UserCommunities} />
             </Switch>
           </User>
         </Route>

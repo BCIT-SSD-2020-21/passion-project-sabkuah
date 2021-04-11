@@ -23,11 +23,12 @@ import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Dashboard from '../views/dashboard/Dashboard';
 
 const drawerWidth = 240;
 
 function DrawerNav(props) {
-  const { window, children, user } = props;
+  const { window, user, children } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -151,9 +152,10 @@ function DrawerNav(props) {
           </Drawer>
         </Hidden>
       </nav>
+      {/* CHILDREN TO DASHBOARD APPEAR UNDER THIS SECTION */}
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {children}
+        <Dashboard>{children}</Dashboard>
       </main>
     </div>
   );
