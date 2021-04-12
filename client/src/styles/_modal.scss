@@ -1,0 +1,21 @@
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .modal-form-input {
+        width: 65%;
+        margin-bottom: 1.5%;
+        justify-content: center;
+    }
+}
+.modal-title {
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-btn {
+    @include brand-button-lg;
+    justify-content: center;
+}

@@ -17,10 +17,9 @@ const SearchScreen = ({ user, communities }) => {
             <div className="my-5">
                 <SearchInput />
             </div>
-            {/* Create a community */}
-            {/* MODAL TRIGGER BUTTON */}
+            {/*  Modal Pop up onClick */}
             <button className="create-com-button" onClick={handleShow}>
-                +
+                Create
             </button>
             <CreateCommunity show={show} setShow={setShow} />
 
@@ -31,7 +30,10 @@ const SearchScreen = ({ user, communities }) => {
                             <SearchResultCard community={community} />
                         ))
                     ) : (
-                        <p>No Communities found! Please search again</p>
+                        <p>
+                            No Communities found! Please search again or create
+                            a new community!
+                        </p>
                     )}
                 </div>
             </div>
