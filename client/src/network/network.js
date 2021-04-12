@@ -12,6 +12,7 @@ export async function registerUser(user) {
     password: user.password,
   };
   console.log(`Register User >>`, newUser);
+
   try {
     const token = await axios({
       method: 'POST',
@@ -25,6 +26,28 @@ export async function registerUser(user) {
 
     return token.data.accessToken;
   } catch (e) {
-    console.log('error', e);
+    console.log('Error:', e);
+  }
+}
+
+export async function loginUser(user) {
+  const currentUser = {
+    ...user,
+    username: user.email,
+  };
+  try {
+    const token = await axios({
+      method: 'POST',
+      url: `${BASE_URL}/users/login`,
+      data: currentUser,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+    console.log('TOKEN', token);
+
+    return token.data.accessToken;
+  } catch (e) {
+    console.log('Error:', e);
   }
 }

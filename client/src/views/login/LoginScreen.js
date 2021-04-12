@@ -8,11 +8,18 @@ import EmailIcon from '@material-ui/icons/Email';
 
 const Login = ({ handleLogin }) => {
   const [user, setUser] = useState({ email: '', password: '' });
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log('user submitted in login form', user);
+    handleLogin(user);
+  };
+
   return (
     <Container>
       <div className='flex-container'>
         <div id='login-pg'>
-          <form onSubmit={handleLogin} className='login-form'>
+          <form onSubmit={submitForm} className='login-form'>
             <LandingLogo />
             <h1 className='login-title'>Blockwatch</h1>
             <p className='login-tagline'>Building safe communities</p>
@@ -50,6 +57,12 @@ const Login = ({ handleLogin }) => {
                   </InputAdornment>
                 ),
               }}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  password: e.target.value,
+                })
+              }
             />
             <button type='submit' id='Register' className='login-button'>
               Login

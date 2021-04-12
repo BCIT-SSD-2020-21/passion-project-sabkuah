@@ -8,7 +8,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PersonIcon from '@material-ui/icons/Person';
 
-const RegisterScreen = ({ handleSubmit }) => {
+const RegisterScreen = ({ handleRegister }) => {
   const [errorMsgs, setErrorMsgs] = useState([]);
   const [user, setUser] = useState({
     email: '',
@@ -82,7 +82,7 @@ const RegisterScreen = ({ handleSubmit }) => {
       setErrorMsgs([]);
     }
 
-    handleSubmit(user);
+    handleRegister(user);
     setUser({
       email: '',
       password: '',

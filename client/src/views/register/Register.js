@@ -10,7 +10,7 @@ const Register = () => {
   const [user, setUser] = useState({});
   const history = useHistory();
 
-  const handleSubmit = async (user) => {
+  const handleRegister = async (user) => {
     console.log('USER', user);
     try {
       const accessToken = await registerUser(user);
@@ -29,7 +29,7 @@ const Register = () => {
     console.log('decoded user>>>', decodedUser);
   }, [token]);
 
-  return <RegisterScreen handleSubmit={handleSubmit} />;
+  return <RegisterScreen handleRegister={handleRegister} />;
 };
 
 export default Register;
