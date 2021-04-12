@@ -23,6 +23,7 @@ const CreateCommModal = ({ show, setShow }) => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                style={{ marginTop: '3%' }}
             >
                 <h2 className="modal-title">Create a community</h2>
 
