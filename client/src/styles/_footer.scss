@@ -1,0 +1,85 @@
+.site-footer {
+  background-color: $brand-blue;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: $grey-light;
+  font-family: $body-font;
+
+  hr {
+    border-top-color: #bbb;
+    opacity: 0.5;
+  }
+
+  h6 {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    font-family: $brand-font;
+  }
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    display: block;
+  }
+  a {
+    color: #737373;
+  }
+
+  a:active,
+  a:focus,
+  a:hover {
+    color: $brand-green;
+    text-decoration: none;
+  }
+}
+
+.social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  text-align: right;
+
+  li {
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+
+  a {
+    background-color: #33353d;
+    color: #818a91;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 44px;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    margin-right: 8px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+  }
+
+  a:active,
+  a:focus,
+  a:hover {
+    color: #fff;
+  }
+
+  .facebook:hover {
+    background-color: #3b5998;
+  }
+  .twitter:hover {
+    background-color: #00aced;
+  }
+  .github:hover {
+    background-color: #bd2c00;
+  }
+}

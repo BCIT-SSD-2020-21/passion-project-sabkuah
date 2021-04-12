@@ -1,7 +1,19 @@
 @import 'mixins';
 @import 'variables';
 @import 'register';
+@import 'landing';
+@import 'navigation';
+@import 'footer';
+@import 'login';
+@import 'search';
+@import 'modal';
 
-body {
-    background-color: green;
+.link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
 }
