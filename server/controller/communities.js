@@ -91,8 +91,10 @@ module.exports.createCommunity = catchAsync(async (req, res) => {
   const user = await req.decodedUser
   const userId = user._id
 
+  // Find User by Id
   const userModel = await User.findById(userId)
 
+  // Create new Community
   const community = new Community({
     title,
     description,
@@ -102,15 +104,19 @@ module.exports.createCommunity = catchAsync(async (req, res) => {
     creator: userId,
   })
 
+  // Check if new Community is valid
   if (!community) {
     res.send({ error: "Error creating Community" })
     return
   }
 
+  // Push created community in users.community array
   userModel.communities.push(community)
 
+  // Save both models
   await userModel.save()
   await community.save()
+
   res.send({ message: `Successfully created ${community.title} community` })
 })
 
@@ -127,12 +133,13 @@ module.exports.joinCommunity = catchAsync(async (req, res) => {
   const user = await req.decodedUser
   const userId = user._id
 
+  // Find User and Communtiy by ID
   const userModel = await User.findById(userId)
   const community = await Community.findById(id)
 
+  //    Check if user is already a member of community
   const memberExists = community.members.indexOf(userId)
 
-  //    Check if user is already a member of community
   if (memberExists > -1) {
     res.send({
       error: `You're already a member of ${community.title} community`,
@@ -140,10 +147,12 @@ module.exports.joinCommunity = catchAsync(async (req, res) => {
     return
   }
 
-  //    $push user in community.members
+  //  $push user in community.members
   await Community.updateOne({ _id: id }, { $push: { members: userId } })
+  //  push created community in user.communities
   userModel.communities.push(community)
 
+  // Save  user model
   await userModel.save()
 
   res.send({ message: `Successfully joined ${community.title} community` })
