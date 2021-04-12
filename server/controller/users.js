@@ -2,6 +2,7 @@
 // REQUIRE
 // =============================================
 const User = require("../models/User")
+const Community = require("../models/Community")
 const catchAsync = require("../utils/catchAsync")
 const { generateToken } = require("../utils/jwt")
 
@@ -90,4 +91,26 @@ module.exports.logoutUser = (req, res) => {
   req.logout()
   req.session.destroy()
   res.send({ message: "Successfully logged out" })
+}
+
+/**
+ * Retrieve all communities by logged in User
+ * @function
+ * @GET
+ * @returns {Array} List of communities by user logged in
+ *
+ */
+module.exports.getAllCommunitiesOfUser = async (req, res) => {
+  const user = await req.decodedUser
+  const userId = user._id
+
+  // Find User By ID
+  const communitesOfUser = await User.findById(userId)
+    .select("communities firstName lastName")
+    .populate({
+      path: "communities",
+      select: "title description location",
+    })
+
+  res.send(communitesOfUser)
 }
