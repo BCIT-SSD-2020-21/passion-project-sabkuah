@@ -23,9 +23,9 @@ const CreateCommModal = ({ show, setShow }) => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                style={{ marginTop: '3%' }}
+                style={{ marginTop: '5%' }}
             >
-                <h2 className="modal-title">Create a community</h2>
+                <h2 className="modal-title">Add Community</h2>
 
                 <div className="modal-body">
                     <form className="modal-form">
@@ -47,20 +47,6 @@ const CreateCommModal = ({ show, setShow }) => {
                             variant="outlined"
                             label="City"
                             placeholder="City"
-                            id="email"
-                            className="modal-form-input"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LocationCityIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <TextField
-                            variant="outlined"
-                            label="Province"
-                            placeholder="Province"
                             id="email"
                             className="modal-form-input"
                             InputProps={{
