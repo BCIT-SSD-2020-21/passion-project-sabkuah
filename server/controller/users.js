@@ -98,9 +98,9 @@ module.exports.logoutUser = (req, res) => {
  * @function
  * @GET
  * @returns {Array} List of communities by user logged in
- *
+ * @throws Will throw an error if user is not found
  */
-module.exports.getAllCommunitiesOfUser = async (req, res) => {
+module.exports.getAllCommunitiesOfUser = catchAsync(async (req, res) => {
   const user = await req.decodedUser
   const userId = user._id
 
@@ -113,4 +113,4 @@ module.exports.getAllCommunitiesOfUser = async (req, res) => {
     })
 
   res.send({ user: userModel })
-}
+})
