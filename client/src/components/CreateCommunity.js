@@ -24,16 +24,12 @@ const CreateCommModal = ({ show, setShow }) => {
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title className="modal-title">
-                        Create a community
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                <h2 className="modal-title">Create a community</h2>
+
+                <div className="modal-body">
                     <form className="modal-form">
                         <TextField
                             variant="outlined"
-                            value=""
                             label="Community name"
                             placeholder="Community name"
                             id="email"
@@ -48,7 +44,6 @@ const CreateCommModal = ({ show, setShow }) => {
                         />
                         <TextField
                             variant="outlined"
-                            value=""
                             label="City"
                             placeholder="City"
                             id="email"
@@ -63,7 +58,6 @@ const CreateCommModal = ({ show, setShow }) => {
                         />
                         <TextField
                             variant="outlined"
-                            value=""
                             label="Province"
                             placeholder="Province"
                             id="email"
@@ -78,7 +72,6 @@ const CreateCommModal = ({ show, setShow }) => {
                         />
                         <TextField
                             variant="outlined"
-                            value=""
                             label="Description"
                             multiline={true}
                             id="email"
@@ -86,7 +79,7 @@ const CreateCommModal = ({ show, setShow }) => {
                             rows={5}
                         />
                     </form>
-                </Modal.Body>
+                </div>
 
                 <Modal.Footer>
                     <button className="modal-btn" onClick={handleClose}>
