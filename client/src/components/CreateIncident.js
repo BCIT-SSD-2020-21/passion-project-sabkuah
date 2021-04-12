@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextField } from '@material-ui/core';
 import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import LocationCityIcon from '@material-ui/icons/LocationCity';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 import CreateIcon from '@material-ui/icons/Create';
 
-const CreateCommModal = ({ show, setShow }) => {
+const CreateIncident = ({ show, setShow }) => {
     const handleClose = () => {
         setShow(false);
     };
-
     return (
         <div>
             <Modal
@@ -19,15 +18,15 @@ const CreateCommModal = ({ show, setShow }) => {
                 keyboard={false}
                 style={{ marginTop: '5%' }}
             >
-                <h2 className="modal-title">Add Community</h2>
+                <h2 className="modal-title">New Incident</h2>
 
                 <div className="modal-body">
                     <form className="modal-form">
                         <TextField
                             variant="outlined"
-                            label="Community name"
-                            placeholder="Community name"
-                            id="email"
+                            label="Incident Title"
+                            placeholder="Incident Title"
+                            id="Incident Title"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
@@ -39,14 +38,14 @@ const CreateCommModal = ({ show, setShow }) => {
                         />
                         <TextField
                             variant="outlined"
-                            label="City"
-                            placeholder="City"
-                            id="email"
+                            label="Date"
+                            placeholder="Date"
+                            id="Date"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <LocationCityIcon />
+                                        <DateRangeIcon />
                                     </InputAdornment>
                                 ),
                             }}
@@ -73,4 +72,4 @@ const CreateCommModal = ({ show, setShow }) => {
     );
 };
 
-export default CreateCommModal;
+export default CreateIncident;

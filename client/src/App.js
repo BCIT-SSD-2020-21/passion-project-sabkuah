@@ -7,6 +7,7 @@ import Register from './views/register/Register';
 import Login from './views/login/Login';
 import Search from './views/search/Search';
 import UserCommunities from './views/userCommunities/UserCommunities';
+import CommunityIncidents from './views/communityIncidents/CommunityIncidents';
 
 function App() {
     return (
@@ -18,6 +19,10 @@ function App() {
                             <Route
                                 path="/user/communities"
                                 component={UserCommunities}
+                            />
+                            <Route
+                                path="/user/incidents"
+                                component={CommunityIncidents}
                             />
                         </Switch>
                     </User>

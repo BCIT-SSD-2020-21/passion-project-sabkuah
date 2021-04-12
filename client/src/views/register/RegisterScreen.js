@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-    makeStyles,
-    TextField,
-    Button,
-    Container,
-    Typography,
-} from '@material-ui/core';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { TextField, Container } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import LandingLogo from '../../components/LandingLogo';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';

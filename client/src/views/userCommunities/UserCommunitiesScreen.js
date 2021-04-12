@@ -4,10 +4,10 @@ import AddCommunity from '../../components/CreateCommunity';
 const UserCommunitiesScreen = () => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
+
     return (
         <div>
-            <div className="Button-flex">
-                <button className="create-com-button">New Incident</button>
+            <div className="button-flex">
                 <button className="create-com-button" onClick={handleShow}>
                     Add Community
                 </button>

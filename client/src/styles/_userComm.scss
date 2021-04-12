@@ -1,7 +1,5 @@
 .button-flex {
-    display: flex;
-    justify-content: space-between;
-    margin-left: auto;
+    align-self: flex-end;
 }
 
 .create-com-button {
