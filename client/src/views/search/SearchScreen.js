@@ -5,8 +5,6 @@ import SearchResultCard from '../../components/SearchResultCard';
 import CreateCommunity from '../../components/CreateCommunity';
 
 const SearchScreen = ({ user, communities }) => {
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
     return (
         <Container>
             <div className="mb-3">
@@ -17,12 +15,6 @@ const SearchScreen = ({ user, communities }) => {
             <div className="my-5">
                 <SearchInput />
             </div>
-            {/*  Modal Pop up onClick */}
-            <button className="create-com-button" onClick={handleShow}>
-                Create
-            </button>
-            <CreateCommunity show={show} setShow={setShow} />
-
             <div className="my-3">
                 <div id="search-results">
                     {communities.length ? (
