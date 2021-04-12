@@ -13,9 +13,15 @@ const Register = () => {
   const handleRegister = async (user) => {
     console.log('USER', user);
     try {
-      const accessToken = await registerUser(user);
-      if (accessToken) {
-        setToken(accessToken);
+      const response = await registerUser(user);
+      if (response.error) {
+        alert(response.error);
+        return;
+      }
+
+      if (response.accessToken) {
+        setToken(response.accessToken);
+        alert('Successfully registered user!');
         history.push('/user/communities');
       }
     } catch (e) {

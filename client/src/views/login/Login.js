@@ -15,6 +15,7 @@ const Login = () => {
       const accessToken = await loginUser(user);
       if (accessToken) {
         setToken(accessToken);
+        alert('Successfully logged in!');
         history.push('/user/communities');
       }
     } catch (e) {

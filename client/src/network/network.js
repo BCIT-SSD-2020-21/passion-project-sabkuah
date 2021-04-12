@@ -14,7 +14,7 @@ export async function registerUser(user) {
   console.log(`Register User >>`, newUser);
 
   try {
-    const token = await axios({
+    const response = await axios({
       method: 'POST',
       url: `${BASE_URL}/users/register`,
       data: newUser,
@@ -22,11 +22,12 @@ export async function registerUser(user) {
         'Access-Control-Allow-Origin': '*',
       },
     });
-    console.log('TOKEN', token);
+    console.log('RESPONSE', response);
 
-    return token.data.accessToken;
-  } catch (e) {
-    console.log('Error:', e);
+    return response.data;
+  } catch (error) {
+    console.log('Error: ', error);
+    alert('Error: ', error);
   }
 }
 
@@ -49,5 +50,23 @@ export async function loginUser(user) {
     return token.data.accessToken;
   } catch (e) {
     console.log('Error:', e);
+    alert('Incorrect username or password');
+  }
+}
+
+export async function logoutUser() {
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: `${BASE_URL}/users/logout`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+    console.log('logout response>>', response);
+    return response;
+  } catch (e) {
+    console.log('Error:', e);
+    alert('Error logging out');
   }
 }
