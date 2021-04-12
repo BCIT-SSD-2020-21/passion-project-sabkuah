@@ -190,6 +190,12 @@ const RegisterScreen = ({ handleSubmit }) => {
                   </InputAdornment>
                 ),
               }}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  firstName: e.target.value,
+                })
+              }
             />
 
             <TextField
@@ -207,6 +213,12 @@ const RegisterScreen = ({ handleSubmit }) => {
                   </InputAdornment>
                 ),
               }}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  lastName: e.target.value,
+                })
+              }
             />
 
             <TextField

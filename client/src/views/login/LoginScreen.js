@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField, Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -7,6 +7,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 
 const Login = ({ handleLogin }) => {
+  const [user, setUser] = useState({ email: '', password: '' });
   return (
     <Container>
       <div className='flex-container'>
@@ -28,6 +29,9 @@ const Login = ({ handleLogin }) => {
                     <EmailIcon />
                   </InputAdornment>
                 ),
+              }}
+              onChange={(e) => {
+                setUser({ ...user, email: e.target.value });
               }}
             />
 
