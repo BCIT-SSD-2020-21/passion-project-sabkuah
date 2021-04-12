@@ -51,5 +51,6 @@
     }
     .reg-button {
         @include brand-button-lg;
+        justify-content: center;
     }
 }
