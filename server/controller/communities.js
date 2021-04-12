@@ -91,6 +91,8 @@ module.exports.createCommunity = catchAsync(async (req, res) => {
   const user = await req.decodedUser
   const userId = user._id
 
+  const userModel = await User.findById(userId)
+
   const community = new Community({
     title,
     description,
@@ -105,6 +107,9 @@ module.exports.createCommunity = catchAsync(async (req, res) => {
     return
   }
 
+  userModel.communities.push(community)
+
+  await userModel.save()
   await community.save()
   res.send({ message: `Successfully created ${community.title} community` })
 })
