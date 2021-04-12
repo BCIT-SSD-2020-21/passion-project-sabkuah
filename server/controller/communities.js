@@ -127,6 +127,7 @@ module.exports.joinCommunity = catchAsync(async (req, res) => {
   const user = await req.decodedUser
   const userId = user._id
 
+  const userModel = await User.findById(userId)
   const community = await Community.findById(id)
 
   const memberExists = community.members.indexOf(userId)
@@ -141,6 +142,9 @@ module.exports.joinCommunity = catchAsync(async (req, res) => {
 
   //    $push user in community.members
   await Community.updateOne({ _id: id }, { $push: { members: userId } })
+  userModel.communities.push(community)
+
+  await userModel.save()
 
   res.send({ message: `Successfully joined ${community.title} community` })
 })
