@@ -16,41 +16,46 @@ const { generateToken } = require("../utils/jwt")
  * @param req.body {Object} email, firstName, lastName, location, password.
  * @returns {Object} Access token
  */
-module.exports.registerUser = catchAsync(async (req, res) => {
-  // get body from form
-  const { email, firstName, lastName, location, password } = req.body
-  // create new User (only username and email)
-  const user = new User({
-    username: email,
-    email,
-    firstName,
-    lastName,
-    location,
-  })
-  // "register" user using .register()
-  const registeredUser = await User.register(user, password)
+module.exports.registerUser = async (req, res) => {
+  try {
+    // get body from form
+    const { email, firstName, lastName, location, password } = req.body
+    // create new User (only username and email)
+    const user = new User({
+      username: email,
+      email,
+      firstName,
+      lastName,
+      location,
+    })
+    // "register" user using .register()
+    const registeredUser = await User.register(user, password)
 
-  // login user
-  req.login(registeredUser, (err) => {
-    if (err) return next(err)
+    // login user
+    req.login(registeredUser, (err) => {
+      if (err) return next(err)
 
-    const user = req.user
+      const user = req.user
 
-    if (user) {
-      // generate token
-      const accessToken = generateToken({
-        _id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      })
+      if (user) {
+        // generate token
+        const accessToken = generateToken({
+          _id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        })
 
-      // send back token
-      res.send({ accessToken })
-      return
-    }
-  })
-})
+        // send back token
+        res.send({ accessToken })
+        return
+      }
+    })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
+  }
+}
 
 /**
  * Login user
