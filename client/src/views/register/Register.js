@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { registerUser } from '../../network/network';
+import { registerUser } from '../../network/user';
 import RegisterScreen from './RegisterScreen';
 import useLocalStorage from 'react-use-localstorage';
 import jwtDecode from 'jwt-decode';
@@ -11,14 +11,12 @@ const Register = () => {
   const history = useHistory();
 
   const handleRegister = async (user) => {
-    console.log('USER', user);
     try {
       const response = await registerUser(user);
       if (response.error) {
         alert(response.error);
         return;
       }
-
       if (response.accessToken) {
         setToken(response.accessToken);
         alert('Successfully registered user!');

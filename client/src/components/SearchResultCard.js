@@ -53,10 +53,10 @@ const SearchResultCard = ({ community }) => {
             <div className='mx-2'>
               <RoomIcon style={{ color: '#0acf83' }} /> {community.location}
             </div>
-            <div className='mx-2'>
+            {/* <div className='mx-2'>
               <PeopleIcon style={{ color: '#0acf83' }} />{' '}
               {community.members.length}
-            </div>
+            </div> */}
           </div>
         }
       />
