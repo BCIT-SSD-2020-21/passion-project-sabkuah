@@ -1,0 +1,33 @@
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .modal-form-input {
+        width: 65%;
+        margin-bottom: 1.5%;
+        justify-content: center;
+    }
+}
+.modal-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $brand-green;
+    font-family: $brand-font;
+    background-color: $brand-blue;
+    padding: 1rem 1rem;
+    border-bottom: 3px solid $brand-green;
+}
+
+.modal-body {
+    background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
+    box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
+    margin-top: 2%;
+}
+
+.modal-btn {
+    @include brand-button-lg;
+    justify-content: center;
+}
