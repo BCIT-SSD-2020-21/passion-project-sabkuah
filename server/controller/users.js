@@ -105,12 +105,12 @@ module.exports.getAllCommunitiesOfUser = async (req, res) => {
   const userId = user._id
 
   // Find User By ID
-  const communitesOfUser = await User.findById(userId)
+  const userModel = await User.findById(userId)
     .select("communities firstName lastName")
     .populate({
       path: "communities",
       select: "title description location",
     })
 
-  res.send(communitesOfUser)
+  res.send({ user: userModel })
 }
