@@ -62,6 +62,44 @@
 
 <hr>
 
+### `GET`
+
+### Get logged in user's communities
+
+### `/api/users/communities`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample response:
+
+    {
+        "user": {
+            "communities": [
+                {
+                    "_id": "607492f05d5cbfaa2b8b6406",
+                    "title": "Lansdowne",
+                    "description": "Awesome community near the mall and skytrain",
+                    "location": "Richmond"
+                },
+                {
+                    "_id": "6074acc58a2d09ac8741f084",
+                    "title": "Sab's Community",
+                    "description": "Test",
+                    "location": "Richmond"
+                }
+            ],
+            "_id": "607492ef5d5cbfaa2b8b6403",
+            "firstName": "Russ",
+            "lastName": "Telen"
+        }
+    }
+
+<hr>
+
 ## COMMUNITIES
 
 ### `GET`
