@@ -113,76 +113,40 @@
     {
         "communities": [
             {
-                "contents": [
-                    {
-                        "_id": "6070d61ce98bef8863754a07",
-                        "title": "Potholes",
-                        "description": "I damn near broke my suspension today. Way too many potholes on Arcadia road. Theyre MASSIVE too. This needs to be addressed ASAP",
-                        "date": "2021-04-09T22:33:00.932Z",
-                        "category": "Incident Reports",
-                        "author": {
-                            "_id": "6070d61be98bef8863754a02",
-                            "email": "russ@gmail.com",
-                            "username": "russ@gmail.com",
-                            "firstName": "Russ",
-                            "lastName": "Telen",
-                            "location": "Richmond",
-                            "__v": 0
-                        },
-                        "__v": 0
-                    },
-                    {
-                        "_id": "6070d61ce98bef8863754a08",
-                        "title": "Missing stop sign",
-                        "description": "Somone stole the stop sign @ the corner of Cook rd. Damn hoodlums..",
-                        "date": "2021-04-09T22:33:00.934Z",
-                        "category": "Incident Reports",
-                        "author": {
-                            "_id": "6070d61be98bef8863754a04",
-                            "email": "sab@gmail.com",
-                            "username": "sab@gmail.com",
-                            "firstName": "Sab",
-                            "lastName": "Kuah",
-                            "location": "Vancouver",
-                            "__v": 0
-                        },
-                        "__v": 0
-                    }
-                ],
-                "members": [
-                    {
-                        "_id": "6070d61be98bef8863754a03",
-                        "email": "kal@gmail.com",
-                        "firstName": "Kal",
-                        "lastName": "Tang"
-                    },
-                    {
-                        "_id": "6070d61be98bef8863754a02",
-                        "email": "russ@gmail.com",
-                        "firstName": "Russ",
-                        "lastName": "Telen"
-                    },
-                    {
-                        "_id": "6070d61be98bef8863754a04",
-                        "email": "sab@gmail.com",
-                        "firstName": "Sab",
-                        "lastName": "Kuah"
-                    }
-                ],
-                "_id": "6070d61ce98bef8863754a05",
+                "_id": "607492f05d5cbfaa2b8b6406",
                 "title": "Lansdowne",
                 "description": "Awesome community near the mall and skytrain",
                 "location": "Richmond",
                 "creator": {
-                    "_id": "6070d61be98bef8863754a03",
+                    "_id": "607492ef5d5cbfaa2b8b6404",
                     "email": "kal@gmail.com",
                     "firstName": "Kal",
                     "lastName": "Tang"
-                },
-                "__v": 2
+                }
             },
             {
-                communityObj
+                "_id": "607492f05d5cbfaa2b8b6407",
+                "title": "Kitsilano",
+                "description": "Safe community by the beach",
+                "location": "Vancouver",
+                "creator": {
+                    "_id": "607492ef5d5cbfaa2b8b6405",
+                    "email": "sab@gmail.com",
+                    "firstName": "Sab",
+                    "lastName": "Kuah"
+                }
+            },
+            {
+                "_id": "6074acc58a2d09ac8741f084",
+                "title": "Sab's Community",
+                "description": "Test",
+                "location": "Richmond",
+                "creator": {
+                    "_id": "607492ef5d5cbfaa2b8b6405",
+                    "email": "sab@gmail.com",
+                    "firstName": "Sab",
+                    "lastName": "Kuah"
+                }
             }
         ]
     }
