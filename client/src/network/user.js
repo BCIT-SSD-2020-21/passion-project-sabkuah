@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const BASE_URL = 'https://block-watch.herokuapp.com/api';
 
 export async function registerUser(user) {
@@ -11,7 +10,6 @@ export async function registerUser(user) {
     location: user.location,
     password: user.password,
   };
-  console.log(`Register User >>`, newUser);
 
   try {
     const response = await axios({
@@ -22,8 +20,6 @@ export async function registerUser(user) {
         'Access-Control-Allow-Origin': '*',
       },
     });
-    console.log('RESPONSE', response);
-
     return response.data;
   } catch (error) {
     console.log('Error: ', error);
@@ -45,8 +41,6 @@ export async function loginUser(user) {
         'Access-Control-Allow-Origin': '*',
       },
     });
-    console.log('TOKEN', token);
-
     return token.data.accessToken;
   } catch (e) {
     console.log('Error:', e);

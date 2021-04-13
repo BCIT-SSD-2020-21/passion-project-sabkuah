@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { loginUser } from '../../network/network';
+import { loginUser } from '../../network/user';
 import LoginScreen from './LoginScreen';
 import useLocalStorage from 'react-use-localstorage';
 import jwtDecode from 'jwt-decode';

@@ -26,7 +26,7 @@ import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Dashboard from '../views/dashboard/Dashboard';
-import { logoutUser } from '../network/network';
+import { logoutUser } from '../network/user';
 import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
