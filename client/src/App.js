@@ -15,6 +15,7 @@ import Search from './views/search/Search';
 import UserCommunities from './views/userCommunities/UserCommunities';
 import jwtDecode from 'jwt-decode';
 import useLocalStorage from 'react-use-localstorage';
+import NotFound from './components/NotFound';
 
 function App() {
   const [token] = useLocalStorage('token');
@@ -36,6 +37,7 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path='/user' exact component={NotFound} />
         <Route path='/user/:path?'>
           <User>
             <Switch>
@@ -53,6 +55,7 @@ function App() {
               <Route path='/search' component={Search} />
               <Route path='/login' component={Login} />
               <Route path='/' exact component={Landing} />
+              <Route component={NotFound} />
             </Switch>
           </Public>
         </Route>
