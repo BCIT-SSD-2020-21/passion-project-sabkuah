@@ -10,7 +10,7 @@ const LandingScreen = () => {
   return (
     <Container id='landing-pg'>
       {/* ===== Hero Image ===== */}
-      <section className='hero row'>
+      <section className='hero row animate__animated animate__fadeIn'>
         <div className='hero-content col-sm-12 col-md-6'>
           <h1 className='heading-test text-center'>
             welcome to <br />
