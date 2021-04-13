@@ -185,6 +185,20 @@ module.exports.editCommunity = catchAsync(async (req, res) => {
   const user = await req.decodedUser
   const userId = user._id
 
+  let geometry
+
+  // Get Coordinates from Mapbox
+  if (req.body.location) {
+    const geoResponse = await geocodingService
+      .forwardGeocode({
+        query: req.body.location,
+        limit: 1,
+      })
+      .send()
+
+    geometry = geoResponse.body.features[0].geometry
+  }
+
   const community = await Community.findById(id)
 
   //   Check if user editing is the creator of community
@@ -193,7 +207,13 @@ module.exports.editCommunity = catchAsync(async (req, res) => {
     return
   }
 
+  //  Update geometry in community object
+  if (req.body.location) {
+    community.geometry = geometry
+  }
+
   await Community.findByIdAndUpdate(id, req.body)
+  await community.save()
 
   res.send({ message: `Successfully updated community` })
 })
