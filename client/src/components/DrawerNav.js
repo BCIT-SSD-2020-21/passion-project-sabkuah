@@ -28,6 +28,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Dashboard from '../views/dashboard/Dashboard';
 import { logoutUser } from '../network/user';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
 
 const drawerWidth = 240;
 
@@ -37,6 +38,7 @@ function DrawerNav(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const history = useHistory();
+  const [token, setToken] = useLocalStorage('token', '');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -45,6 +47,7 @@ function DrawerNav(props) {
   const handleLogout = async () => {
     const response = await logoutUser();
     alert(response.data.message);
+    setToken('');
     history.push('/');
   };
 

@@ -1,6 +1,13 @@
 import axios from 'axios';
 const BASE_URL = 'https://block-watch.herokuapp.com/api';
 
+/**
+ * Registers user in database
+ * @function
+ * @param user {Object} email, firstName, lastName, location, password
+ * @returns {Object} response with token or error message
+ */
+
 export async function registerUser(user) {
   const newUser = {
     email: user.email,
@@ -27,6 +34,13 @@ export async function registerUser(user) {
   }
 }
 
+/**
+ * Login user: check credentials in DB, returns jwt token
+ * @function
+ * @param {Object} username, password
+ * @returns {Object} response with token or error message
+ */
+
 export async function loginUser(user) {
   const currentUser = {
     ...user,
@@ -47,6 +61,12 @@ export async function loginUser(user) {
     alert('Incorrect username or password');
   }
 }
+
+/**
+ * Logout user: end user session in database
+ * @function
+ * @returns {Object} response message
+ */
 
 export async function logoutUser() {
   try {

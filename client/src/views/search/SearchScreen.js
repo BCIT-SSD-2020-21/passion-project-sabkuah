@@ -8,6 +8,7 @@ const SearchScreen = ({ user, communities }) => {
   const [show, setShow] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(communities);
+
   const handleShow = () => setShow(true);
 
   useEffect(() => {
