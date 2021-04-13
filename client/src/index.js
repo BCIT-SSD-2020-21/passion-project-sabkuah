@@ -6,6 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import '../src/styles/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-calendar/dist/Calendar.css';
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+
+mapboxgl.accessToken =
+  'pk.eyJ1IjoicnVzc3RlbGVuIiwiYSI6ImNrbGxqdzk3MTA2MnIyb251aTk0d2x5dmsifQ.jkO5-RKmX3yZLf3V8pHwOw';
+
+mapboxgl.workerClass = MapboxWorker;
 
 ReactDOM.render(
   <React.StrictMode>
