@@ -45,7 +45,7 @@ module.exports.getCommunityById = catchAsync(async (req, res) => {
   const community = await Community.findById(id)
     .populate({
       path: "contents",
-      select: "-community",
+      select: "title",
       populate: {
         path: "author",
         select: "firstName lastName email",
