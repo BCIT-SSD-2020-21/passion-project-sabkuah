@@ -4,8 +4,10 @@ import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import { addCommunity } from '../network/community';
+import useLocalStorage from 'react-use-localstorage';
 
 const CreateCommunity = ({ show, setShow }) => {
+    const [token, setToken] = useLocalStorage('token', '');
     const [community, setCommunity] = useState({
         title: '',
         location: '',
@@ -18,16 +20,20 @@ const CreateCommunity = ({ show, setShow }) => {
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
-            const response = await addCommunity(community);
+            const response = await addCommunity(community, token);
+            console.log(token);
             console.log(community);
             if (response.error) {
                 console.log(response.error);
                 alert(response.error);
                 return;
             }
-            console.log('Post successful', response.data);
-            alert(response.message);
-            handleClose();
+            if (response.token) {
+                setToken(response.token);
+                console.log('Post successful', response.data);
+                alert(response.message);
+                handleClose();
+            }
         } catch (e) {
             console.log('Error creating community', e);
         }

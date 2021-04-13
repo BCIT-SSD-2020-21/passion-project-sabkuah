@@ -21,8 +21,6 @@ const UserCommunitiesScreen = () => {
             <br />
             <div className="card-flex">
                 <CommunityCard />
-                <CommunityCard />
-                <CommunityCard />
             </div>
         </div>
     );

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const BASE_URL = 'https://block-watch.herokuapp.com/api';
 
 export async function getAllCommunities() {
@@ -16,20 +17,19 @@ export async function getAllCommunities() {
     }
 }
 
-// const testToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDc0OTJlZjVkNWNiZmFhMmI4YjY0MDQiLCJlbWFpbCI6ImthbEBnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJLYWwiLCJsYXN0TmFtZSI6IlRhbmciLCJpYXQiOjE2MTgyOTQ2OTYsImV4cCI6MS4wMDAwMDAwMDAwMDAwMTZlKzIzfQ.5Z-8H86WXU3u0FUQex0SKVQ0faXRLjs6-JZFyu8eShQ'
-
-export async function addCommunity({ community }) {
+export async function addCommunity(community, token) {
     try {
-        const token = await axios({
+        const response = await axios({
             method: 'POST',
             url: `${BASE_URL}/communities`,
-            body: community,
+            data: community,
             headers: {
-                authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*',
+                Authorization: `Bearer ${token}`,
             },
         });
-        console.log('Token >>>>', token);
-        return token.data;
+        console.log('Token>>>>> ', token);
+        return response.data;
     } catch (e) {
         console.log('Error', e);
     }
