@@ -1,9 +1,16 @@
 // =============================================
 // REQUIRE
 // =============================================
+const dotenv = require("dotenv")
+// Read .env file
+dotenv.config()
 const User = require("../models/User")
 const Community = require("../models/Community")
 const catchAsync = require("../utils/catchAsync")
+
+// MAPBOX
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
+const geocodingService = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 
 // =============================================
 // Logic
@@ -76,39 +83,55 @@ module.exports.getCommunityById = catchAsync(async (req, res) => {
  * @returns {Object} Success message
  * @throws Will throw an error if Community obj fails validation
  */
-module.exports.createCommunity = catchAsync(async (req, res) => {
-  const { title, description, location } = req.body
-  const user = await req.decodedUser
-  const userId = user._id
+module.exports.createCommunity = async (req, res) => {
+  try {
+    const { title, description, location } = req.body
+    const user = await req.decodedUser
+    const userId = user._id
 
-  // Find User by Id
-  const userModel = await User.findById(userId)
+    // Find User by Id
+    const userModel = await User.findById(userId)
 
-  // Create new Community
-  const community = new Community({
-    title,
-    description,
-    location,
-    contents: [],
-    members: [userId],
-    creator: userId,
-  })
+    // Get Coordinates from Mapbox
+    const geoResponse = await geocodingService
+      .forwardGeocode({
+        query: location,
+        limit: 1,
+      })
+      .send()
 
-  // Check if new Community is valid
-  if (!community) {
-    res.send({ error: "Error creating Community" })
-    return
+    const geometry = geoResponse.body.features[0].geometry
+
+    // Create new Community
+    const community = new Community({
+      title,
+      description,
+      location,
+      geometry,
+      contents: [],
+      members: [userId],
+      creator: userId,
+    })
+
+    // Check if new Community is valid
+    if (!community) {
+      res.send({ error: "Error creating Community" })
+      return
+    }
+
+    // Push created community in users.community array
+    userModel.communities.push(community)
+
+    // Save both models
+    await userModel.save()
+    await community.save()
+
+    res.send({ message: `Successfully created ${community.title} community` })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
   }
-
-  // Push created community in users.community array
-  userModel.communities.push(community)
-
-  // Save both models
-  await userModel.save()
-  await community.save()
-
-  res.send({ message: `Successfully created ${community.title} community` })
-})
+}
 
 /**
  * Join a community
