@@ -15,10 +15,11 @@ const UserCommunities = ({ user }) => {
 
   useEffect(() => {
     (async () => {
-      await handleGetCommunities();
+      const data = await handleGetCommunities();
+      setCommunities(data);
     })();
   }, []);
-  return <UserCommunitiesScreen />;
+  return <UserCommunitiesScreen communities={communities} />;
 };
 
 export default UserCommunities;

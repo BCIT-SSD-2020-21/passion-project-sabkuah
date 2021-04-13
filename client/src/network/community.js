@@ -29,8 +29,11 @@ export async function getUserCommunities(token) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('getUserCommunities response.data>>>>', response.data);
-    return response.data;
+    console.log(
+      'getUserCommunities response.data>>>>',
+      response.data.user.communities
+    );
+    return response.data.user.communities;
   } catch (e) {
     console.log('Error:', e);
   }

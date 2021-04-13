@@ -59,9 +59,12 @@ function DrawerNav({ window, user, children }) {
           <Avatar />
         </div>
         <div className='d-flex justify-content-between align-items-center'>
-          <h5 className='mb-0'>
-            {user?.firstName} {user?.lastName}
-          </h5>
+          <div>
+            <h5 className='mb-0'>
+              {user?.firstName} {user?.lastName}
+            </h5>
+            <p className='text-muted'>{user?.email}</p>
+          </div>
           <IconButton>
             <ExpandMoreIcon
               style={{ color: 'white', backgroundColor: '#0acf83' }}

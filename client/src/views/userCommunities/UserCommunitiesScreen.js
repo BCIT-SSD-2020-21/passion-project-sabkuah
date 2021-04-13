@@ -1,16 +1,12 @@
 import React from 'react';
 
-const UserCommunitiesScreen = () => {
+const UserCommunitiesScreen = ({ communities }) => {
   return (
     <div>
-      choose a community! Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Aperiam deleniti animi repellat eligendi praesentium placeat rerum
-      itaque, mollitia quasi quidem obcaecati nihil! Aut eaque recusandae ea
-      quae aliquam ipsum corporis. <br /> <br />
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum libero,
-      voluptate eius ipsa vero consequatur consectetur, odit, est nemo minima
-      dignissimos sequi illum veritatis nobis molestias. Quas sapiente
-      voluptatem quibusdam?
+      This user is a part of: <br /> <br />
+      <div>
+        {communities && communities.map((c) => <h1 key={c._id}>{c.title}</h1>)}
+      </div>
     </div>
   );
 };
