@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CommunityCard from '../../components/CommunityCard';
 import AddCommunity from '../../components/CreateCommunity';
 
-const UserCommunitiesScreen = () => {
+const UserCommunitiesScreen = ({ communities }) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
 
@@ -21,6 +21,10 @@ const UserCommunitiesScreen = () => {
             <br />
             <div className="card-flex">
                 <CommunityCard />
+                <div>
+                    {communities &&
+                        communities.map((c) => <h1 key={c._id}>{c.title}</h1>)}
+                </div>
             </div>
         </div>
     );

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { registerUser } from '../../network/user';
 import RegisterScreen from './RegisterScreen';
-import useLocalStorage from 'react-use-localstorage';
 import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 
-const Register = () => {
-  const [token, setToken] = useLocalStorage('token', '');
-  const [user, setUser] = useState({});
+const Register = ({ token, setToken }) => {
+  const [, setUser] = useState({});
   const history = useHistory();
 
   const handleRegister = async (user) => {

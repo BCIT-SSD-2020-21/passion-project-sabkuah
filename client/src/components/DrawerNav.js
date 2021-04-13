@@ -28,15 +28,16 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Dashboard from '../views/dashboard/Dashboard';
 import { logoutUser } from '../network/user';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
 
 const drawerWidth = 240;
 
-function DrawerNav(props) {
-  const { window, user, children } = props;
+function DrawerNav({ window, user, children }) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const history = useHistory();
+  const [, setToken] = useLocalStorage('token', '');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -45,7 +46,9 @@ function DrawerNav(props) {
   const handleLogout = async () => {
     const response = await logoutUser();
     alert(response.data.message);
-    history.push('/');
+    setToken('');
+    //should setUser(null)
+    history.replace('/');
   };
 
   const drawer = (
@@ -56,9 +59,12 @@ function DrawerNav(props) {
           <Avatar />
         </div>
         <div className='d-flex justify-content-between align-items-center'>
-          <h5 className='mb-0'>
-            {user.firstName} {user.lastName}
-          </h5>
+          <div>
+            <h5 className='mb-0'>
+              {user?.firstName} {user?.lastName}
+            </h5>
+            <p className='text-muted'>{user?.email}</p>
+          </div>
           <IconButton>
             <ExpandMoreIcon
               style={{ color: 'white', backgroundColor: '#0acf83' }}
