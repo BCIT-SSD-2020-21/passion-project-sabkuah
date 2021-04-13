@@ -32,8 +32,7 @@ import useLocalStorage from 'react-use-localstorage';
 
 const drawerWidth = 240;
 
-function DrawerNav(props) {
-  const { window, user, children } = props;
+function DrawerNav({ window, user, children }) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);

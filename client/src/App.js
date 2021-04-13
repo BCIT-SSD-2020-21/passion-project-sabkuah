@@ -47,7 +47,7 @@ function App() {
     <Router>
       <Switch>
         <Route path='/user/:path'>
-          <User>
+          <User user={user}>
             <Switch>
               <PrivateRoute path='/user/communities'>
                 <UserCommunities />
@@ -59,7 +59,9 @@ function App() {
         <Route path='/:path?'>
           <Public>
             <Switch>
-              <Route path='/register' component={Register} />
+              <Route path='/register'>
+                <Register token={token} setToken={setToken} />
+              </Route>
               <Route path='/search' component={Search} />
               <Route path='/login'>
                 <Login token={token} setToken={setToken} />

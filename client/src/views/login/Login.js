@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { loginUser } from '../../network/user';
 import LoginScreen from './LoginScreen';
-import useLocalStorage from 'react-use-localstorage';
 import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 
 const Login = ({ token, setToken }) => {
   // const [token, setToken] = useLocalStorage('token', '');
-  const [user, setUser] = useState({});
+  const [, setUser] = useState({});
   const history = useHistory();
 
   const handleLogin = async (user) => {
