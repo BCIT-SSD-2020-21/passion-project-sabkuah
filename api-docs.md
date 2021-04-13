@@ -213,6 +213,14 @@
             "title": "Lansdowne",
             "description": "Awesome community near the mall and skytrain",
             "location": "Richmond",
+            "geometry": {
+                "coordinates": [
+                    -123.1139,
+                    49.2609
+                ],
+                "_id": "607614077ad38dd3f2ba149b",
+                "type": "Point"
+            },
             "creator": {
                 "_id": "6070d61be98bef8863754a03",
                 "email": "kal@gmail.com",

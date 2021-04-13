@@ -9,6 +9,10 @@ const User = require("./models/User")
 const Post = require("./models/Post")
 const Community = require("./models/Community")
 
+// MAPBOX
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
+const geocodingService = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
+
 //=============================
 // CONFIG
 //=============================
@@ -61,12 +65,33 @@ const seedDb = async () => {
   await User.register(user2, "password")
   await User.register(user3, "password")
 
+  // Get Coordinates
+  //--------------------
+  const geoResponse1 = await geocodingService
+    .forwardGeocode({
+      query: "Richmond, BC",
+      limit: 1,
+    })
+    .send()
+
+  const geometry1 = geoResponse1.body.features[0].geometry
+
+  const geoResponse2 = await geocodingService
+    .forwardGeocode({
+      query: "Vancouver, BC",
+      limit: 1,
+    })
+    .send()
+
+  const geometry2 = geoResponse2.body.features[0].geometry
+
   // Create Communities
   //-------------------
   const comm1 = new Community({
     title: "Lansdowne",
     description: "Awesome community near the mall and skytrain",
-    location: "Richmond",
+    location: "Richmond, BC",
+    geometry: geometry1,
     contents: [],
     members: [user2._id],
     creator: user2._id,
@@ -75,7 +100,8 @@ const seedDb = async () => {
   const comm2 = new Community({
     title: "Kitsilano",
     description: "Safe community by the beach",
-    location: "Vancouver",
+    location: "Vancouver, BC",
+    geometry: geometry2,
     contents: [],
     members: [user3._id],
     creator: user3._id,

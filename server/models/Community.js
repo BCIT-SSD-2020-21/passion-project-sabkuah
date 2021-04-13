@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const User = require("./User")
 const Post = require("./Post")
+const { geometrySchema } = require("./Geometry")
 
 //==========================================
 // SCHEMA
@@ -17,6 +18,9 @@ const communitySchema = new Schema({
   description: {
     type: String,
     required: true,
+  },
+  geometry: {
+    type: geometrySchema,
   },
   location: {
     type: String,
