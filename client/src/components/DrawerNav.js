@@ -48,7 +48,8 @@ function DrawerNav(props) {
     const response = await logoutUser();
     alert(response.data.message);
     setToken('');
-    history.push('/');
+    //should setUser(null)
+    history.replace('/');
   };
 
   const drawer = (
