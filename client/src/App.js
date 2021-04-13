@@ -30,8 +30,14 @@ function App() {
     setUser(userData);
   }, [token]);
 
-  const PrivateRoute = ({ path, children }) => (
-    <Route path={path}>{!!user ? children : <Redirect to='/login' />}</Route>
+  const PrivateRoute = ({ path, children, location, ...rest }) => (
+    <Route {...rest} path={path}>
+      {!!user ? (
+        children
+      ) : (
+        <Redirect to={{ pathname: '/login', state: { from: location } }} />
+      )}
+    </Route>
   );
 
   return (
