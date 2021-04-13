@@ -18,21 +18,24 @@ import useLocalStorage from 'react-use-localstorage';
 import NotFound from './components/NotFound';
 
 function App() {
-  const [token] = useLocalStorage('token');
+  const [token, setToken] = useLocalStorage('token');
   const [user, setUser] = useState();
 
   useEffect(() => {
-    if (!token) {
+    console.log('TOKEN', token);
+    if (!token || token === '') {
+      console.log('no token');
       setUser(null);
       return;
     }
+    console.log('yes token');
     const userData = jwtDecode(token);
     setUser(userData);
   }, [token]);
 
   const PrivateRoute = ({ path, children, location, ...rest }) => (
     <Route {...rest} path={path}>
-      {!!user ? (
+      {!!token ? (
         children
       ) : (
         <Redirect to={{ pathname: '/login', state: { from: location } }} />
@@ -43,8 +46,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/user' exact component={NotFound} />
-        <Route path='/user/:path?'>
+        <Route path='/user/:path'>
           <User>
             <Switch>
               <PrivateRoute path='/user/communities'>
@@ -59,7 +61,9 @@ function App() {
             <Switch>
               <Route path='/register' component={Register} />
               <Route path='/search' component={Search} />
-              <Route path='/login' component={Login} />
+              <Route path='/login'>
+                <Login token={token} setToken={setToken} />
+              </Route>
               <Route path='/' exact component={Landing} />
               <Route component={NotFound} />
             </Switch>

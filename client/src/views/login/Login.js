@@ -5,8 +5,8 @@ import useLocalStorage from 'react-use-localstorage';
 import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
-  const [token, setToken] = useLocalStorage('token', '');
+const Login = ({ token, setToken }) => {
+  // const [token, setToken] = useLocalStorage('token', '');
   const [user, setUser] = useState({});
   const history = useHistory();
 
