@@ -169,9 +169,6 @@
                 {
                     "_id": "6070d61ce98bef8863754a07",
                     "title": "Potholes",
-                    "description": "I damn near broke my suspension today. Way too many potholes on Arcadia road. Theyre MASSIVE too. This needs to be addressed ASAP",
-                    "date": "2021-04-09T22:33:00.932Z",
-                    "category": "Incident Reports",
                     "author": {
                         "_id": "6070d61be98bef8863754a02",
                         "email": "russ@gmail.com",
@@ -183,9 +180,6 @@
                 {
                     "_id": "6070d61ce98bef8863754a08",
                     "title": "Missing stop sign",
-                    "description": "Somone stole the stop sign @ the corner of Cook rd. Damn hoodlums..",
-                    "date": "2021-04-09T22:33:00.934Z",
-                    "category": "Incident Reports",
                     "author": {
                         "_id": "6070d61be98bef8863754a04",
                         "email": "sab@gmail.com",
@@ -230,8 +224,6 @@
     }
 
 <hr>
-
-## COMMUNITIES
 
 ### `POST`
 
@@ -285,7 +277,7 @@
 
 ### Edit title/description/location of a community
 
-### `/api/communities/:id/join`
+### `/api/communities/:id`
 
 ### Sample Header:
 
@@ -311,4 +303,113 @@
 
     {
         "message": "Successfully edited community"
+    }
+
+<hr>
+
+## POSTS (posting)
+
+### `GET`
+
+### Get all posts in a community
+
+### `/api/communities/:id/posts`
+
+### Sample response:
+
+    {
+        "posts": [
+            {
+                "_id": "607492f15d5cbfaa2b8b640b",
+                "title": "Potholes",
+                "description": "I damn near broke my suspension today. Way too many potholes on Arcadia road. Theyre MASSIVE too. This needs to be addressed ASAP",
+                "date": "2021-04-12T18:35:29.076Z",
+                "category": "Incident Reports",
+                "author": {
+                    "_id": "607492ef5d5cbfaa2b8b6403",
+                    "email": "russ@gmail.com",
+                    "firstName": "Russ",
+                    "lastName": "Telen",
+                    "location": "Richmond"
+                },
+                "__v": 0
+            },
+            {
+                "_id": "607492f15d5cbfaa2b8b640c",
+                "title": "Missing stop sign",
+                "description": "Somone stole the stop sign @ the corner of Cook rd. Damn hoodlums..",
+                "date": "2021-04-12T18:35:29.077Z",
+                "category": "Incident Reports",
+                "author": {
+                    "_id": "607492ef5d5cbfaa2b8b6405",
+                    "email": "sab@gmail.com",
+                    "firstName": "Sab",
+                    "lastName": "Kuah",
+                    "location": "Vancouver"
+                },
+                "__v": 0
+            }
+        ]
+    }
+
+<hr>
+
+### `POST`
+
+### Create a post in a community
+
+### `/api/communities/:id/posts`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample Body:
+
+    {
+        "title": "First Post !!",
+        "description": "Weeooooo firs post yay",
+        "category": "Incident Reports"
+    }
+
+### Sample Response:
+
+    {
+        "message": "Succesfully created new post!"
+    }
+
+<hr>
+
+### `PATCH`
+
+### Edit title/description/category of a community
+
+### `/api/communities/:id/posts/:postId`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample Body:
+
+    {
+        "title": "Post title",
+        "description": "Post description",
+        "category": "Incident Reports"
+    }
+
+### Sample Body if editing only one property:
+
+    {
+        "title": "Post title"
+    }
+
+### Sample Response:
+
+    {
+        "message": "Successfully edited post"
     }

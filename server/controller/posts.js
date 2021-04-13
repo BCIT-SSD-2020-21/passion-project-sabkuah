@@ -117,7 +117,7 @@ module.exports.editPost = async (req, res) => {
 
     await Post.findByIdAndUpdate(post._id, req.body)
 
-    res.send({ message: `Successfully updated community` })
+    res.send({ message: `Successfully updated post` })
   } catch (e) {
     console.log(e)
     res.send({ error: e.message })
