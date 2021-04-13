@@ -3,7 +3,6 @@ import { TextField } from '@material-ui/core';
 import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import CreateIcon from '@material-ui/icons/Create';
 
 const CreateCommModal = ({ show, setShow }) => {
     const handleClose = () => {
@@ -25,23 +24,23 @@ const CreateCommModal = ({ show, setShow }) => {
                     <form className="modal-form">
                         <TextField
                             variant="outlined"
-                            label="Community name"
-                            placeholder="Community name"
-                            id="email"
+                            label="Title"
+                            placeholder="Title"
+                            id="Title"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <CreateIcon />
+                                        <LocationCityIcon />
                                     </InputAdornment>
                                 ),
                             }}
                         />
                         <TextField
                             variant="outlined"
-                            label="City"
-                            placeholder="City"
-                            id="email"
+                            label="location"
+                            placeholder="location"
+                            id="location"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (

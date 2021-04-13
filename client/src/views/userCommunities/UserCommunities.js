@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserCommunitiesScreen from './UserCommunitiesScreen';
 
 const UserCommunities = () => {
-  return <UserCommunitiesScreen />;
+    const [createCommunity, setCreateCommunity] = useState({
+        title: '',
+        location: '',
+        description: '',
+    });
+
+    return <UserCommunitiesScreen />;
 };
 
 export default UserCommunities;
