@@ -10,7 +10,6 @@ export async function getAllCommunities() {
         'Access-Control-Allow-Origin': '*',
       },
     });
-    console.log('communities response', response.data);
     return response.data;
   } catch (e) {
     console.log('Error:', e);

@@ -4,12 +4,12 @@ import SearchScreen from './SearchScreen';
 
 const Search = () => {
   const [communities, setCommunities] = useState(null);
+
   const user = 'Sabrina';
 
   useEffect(() => {
     (async () => {
       const response = await getAllCommunities();
-      console.log('res search', response.communities);
       setCommunities(response.communities);
     })();
   }, []);
