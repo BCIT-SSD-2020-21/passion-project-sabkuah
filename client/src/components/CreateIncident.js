@@ -1,11 +1,19 @@
-import React from 'react';
-import { TextField } from '@material-ui/core';
-import Modal from 'react-bootstrap/Modal';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import CreateIcon from '@material-ui/icons/Create';
+import React from "react";
+import { TextField } from "@material-ui/core";
+import Modal from "react-bootstrap/Modal";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import CreateIcon from "@material-ui/icons/Create";
+import addIncident from "../network/community";
+import useLocalStorage from "react-use-localstorage";
 
 const CreateIncident = ({ show, setShow }) => {
+    const [token, setToken] = useLocalStorage("token", "");
+    const [incident, setIncident] = useState({
+        title: "",
+        category: "",
+        description: "",
+    });
+
     const handleClose = () => {
         setShow(false);
     };
@@ -16,7 +24,7 @@ const CreateIncident = ({ show, setShow }) => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                style={{ marginTop: '5%' }}
+                style={{ marginTop: "5%" }}
             >
                 <h2 className="modal-title">New Incident</h2>
 
@@ -24,9 +32,9 @@ const CreateIncident = ({ show, setShow }) => {
                     <form className="modal-form">
                         <TextField
                             variant="outlined"
-                            label="Incident Title"
-                            placeholder="Incident Title"
-                            id="Incident Title"
+                            label="Title"
+                            placeholder="Title"
+                            id="Title"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
@@ -38,14 +46,14 @@ const CreateIncident = ({ show, setShow }) => {
                         />
                         <TextField
                             variant="outlined"
-                            label="Date"
-                            placeholder="Date"
-                            id="Date"
+                            label="Category"
+                            placeholder="Category"
+                            id="Category"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <DateRangeIcon />
+                                        <CreateIcon />
                                     </InputAdornment>
                                 ),
                             }}
