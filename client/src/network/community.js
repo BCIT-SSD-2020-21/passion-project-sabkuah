@@ -28,7 +28,6 @@ export async function addCommunity(community, token) {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log("Token>>>>> ", token);
         return response.data;
     } catch (e) {
         console.log("Error", e);
@@ -58,18 +57,20 @@ export async function getUserCommunities(token) {
     }
 }
 
-export async function addIncident(incident, token) {
+export async function addIncident(incident, token, id) {
     try {
+        console.log("incident::: ", incident);
         const response = await axios({
             method: "POST",
-            url: `${BASE_URL}/${id}/posts`,
+            url: `${BASE_URL}/communites/${id}/posts`,
             data: incident,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log("Token>>>>> ", token);
+        console.log(response);
+
         return response.data;
     } catch (e) {
         console.log("Error", e);

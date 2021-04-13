@@ -5,6 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import CreateIcon from "@material-ui/icons/Create";
 import { addIncident } from "../network/community";
 import useLocalStorage from "react-use-localstorage";
+import { useParams } from "react-router-dom";
 
 const CreateIncident = ({ show, setShow }) => {
     const [token, setToken] = useLocalStorage("token", "");
@@ -13,6 +14,7 @@ const CreateIncident = ({ show, setShow }) => {
         category: "",
         description: "",
     });
+    let { id } = useParams();
 
     const handleClose = () => {
         setShow(false);
@@ -21,7 +23,7 @@ const CreateIncident = ({ show, setShow }) => {
     const handlePost = async (e) => {
         e.preventDefault();
         try {
-            const response = await addIncident(incident, token);
+            const response = await addIncident(incident, token, id);
             console.log(token);
             console.log(incident);
             if (response.error) {
@@ -53,7 +55,9 @@ const CreateIncident = ({ show, setShow }) => {
                 <div className="modal-body">
                     <form className="modal-form" onSubmit={handlePost}>
                         <TextField
+                            required
                             variant="outlined"
+                            value={incident.title}
                             label="Title"
                             placeholder="Title"
                             id="Title"
@@ -65,8 +69,16 @@ const CreateIncident = ({ show, setShow }) => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={(e) =>
+                                setIncident({
+                                    ...incident,
+                                    title: e.target.value,
+                                })
+                            }
                         />
                         <TextField
+                            required
+                            value={incident.category}
                             variant="outlined"
                             label="Category"
                             placeholder="Category"
@@ -79,8 +91,16 @@ const CreateIncident = ({ show, setShow }) => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={(e) =>
+                                setIncident({
+                                    ...incident,
+                                    category: e.target.value,
+                                })
+                            }
                         />
                         <TextField
+                            required
+                            value={incident.description}
                             variant="outlined"
                             label="Description"
                             placeholder="Description"
@@ -89,6 +109,12 @@ const CreateIncident = ({ show, setShow }) => {
                             id="email"
                             className="modal-form-input"
                             rows={5}
+                            onChange={(e) =>
+                                setIncident({
+                                    ...incident,
+                                    description: e.target.value,
+                                })
+                            }
                         />
 
                         <Modal.Footer>

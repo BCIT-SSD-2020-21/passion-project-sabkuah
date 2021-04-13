@@ -1,35 +1,35 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 import {
     BrowserRouter as Router,
     Route,
     Switch,
     Redirect,
-} from 'react-router-dom';
-import Public from './layouts/Public';
-import User from './layouts/User';
-import Landing from './views/landing/Landing';
-import Register from './views/register/Register';
-import Login from './views/login/Login';
-import Search from './views/search/Search';
-import UserCommunities from './views/userCommunities/UserCommunities';
-import CommunityIncidents from './views/communityIncidents/CommunityIncidents';
-import jwtDecode from 'jwt-decode';
-import useLocalStorage from 'react-use-localstorage';
-import NotFound from './components/NotFound';
+} from "react-router-dom";
+import Public from "./layouts/Public";
+import User from "./layouts/User";
+import Landing from "./views/landing/Landing";
+import Register from "./views/register/Register";
+import Login from "./views/login/Login";
+import Search from "./views/search/Search";
+import UserCommunities from "./views/userCommunities/UserCommunities";
+import CommunityIncidents from "./views/communityIncidents/CommunityIncidents";
+import jwtDecode from "jwt-decode";
+import useLocalStorage from "react-use-localstorage";
+import NotFound from "./components/NotFound";
 
 function App() {
-    const [token, setToken] = useLocalStorage('token');
+    const [token, setToken] = useLocalStorage("token");
     const [user, setUser] = useState();
 
     useEffect(() => {
-        console.log('TOKEN', token);
-        if (!token || token === '') {
-            console.log('no token');
+        console.log("TOKEN", token);
+        if (!token || token === "") {
+            console.log("no token");
             setUser(null);
             return;
         }
-        console.log('yes token');
+        console.log("yes token");
         const userData = jwtDecode(token);
         setUser(userData);
     }, [token]);
@@ -40,7 +40,7 @@ function App() {
                 children
             ) : (
                 <Redirect
-                    to={{ pathname: '/login', state: { from: location } }}
+                    to={{ pathname: "/login", state: { from: location } }}
                 />
             )}
         </Route>
@@ -52,7 +52,7 @@ function App() {
                 <Route path="/user/:path">
                     <User user={user}>
                         <Switch>
-                            <PrivateRoute path="/user/communities/1/incidents">
+                            <PrivateRoute path="/user/communities/:id/incidents">
                                 <CommunityIncidents />
                             </PrivateRoute>
                             <PrivateRoute path="/user/communities">
