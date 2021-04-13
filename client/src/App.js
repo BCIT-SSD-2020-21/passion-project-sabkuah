@@ -50,7 +50,7 @@ function App() {
           <User user={user}>
             <Switch>
               <PrivateRoute path='/user/communities'>
-                <UserCommunities />
+                <UserCommunities user={user} />
               </PrivateRoute>
             </Switch>
           </User>
