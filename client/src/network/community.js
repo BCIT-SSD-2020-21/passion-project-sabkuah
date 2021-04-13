@@ -16,11 +16,12 @@ export async function getAllCommunities() {
     }
 }
 
-export async function createCommunity() {
+export async function addCommunity({ community }) {
     try {
         const response = await axios({
             method: 'POST',
             url: `${BASE_URL}/communities`,
+            body: community,
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
