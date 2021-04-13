@@ -21,6 +21,7 @@ const CreateCommunity = ({ show, setShow }) => {
             const response = await addCommunity(community);
             console.log(community);
             if (response.error) {
+                console.log(response.error);
                 alert(response.error);
                 return;
             }
