@@ -10,6 +10,10 @@
         justify-content: center;
     }
 }
+.modal {
+    overflow-y: auto;
+}
+
 .modal-title {
     display: flex;
     justify-content: center;
@@ -20,11 +24,16 @@
     padding: 1rem 1rem;
     border-bottom: 3px solid $brand-green;
 }
-
 .modal-body {
     background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
     box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
-    margin-top: 2%;
+    margin-top: 3%;
+}
+
+@media only screen and (min-width: 992px) {
+    .modal-form-pg {
+        margin-top: 5%;
+    }
 }
 
 .modal-btn {

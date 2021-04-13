@@ -1,0 +1,28 @@
+.button-flex {
+    align-self: flex-end;
+}
+
+.card-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.comm-card {
+    background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
+}
+
+.avatar-container {
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.view-btn {
+    @include brand-button-lg;
+    margin-top: 3%;
+}
+
+.create-com-button {
+    @include brand-button-lg;
+}
