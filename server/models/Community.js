@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const User = require("./User")
 const Post = require("./Post")
-const Geometry = require("./Geometry")
+const { geometrySchema } = require("./Geometry")
 
 //==========================================
 // SCHEMA
@@ -20,11 +20,7 @@ const communitySchema = new Schema({
     required: true,
   },
   geometry: {
-    type: Schema.Types.Mixed,
-    ref: "Geometry",
-    populate: {
-      path: "coordinates",
-    },
+    type: geometrySchema,
   },
   location: {
     type: String,

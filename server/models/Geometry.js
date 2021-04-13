@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 //==========================================
 // SCHEMA
 //==========================================
-const geometrySchema = new Schema({
+module.exports.geometrySchema = new Schema({
   type: {
     type: String,
     enum: ["Point"],
@@ -22,6 +22,6 @@ const geometrySchema = new Schema({
 //==========================================
 // SET UP MODEL
 //==========================================
-const Geometry = mongoose.model("Geometry", geometrySchema)
+// const Geometry = mongoose.model("Geometry", geometrySchema)
 
-module.exports = Geometry
+// module.exports = Geometry
