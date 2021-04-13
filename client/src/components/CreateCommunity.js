@@ -1,19 +1,42 @@
 import React, { useState } from 'react';
-import {
-    makeStyles,
-    TextField,
-    Button,
-    Container,
-    Typography,
-} from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import CreateIcon from '@material-ui/icons/Create';
+import { addCommunity } from '../network/community';
+import useLocalStorage from 'react-use-localstorage';
 
-const CreateCommModal = ({ show, setShow }) => {
+const CreateCommunity = ({ show, setShow }) => {
+    const [token, setToken] = useLocalStorage('token', '');
+    const [community, setCommunity] = useState({
+        title: '',
+        location: '',
+        description: '',
+    });
     const handleClose = () => {
         setShow(false);
+    };
+
+    const handleCreate = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await addCommunity(community, token);
+            console.log(token);
+            console.log(community);
+            if (response.error) {
+                console.log(response.error);
+                alert(response.error);
+                return;
+            }
+            if (response.token) {
+                setToken(response.token);
+                console.log('Post successful', response.data);
+                alert(response.message);
+                handleClose();
+            }
+        } catch (e) {
+            console.log('Error creating community', e);
+        }
     };
 
     return (
@@ -23,30 +46,19 @@ const CreateCommModal = ({ show, setShow }) => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                style={{ marginTop: '5%' }}
             >
-                <h2 className="modal-title">Create a community</h2>
+                <h2 className="modal-title">Add Community</h2>
 
                 <div className="modal-body">
-                    <form className="modal-form">
+                    <form className="modal-form" onSubmit={handleCreate}>
                         <TextField
+                            required
+                            value={community.title}
                             variant="outlined"
-                            label="Community name"
-                            placeholder="Community name"
-                            id="email"
-                            className="modal-form-input"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <CreateIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <TextField
-                            variant="outlined"
-                            label="City"
-                            placeholder="City"
-                            id="email"
+                            label="Title"
+                            placeholder="Title"
+                            id="Title"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
@@ -55,12 +67,20 @@ const CreateCommModal = ({ show, setShow }) => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={(e) =>
+                                setCommunity({
+                                    ...community,
+                                    title: e.target.value,
+                                })
+                            }
                         />
                         <TextField
+                            required
+                            value={community.location}
                             variant="outlined"
-                            label="Province"
-                            placeholder="Province"
-                            id="email"
+                            label="location"
+                            placeholder="location"
+                            id="location"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
@@ -69,27 +89,40 @@ const CreateCommModal = ({ show, setShow }) => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={(e) =>
+                                setCommunity({
+                                    ...community,
+                                    location: e.target.value,
+                                })
+                            }
                         />
                         <TextField
+                            required
+                            value={community.description}
                             variant="outlined"
                             label="Description"
                             multiline={true}
                             id="email"
                             className="modal-form-input"
                             rows={5}
+                            onChange={(e) =>
+                                setCommunity({
+                                    ...community,
+                                    description: e.target.value,
+                                })
+                            }
                         />
+                        <Modal.Footer>
+                            <button className="modal-btn" onClick={handleClose}>
+                                Close
+                            </button>
+                            <button className="modal-btn">Submit</button>
+                        </Modal.Footer>
                     </form>
                 </div>
-
-                <Modal.Footer>
-                    <button className="modal-btn" onClick={handleClose}>
-                        Close
-                    </button>
-                    <button className="modal-btn">Submit</button>
-                </Modal.Footer>
             </Modal>
         </div>
     );
 };
 
-export default CreateCommModal;
+export default CreateCommunity;

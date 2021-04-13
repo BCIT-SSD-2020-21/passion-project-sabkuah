@@ -6,7 +6,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PeopleIcon from '@material-ui/icons/People';
+// import PeopleIcon from '@material-ui/icons/People';
 import RoomIcon from '@material-ui/icons/Room';
 import AddIcon from '@material-ui/icons/Add';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -53,10 +53,10 @@ const SearchResultCard = ({ community }) => {
             <div className='mx-2'>
               <RoomIcon style={{ color: '#0acf83' }} /> {community.location}
             </div>
-            <div className='mx-2'>
+            {/* <div className='mx-2'>
               <PeopleIcon style={{ color: '#0acf83' }} />{' '}
               {community.members.length}
-            </div>
+            </div> */}
           </div>
         }
       />

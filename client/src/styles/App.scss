@@ -6,14 +6,25 @@
 @import 'footer';
 @import 'login';
 @import 'search';
-@import 'modal';
+@import 'createModal';
+@import 'userCommunities';
 
 .link:hover {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .link {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.min-vh {
+  min-height: calc(100vh - 62px - 314px);
+}
+
+.flex-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

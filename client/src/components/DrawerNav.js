@@ -24,18 +24,31 @@ import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Dashboard from '../views/dashboard/Dashboard';
+import { logoutUser } from '../network/user';
+import { useHistory } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
 
 const drawerWidth = 240;
 
-function DrawerNav(props) {
-  const { window, user, children } = props;
+function DrawerNav({ window, user, children }) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const history = useHistory();
+  const [, setToken] = useLocalStorage('token', '');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleLogout = async () => {
+    const response = await logoutUser();
+    alert(response.data.message);
+    setToken('');
+    //should setUser(null)
+    history.replace('/');
   };
 
   const drawer = (
@@ -46,9 +59,12 @@ function DrawerNav(props) {
           <Avatar />
         </div>
         <div className='d-flex justify-content-between align-items-center'>
-          <h5 className='mb-0'>
-            {user.firstName} {user.lastName}
-          </h5>
+          <div>
+            <h5 className='mb-0'>
+              {user?.firstName} {user?.lastName}
+            </h5>
+            <p className='text-muted'>{user?.email}</p>
+          </div>
           <IconButton>
             <ExpandMoreIcon
               style={{ color: 'white', backgroundColor: '#0acf83' }}
@@ -98,6 +114,12 @@ function DrawerNav(props) {
             <NotificationsActiveIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Notifications' />
+        </ListItem>
+        <ListItem button onClick={handleLogout}>
+          <ListItemIcon>
+            <ExitToAppIcon className='dNav-icon' />
+          </ListItemIcon>
+          <ListItemText primary='Logout' />
         </ListItem>
       </List>
     </div>

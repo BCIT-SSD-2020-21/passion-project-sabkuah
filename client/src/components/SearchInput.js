@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { Container, Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 
-const SearchBar = () => {
-  const [query, setQuery] = useState('');
-
+const SearchBar = ({ query, setQuery }) => {
   return (
     <Container>
       <div className='search'>
