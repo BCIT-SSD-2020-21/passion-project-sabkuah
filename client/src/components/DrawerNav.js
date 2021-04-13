@@ -38,7 +38,7 @@ function DrawerNav(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const history = useHistory();
-  const [token, setToken] = useLocalStorage('token', '');
+  const [, setToken] = useLocalStorage('token', '');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

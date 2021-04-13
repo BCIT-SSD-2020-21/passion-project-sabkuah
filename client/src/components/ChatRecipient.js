@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, Avatar, IconButton } from '@material-ui/core';
-import { MoreVertIcon } from '@material-ui/icons/MoreVert';
+import { Card, CardHeader, Avatar } from '@material-ui/core';
 
 const ChatRecipient = ({ name, community }) => {
   return (
