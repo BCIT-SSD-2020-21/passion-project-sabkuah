@@ -1,9 +1,10 @@
 import React from 'react';
 
-const CommunityScreen = () => {
+const CommunityScreen = ({ community }) => {
   return (
     <div>
-      <h1>This is a community screen</h1>
+      <h1>{community?.title}</h1>
+      <p>Description: {community?.description}</p>
     </div>
   );
 };

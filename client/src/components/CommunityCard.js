@@ -51,7 +51,7 @@ export default CommunityCard;
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width: 300,
   },
   media: {
     height: 140,
