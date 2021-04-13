@@ -17,17 +17,7 @@ const catchAsync = require("../utils/catchAsync")
  */
 module.exports.getAllCommunities = catchAsync(async (req, res) => {
   const communities = await Community.find()
-    .populate({
-      path: "contents",
-      populate: {
-        path: "author",
-      },
-      select: "-community",
-    })
-    .populate({
-      path: "members",
-      select: "email firstName lastName",
-    })
+    .select("title location description")
     .populate({
       path: "creator",
       select: "email firstName lastName",
@@ -55,7 +45,7 @@ module.exports.getCommunityById = catchAsync(async (req, res) => {
   const community = await Community.findById(id)
     .populate({
       path: "contents",
-      select: "-community",
+      select: "title",
       populate: {
         path: "author",
         select: "firstName lastName email",

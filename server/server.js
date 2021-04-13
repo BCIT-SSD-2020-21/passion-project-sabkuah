@@ -17,7 +17,7 @@ const User = require("./models/User")
 //----------------------------------------------
 const userRoutes = require("./routes/users")
 const communityRoutes = require("./routes/communities")
-
+const postRoutes = require("./routes/posts")
 //==============================================
 // CONFIG
 //==============================================
@@ -62,6 +62,7 @@ passport.deserializeUser(User.deserializeUser())
 //==============================================
 app.use("/api/users", userRoutes)
 app.use("/api/communities", communityRoutes)
+app.use("/api/communities/:id/posts", postRoutes)
 
 //==============================================
 // Error Handlers
