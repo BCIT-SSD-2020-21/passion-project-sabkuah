@@ -24,7 +24,10 @@ import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Dashboard from '../views/dashboard/Dashboard';
+import { logoutUser } from '../network/user';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -33,9 +36,16 @@ function DrawerNav(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleLogout = async () => {
+    const response = await logoutUser();
+    alert(response.data.message);
+    history.push('/');
   };
 
   const drawer = (
@@ -98,6 +108,12 @@ function DrawerNav(props) {
             <NotificationsActiveIcon className='dNav-icon' />
           </ListItemIcon>
           <ListItemText primary='Notifications' />
+        </ListItem>
+        <ListItem button onClick={handleLogout}>
+          <ListItemIcon>
+            <ExitToAppIcon className='dNav-icon' />
+          </ListItemIcon>
+          <ListItemText primary='Logout' />
         </ListItem>
       </List>
     </div>
