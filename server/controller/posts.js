@@ -39,6 +39,7 @@ module.exports.getCommunityPosts = async (req, res) => {
  * @param req.body title, description, category
  * @returns {Object} Success message
  * @throws Will throw an error if community not found
+ * @throws Will throw an error if new Post fails validation
  */
 module.exports.createPost = async (req, res) => {
   try {
@@ -83,6 +84,40 @@ module.exports.createPost = async (req, res) => {
     await community.save()
 
     res.send({ message: `Succesfully created new post!` })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
+  }
+}
+
+/**
+ * Edit a post
+ * @function
+ * @PATCH
+ * @param req.params :id - community id, :postId - post id
+ * @param req.body title, description, category
+ * @returns {Object} Success message
+ * @throws Will throw an error if community not found
+ * @throws Will throw an error post not found
+ * @throws Will throw an error if req.body fails validation
+ */
+module.exports.editPost = async (req, res) => {
+  try {
+    const { id, postId } = req.params
+    const user = await req.decodedUser
+    const userId = user._id
+
+    const post = await Post.findById(postId)
+
+    //   Check if user editing is the creator of community
+    if (!post.author._id.equals(userId)) {
+      res.send({ error: "You are not authorized to perform this action" })
+      return
+    }
+
+    await Post.findByIdAndUpdate(post._id, req.body)
+
+    res.send({ message: `Successfully updated community` })
   } catch (e) {
     console.log(e)
     res.send({ error: e.message })
