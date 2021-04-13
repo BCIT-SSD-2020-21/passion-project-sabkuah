@@ -30,3 +30,61 @@ module.exports.getCommunityPosts = async (req, res) => {
     console.log(e)
   }
 }
+
+/**
+ * Add a post to a community
+ * @function
+ * @POST
+ * @param req.params :id - community id
+ * @param req.body title, description, category
+ * @returns {Object} Success message
+ * @throws Will throw an error if community not found
+ */
+module.exports.createPost = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { title, description, category } = req.body
+    const user = await req.decodedUser
+    const userId = user._id
+
+    // Find Community
+    const community = await Community.findById(id)
+
+    if (!community) {
+      res.send({ message: "Community not found" })
+      return
+    }
+
+    // Check if user logged in is a member of selected community
+    const memberExists = community.members.indexOf(userId)
+
+    if (memberExists == -1 || memberExists < -1) {
+      res.send({
+        error: `You are not a member of this community`,
+      })
+      return
+    }
+
+    // Create new Post
+    const post = new Post({
+      title,
+      description,
+      date: new Date(),
+      category,
+      community: community._id,
+      author: userId,
+    })
+
+    // Save Post
+    await post.save()
+
+    // Push post in community.contents array, then save
+    community.contents.push(post)
+    await community.save()
+
+    res.send({ message: `Succesfully created new post!` })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
+  }
+}
