@@ -17,6 +17,7 @@ import CommunityIncidents from "./views/communityIncidents/CommunityIncidents";
 import jwtDecode from "jwt-decode";
 import useLocalStorage from "react-use-localstorage";
 import NotFound from "./components/NotFound";
+import Community from "./views/community/Community";
 
 function App() {
     const [token, setToken] = useLocalStorage("token");
@@ -54,6 +55,9 @@ function App() {
                         <Switch>
                             <PrivateRoute path="/user/communities/:id/incidents">
                                 <CommunityIncidents />
+                            </PrivateRoute>
+                            <PrivateRoute path="/user/communities/:id">
+                                <Community />
                             </PrivateRoute>
                             <PrivateRoute path="/user/communities">
                                 <UserCommunities user={user} />

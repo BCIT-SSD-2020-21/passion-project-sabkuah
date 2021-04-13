@@ -17,6 +17,38 @@ export async function getAllCommunities() {
     }
 }
 
+export async function addIncident(incident, token, id) {
+    try {
+        console.log("incident::: ", incident);
+        const response = await axios({
+            method: "POST",
+            url: `${BASE_URL}/communites/${id}/posts`,
+            data: incident,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        console.log(response);
+
+        return response.data;
+    } catch (e) {
+        console.log("Error", e);
+    }
+    try {
+        const response = await axios({
+            method: "GET",
+            url: `${BASE_URL}/communities`,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response.data;
+    } catch (e) {
+        console.log("Error:", e);
+    }
+}
+
 export async function addCommunity(community, token) {
     try {
         const response = await axios({
@@ -28,6 +60,7 @@ export async function addCommunity(community, token) {
                 Authorization: `Bearer ${token}`,
             },
         });
+        console.log("Token>>>>> ", token);
         return response.data;
     } catch (e) {
         console.log("Error", e);
@@ -35,9 +68,6 @@ export async function addCommunity(community, token) {
 }
 
 export async function getUserCommunities(token) {
-    // const token =
-    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDc1ZWZkYjMwNTBkYzAwMTU5ZDkzMTAiLCJlbWFpbCI6ImxvbDFAbG9sLmNvbSIsImZpcnN0TmFtZSI6IlBlZHJvIiwibGFzdE5hbWUiOiJHb256YWxlcyIsImlhdCI6MTYxODM0MTg1MiwiZXhwIjoxLjAwMDAwMDAwMDAwMDAxNmUrMjN9.5M8QZZ2uTAaun36UviSCzYhYfYGoPFf5rcrmnVPKMBQ';
-
     try {
         const response = await axios({
             method: "GET",
@@ -57,22 +87,19 @@ export async function getUserCommunities(token) {
     }
 }
 
-export async function addIncident(incident, token, id) {
+export async function getCommunity({ id, token }) {
     try {
-        console.log("incident::: ", incident);
         const response = await axios({
-            method: "POST",
-            url: `${BASE_URL}/communites/${id}/posts`,
-            data: incident,
+            method: "GET",
+            url: `${BASE_URL}/communities/${id}`,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(response);
-
+        console.log("getCommunity response.data>>>>", response.data);
         return response.data;
     } catch (e) {
-        console.log("Error", e);
+        console.log("Error:", e);
     }
 }

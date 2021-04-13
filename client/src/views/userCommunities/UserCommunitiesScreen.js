@@ -3,31 +3,26 @@ import CommunityCard from '../../components/CommunityCard';
 import AddCommunity from '../../components/CreateCommunity';
 
 const UserCommunitiesScreen = ({ communities }) => {
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
 
-    return (
-        <div>
-            <div className="button-flex">
-                <button className="create-com-button" onClick={handleShow}>
-                    Add Community
-                </button>
-            </div>
-            <AddCommunity show={show} setShow={setShow} />
-            choose a community! Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Aperiam deleniti animi repellat eligendi
-            praesentium placeat rerum itaque, mollitia quasi quidem obcaecati
-            nihil! Aut eaque recusandae ea quae aliquam ipsum corporis. <br />{' '}
-            <br />
-            <div className="card-flex">
-                <CommunityCard />
-                <div>
-                    {communities &&
-                        communities.map((c) => <h1 key={c._id}>{c.title}</h1>)}
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div className='button-flex'>
+        <button className='create-com-button' onClick={handleShow}>
+          Add Community
+        </button>
+      </div>
+      <AddCommunity show={show} setShow={setShow} />
+      choose a community! Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Aperiam deleniti animi repellat eligendi praesentium placeat rerum
+      itaque, mollitia quasi quidem obcaecati nihil! Aut eaque recusandae ea
+      quae aliquam ipsum corporis. <br /> <br />
+      <div className='card-flex'>
+        {communities && communities.map((c) => <CommunityCard community={c} />)}
+      </div>
+    </div>
+  );
 };
 
 export default UserCommunitiesScreen;
