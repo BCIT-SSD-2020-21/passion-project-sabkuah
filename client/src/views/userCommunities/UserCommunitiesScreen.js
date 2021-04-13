@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CommunityCard from '../../components/CommunityCard';
 import AddCommunity from '../../components/CreateCommunity';
 
 const UserCommunitiesScreen = () => {
@@ -18,10 +19,11 @@ const UserCommunitiesScreen = () => {
             praesentium placeat rerum itaque, mollitia quasi quidem obcaecati
             nihil! Aut eaque recusandae ea quae aliquam ipsum corporis. <br />{' '}
             <br />
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum
-            libero, voluptate eius ipsa vero consequatur consectetur, odit, est
-            nemo minima dignissimos sequi illum veritatis nobis molestias. Quas
-            sapiente voluptatem quibusdam?
+            <div className="card-flex">
+                <CommunityCard />
+                <CommunityCard />
+                <CommunityCard />
+            </div>
         </div>
     );
 };

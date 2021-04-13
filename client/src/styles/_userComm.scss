@@ -2,6 +2,17 @@
     align-self: flex-end;
 }
 
+.card-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.comm-card {
+    background: linear-gradient(90deg, #f0f0f0 30%, $grey-light 80%);
+}
+
 .create-com-button {
     @include brand-button-lg;
 }
