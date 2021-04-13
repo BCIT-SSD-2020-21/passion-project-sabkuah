@@ -5,14 +5,13 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 
 const CommunityCard = () => {
     const classes = useStyles();
     return (
-        <div>
+        <div className="my-3 shadow mx-1">
             <Card className={classes.root}>
                 <CardActionArea>
                     <CardMedia className={classes.media} image="" />
@@ -21,10 +20,12 @@ const CommunityCard = () => {
                             style={{
                                 display: 'flex',
                                 flexDirection: 'row',
-                                alignItems: 'center',
                             }}
                         >
-                            <Avatar>K</Avatar>
+                            <div className="avatar-container">
+                                <Avatar>K</Avatar>
+                            </div>
+
                             <Typography
                                 gutterBottom
                                 variant="h5"
@@ -41,13 +42,12 @@ const CommunityCard = () => {
                             Keep up with what's going on in Richmond! All
                             members welcome!
                         </Typography>
+
+                        <div className="flex-container">
+                            <button className="view-btn">View</button>
+                        </div>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <button size="small" color="primary">
-                        View
-                    </button>
-                </CardActions>
             </Card>
         </div>
     );
