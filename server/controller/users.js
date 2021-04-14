@@ -126,6 +126,16 @@ module.exports.getAllCommunitiesOfUser = catchAsync(async (req, res) => {
   res.send({ user: userModel })
 })
 
+/**
+ * Edit user's avatar
+ * @function
+ * @PATCH
+ * @param req.body avatar
+ * @returns {Object} Success message
+ * @throws Will throw an error if user is not found
+ * @throws Will throw an error if user editing is not user logged in
+ * @throws Will throw an error if req.body is left empty
+ */
 module.exports.editUserAvatar = async (req, res) => {
   try {
     const user = await req.decodedUser
