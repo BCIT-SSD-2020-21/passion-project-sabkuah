@@ -104,6 +104,34 @@
 
 <hr>
 
+### `GET`
+
+### Get user basic info
+
+### `/api/users/info`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample response:
+
+    {
+        "user": {
+            "_id": "607741b3520700f9cb82943c",
+            "email": "russ@gmail.com",
+            "firstName": "Russ",
+            "lastName": "Telen",
+            "location": "Richmond",
+            "avatar": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80",
+            "__v": 1
+        }
+    }
+
+<hr>
+
 ### `PATCH`
 
 ### Update user avatar
@@ -458,4 +486,96 @@
 
     {
         "message": "Successfully edited post"
+    }
+
+<hr>
+
+## COMMENTS
+
+### `GET`
+
+### Get all comment in a post
+
+### `/api/post/:id/comments`
+
+### Sample response:
+
+    {
+        "comments": [
+            {
+                "date": "2021-04-14T19:25:40.985Z",
+                "_id": "607741b4520700f9cb82944a",
+                "body": "Aw man i know !! Drove down there the other day and they need to fix that soon!",
+                "author": {
+                    "_id": "607741b3520700f9cb82943e",
+                    "email": "sab@gmail.com",
+                    "firstName": "Sab",
+                    "lastName": "Kuah",
+                    "location": "Vancouver",
+                    "avatar": "https://images.unsplash.com/photo-1507331789086-893e9003c0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                },
+                "__v": 0
+            },
+            {
+                "date": "2021-04-14T19:25:40.985Z",
+                "_id": "607741b4520700f9cb82944b",
+                "body": "^^ right !! sheeesh",
+                "author": {
+                    "_id": "607741b3520700f9cb82943c",
+                    "email": "russ@gmail.com",
+                    "firstName": "Russ",
+                    "lastName": "Telen",
+                    "location": "Richmond",
+                    "avatar": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80"
+                },
+                "__v": 0
+            }
+        ],
+        "post": "Potholes"
+    }
+
+<hr>
+
+## `POST`
+
+### Add a comment to a post
+
+### `/api/post/:id/comments`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample Body:
+
+    {
+        "body": "This is a comment !"
+    }
+
+### Sample Response:
+
+    {
+        "message": "Succesfully added comment"
+    }
+
+<hr>
+
+## `DELETE`
+
+### Delete a comment
+
+### `/api/post/:id/comments/:commentId`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample Response:
+
+    {
+        "message": "Succesfully deleted comment"
     }
