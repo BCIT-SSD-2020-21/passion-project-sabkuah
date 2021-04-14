@@ -2,64 +2,47 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom';
+import Map from './Map';
 
-const CommunityCard = () => {
-    const classes = useStyles();
-    return (
-        <div className="my-3 shadow mx-1">
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia className={classes.media} image="" />
-                    <CardContent className="comm-card">
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                            }}
-                        >
-                            <div className="avatar-container">
-                                <Avatar>K</Avatar>
-                            </div>
-
-                            <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="h2"
-                            >
-                                Kerrisdale - Arbutus
-                            </Typography>
-                        </div>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            Keep up with what's going on in Richmond! All
-                            members welcome!
-                        </Typography>
-
-                        <div className="flex-container">
-                            <button className="view-btn">View</button>
-                        </div>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
-        </div>
-    );
+const CommunityCard = ({ community }) => {
+  const classes = useStyles();
+  return (
+    <Link to={`/user/communities/${community._id}`} className='link'>
+      <div className='my-3 shadow mx-1'>
+        <Card className={classes.root}>
+          <CardActionArea>
+            <CardMedia className={classes.media}>
+              <Map community={community} styling='comm-card-style' />
+            </CardMedia>
+            <CardContent className='comm-card'>
+              <div className='d-flex flex-column align-items-center'>
+                <Typography gutterBottom variant='h5' component='h2'>
+                  {community?.title}
+                </Typography>
+                <Typography variant='body2' color='textSecondary' component='p'>
+                  {community?.description}
+                </Typography>
+              </div>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </div>
+    </Link>
+  );
 };
 
 export default CommunityCard;
 
 const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 140,
-    },
+  root: {
+    width: 300,
+  },
+  media: {
+    height: 140,
+  },
 });

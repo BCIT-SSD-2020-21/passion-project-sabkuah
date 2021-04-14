@@ -2,11 +2,11 @@ import React from 'react';
 import { Footer } from '../components/Footer';
 import Navigation from '../components/Navigation';
 
-const Public = ({ children }) => {
+const Public = ({ children, user }) => {
   return (
     <div>
-      <Navigation />
-      {children}
+      <Navigation user={user} />
+      <div className='min-vh'>{children}</div>
       <Footer />
     </div>
   );

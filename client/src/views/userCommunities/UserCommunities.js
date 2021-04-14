@@ -4,22 +4,23 @@ import UserCommunitiesScreen from './UserCommunitiesScreen';
 import useLocalStorage from 'react-use-localstorage';
 
 const UserCommunities = ({ user }) => {
-    const [communities, setCommunities] = useState(null);
-    const [token] = useLocalStorage('token');
+  const [communities, setCommunities] = useState(null);
+  const [token] = useLocalStorage('token');
 
-    const handleGetCommunities = async () => {
-        console.log('token sent to db>>>', token);
-        const response = await getUserCommunities(token);
-        return response;
-    };
+  const handleGetCommunities = async () => {
+    const response = await getUserCommunities(token);
+    return response;
+  };
 
-    useEffect(() => {
-        (async () => {
-            const data = await handleGetCommunities();
-            setCommunities(data);
-        })();
-    }, []);
-    return <UserCommunitiesScreen communities={communities} />;
+  useEffect(() => {
+    (async () => {
+      const data = await handleGetCommunities();
+      setCommunities(data);
+    })();
+    // eslint-disable-next-line
+  }, []);
+
+  return <UserCommunitiesScreen communities={communities} />;
 };
 
 export default UserCommunities;

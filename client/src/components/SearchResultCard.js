@@ -10,10 +10,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import RoomIcon from '@material-ui/icons/Room';
 import AddIcon from '@material-ui/icons/Add';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
-const SearchResultCard = ({ community }) => {
+const SearchResultCard = ({ community, handleJoinCommunity }) => {
   const [liked, setLiked] = useState(false);
 
   return (
@@ -30,11 +29,13 @@ const SearchResultCard = ({ community }) => {
         }
         action={
           <>
-            <Link to='/user/communities'>
-              <IconButton aria-label='settings'>
-                <AddIcon style={{ color: '#0acf83' }} />
-              </IconButton>
-            </Link>
+            <IconButton
+              aria-label='settings'
+              onClick={() => handleJoinCommunity(community._id)}
+            >
+              <AddIcon style={{ color: '#0acf83' }} />
+            </IconButton>
+
             <IconButton
               aria-label='add to favorites'
               onClick={() => setLiked(!liked)}

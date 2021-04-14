@@ -25,7 +25,6 @@ const Login = ({ token, setToken }) => {
   useEffect(() => {
     const decodedUser = token ? jwtDecode(token) : null;
     setUser(decodedUser);
-    console.log('decoded user>>>', decodedUser);
   }, [token]);
 
   return <LoginScreen handleLogin={handleLogin} />;
