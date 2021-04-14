@@ -1,16 +1,21 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import CommentIcon from "@material-ui/icons/Comment";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import CreateIcon from '@material-ui/icons/Create';
+import IconButton from '@material-ui/core/IconButton';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import CommentIcon from '@material-ui/icons/Comment';
+import EditPostModal from './EditPostModal';
 
-const IncidentCard = ({ incident }) => {
+const PostCard = ({ incident }) => {
+    const [showEditModal, setShowEditModal] = useState(false);
+
     const classes = useStyles();
     return (
         <div className="my-3 shadow mx-1">
@@ -19,8 +24,8 @@ const IncidentCard = ({ incident }) => {
                     <CardContent className="comm-card">
                         <div
                             style={{
-                                display: "flex",
-                                flexDirection: "row",
+                                display: 'flex',
+                                flexDirection: 'row',
                             }}
                         >
                             <div className="avatar-container">
@@ -53,11 +58,19 @@ const IncidentCard = ({ incident }) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
+            <IconButton onClick={() => setShowEditModal(true)}>
+                <CreateIcon /> Edit
+            </IconButton>
+            <EditPostModal
+                showEditModal={showEditModal}
+                setShowEditModal={setShowEditModal}
+                incident={incident}
+            />
         </div>
     );
 };
 
-export default IncidentCard;
+export default PostCard;
 const useStyles = makeStyles({
     root: {
         width: 300,

@@ -13,11 +13,10 @@ import Register from './views/register/Register';
 import Login from './views/login/Login';
 import Search from './views/search/Search';
 import UserCommunities from './views/userCommunities/UserCommunities';
-import CommunityIncidents from './views/communityIncidents/CommunityIncidents';
+import CommunityPosts from './views/communityPost/CommunityPost';
 import jwtDecode from 'jwt-decode';
 import useLocalStorage from 'react-use-localstorage';
 import NotFound from './components/NotFound';
-import Community from './views/community/Community';
 import CommunityDetail from './views/communityDetail/CommunityDetail';
 
 function App() {
@@ -51,7 +50,7 @@ function App() {
           <User user={user}>
             <Switch>
               <PrivateRoute path='/user/communities/:id/incidents'>
-                <CommunityIncidents />
+                <CommunityPosts />
               </PrivateRoute>
               <PrivateRoute path='/user/communities/search'>
                 <Search user={user} />

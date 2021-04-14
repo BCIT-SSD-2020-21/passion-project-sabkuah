@@ -19,7 +19,7 @@ const { generateToken } = require("../utils/jwt")
 module.exports.registerUser = async (req, res) => {
   try {
     // get body from form
-    const { email, firstName, lastName, location, password, avatar } = req.body
+    const { email, firstName, lastName, location, password } = req.body
     // create new User (only username and email)
     const user = new User({
       username: email,
@@ -27,9 +27,7 @@ module.exports.registerUser = async (req, res) => {
       firstName,
       lastName,
       location,
-      avatar: avatar ? avatar : "",
     })
-
     // "register" user using .register()
     const registeredUser = await User.register(user, password)
 
@@ -46,8 +44,6 @@ module.exports.registerUser = async (req, res) => {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
-          location: user.location,
-          avatar: user.avatar,
         })
 
         // send back token
@@ -78,8 +74,6 @@ module.exports.loginUser = (req, res) => {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
-      location: user.location,
-      avatar: user.avatar,
     })
 
     // send back token
@@ -117,55 +111,11 @@ module.exports.getAllCommunitiesOfUser = catchAsync(async (req, res) => {
 
   // Find User By ID
   const userModel = await User.findById(userId)
-    .select("communities firstName lastName avatar")
+    .select("communities firstName lastName")
     .populate({
       path: "communities",
-      select: "title description location geometry",
+      select: "title description location",
     })
 
   res.send({ user: userModel })
 })
-
-/**
- * Edit user's avatar
- * @function
- * @PATCH
- * @param req.body avatar
- * @returns {Object} Success message
- * @throws Will throw an error if user is not found
- * @throws Will throw an error if user editing is not user logged in
- * @throws Will throw an error if req.body is left empty
- */
-module.exports.editUserAvatar = async (req, res) => {
-  try {
-    const user = await req.decodedUser
-    const userId = user._id
-
-    const { avatar } = req.body
-
-    // Find User
-    const userModel = await User.findById(userId)
-
-    // Check if user logged in === user being edited
-    if (!userModel._id.equals(userId)) {
-      res.send({ error: "You are not authorized to perform this action" })
-      return
-    }
-
-    //  Check if body is empty
-    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-      res.send({ error: "Body is empty" })
-      return
-    }
-
-    // userModel.avatar = avatar
-    await User.findByIdAndUpdate(userModel._id, {
-      avatar: avatar ? avatar : "",
-    })
-
-    res.send({ message: "Succesfully updated avatar" })
-  } catch (e) {
-    console.log(e)
-    res.send({ error: e.message })
-  }
-}

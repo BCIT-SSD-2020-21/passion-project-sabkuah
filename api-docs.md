@@ -16,7 +16,6 @@
         "firstName": "Kal",
         "lastName": "Tang",
         "location": "Richmond",
-        "avatar": <optional string>,
         "password": "password"
     }
 
@@ -81,51 +80,22 @@
         "user": {
             "communities": [
                 {
-                    "_id": "60769924ebfe4cedcade8716",
+                    "_id": "607492f05d5cbfaa2b8b6406",
                     "title": "Lansdowne",
                     "description": "Awesome community near the mall and skytrain",
-                    "location": "Richmond, BC",
-                    "geometry": {
-                        "coordinates": [
-                            -123.1369,
-                            49.1633
-                        ],
-                        "_id": "60769924ebfe4cedcade8717",
-                        "type": "Point"
-                    }
+                    "location": "Richmond"
+                },
+                {
+                    "_id": "6074acc58a2d09ac8741f084",
+                    "title": "Sab's Community",
+                    "description": "Test",
+                    "location": "Richmond"
                 }
             ],
-            "_id": "60769922ebfe4cedcade8713",
+            "_id": "607492ef5d5cbfaa2b8b6403",
             "firstName": "Russ",
-            "lastName": "Telen",
-            "avatar": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80"
+            "lastName": "Telen"
         }
-    }
-
-<hr>
-
-### `PATCH`
-
-### Update user avatar
-
-### `api/users/updateAvatar`
-
-### Sample Header:
-
-    {
-        authorization: 'Bearer ${token}'
-    }
-
-### Sample Body:
-
-    {
-        "avatar": <optional url string>
-    }
-
-### Sample Response:
-
-    {
-        "message": "Succesfully updated avatar"
     }
 
 <hr>
@@ -143,31 +113,39 @@
     {
         "communities": [
             {
-                "_id": "60769924ebfe4cedcade8716",
+                "_id": "607492f05d5cbfaa2b8b6406",
                 "title": "Lansdowne",
                 "description": "Awesome community near the mall and skytrain",
-                "location": "Richmond, BC",
+                "location": "Richmond",
                 "creator": {
-                    "_id": "60769922ebfe4cedcade8714",
+                    "_id": "607492ef5d5cbfaa2b8b6404",
                     "email": "kal@gmail.com",
                     "firstName": "Kal",
-                    "lastName": "Tang",
-                    "location": "Richmond",
-                    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    "lastName": "Tang"
                 }
             },
             {
-                "_id": "60769924ebfe4cedcade8718",
+                "_id": "607492f05d5cbfaa2b8b6407",
                 "title": "Kitsilano",
                 "description": "Safe community by the beach",
-                "location": "Vancouver, BC",
+                "location": "Vancouver",
                 "creator": {
-                    "_id": "60769922ebfe4cedcade8715",
+                    "_id": "607492ef5d5cbfaa2b8b6405",
                     "email": "sab@gmail.com",
                     "firstName": "Sab",
-                    "lastName": "Kuah",
-                    "location": "Vancouver",
-                    "avatar": "https://images.unsplash.com/photo-1507331789086-893e9003c0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    "lastName": "Kuah"
+                }
+            },
+            {
+                "_id": "6074acc58a2d09ac8741f084",
+                "title": "Sab's Community",
+                "description": "Test",
+                "location": "Richmond",
+                "creator": {
+                    "_id": "607492ef5d5cbfaa2b8b6405",
+                    "email": "sab@gmail.com",
+                    "firstName": "Sab",
+                    "lastName": "Kuah"
                 }
             }
         ]
@@ -189,75 +167,65 @@
         "community": {
             "contents": [
                 {
-                    "_id": "60769924ebfe4cedcade871f",
+                    "_id": "6070d61ce98bef8863754a07",
                     "title": "Potholes",
                     "author": {
-                        "_id": "60769922ebfe4cedcade8713",
+                        "_id": "6070d61be98bef8863754a02",
                         "email": "russ@gmail.com",
                         "firstName": "Russ",
-                        "lastName": "Telen",
-                        "location": "Richmond",
-                        "avatar": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80"
-                    }
+                        "lastName": "Telen"
+                    },
+                    "__v": 0
                 },
                 {
-                    "_id": "60769924ebfe4cedcade8720",
+                    "_id": "6070d61ce98bef8863754a08",
                     "title": "Missing stop sign",
                     "author": {
-                        "_id": "60769922ebfe4cedcade8715",
+                        "_id": "6070d61be98bef8863754a04",
                         "email": "sab@gmail.com",
                         "firstName": "Sab",
-                        "lastName": "Kuah",
-                        "location": "Vancouver",
-                        "avatar": "https://images.unsplash.com/photo-1507331789086-893e9003c0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-                    }
+                        "lastName": "Kuah"
+                    },
+                    "__v": 0
                 }
             ],
             "members": [
                 {
-                    "_id": "60769922ebfe4cedcade8714",
+                    "_id": "6070d61be98bef8863754a03",
                     "email": "kal@gmail.com",
                     "firstName": "Kal",
-                    "lastName": "Tang",
-                    "location": "Richmond",
-                    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    "lastName": "Tang"
                 },
                 {
-                    "_id": "60769922ebfe4cedcade8713",
+                    "_id": "6070d61be98bef8863754a02",
                     "email": "russ@gmail.com",
                     "firstName": "Russ",
-                    "lastName": "Telen",
-                    "location": "Richmond",
-                    "avatar": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80"
+                    "lastName": "Telen"
                 },
                 {
-                    "_id": "60769922ebfe4cedcade8715",
+                    "_id": "6070d61be98bef8863754a04",
                     "email": "sab@gmail.com",
                     "firstName": "Sab",
-                    "lastName": "Kuah",
-                    "location": "Vancouver",
-                    "avatar": "https://images.unsplash.com/photo-1507331789086-893e9003c0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    "lastName": "Kuah"
                 }
             ],
-            "_id": "60769924ebfe4cedcade8716",
+            "_id": "6070d61ce98bef8863754a05",
             "title": "Lansdowne",
             "description": "Awesome community near the mall and skytrain",
-            "location": "Richmond, BC",
+            "location": "Richmond",
             "geometry": {
                 "coordinates": [
-                    -123.1369,
-                    49.1633
+                    -123.1139,
+                    49.2609
                 ],
-                "_id": "60769924ebfe4cedcade8717",
+                "_id": "607614077ad38dd3f2ba149b",
                 "type": "Point"
             },
             "creator": {
-                "_id": "60769922ebfe4cedcade8714",
+                "_id": "6070d61be98bef8863754a03",
                 "email": "kal@gmail.com",
                 "firstName": "Kal",
-                "lastName": "Tang",
-                "location": "Richmond",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                "lastName": "Tang"
             },
             "__v": 2
         }
@@ -282,7 +250,7 @@
     {
         "title": "5 and Cambie",
         "description": "Where the hood at",
-        "location": "Richmond",
+        "location": "Richmond"
     }
 
 ### Sample Response:
@@ -360,36 +328,32 @@
     {
         "posts": [
             {
-                "_id": "60769924ebfe4cedcade871f",
+                "_id": "607492f15d5cbfaa2b8b640b",
                 "title": "Potholes",
                 "description": "I damn near broke my suspension today. Way too many potholes on Arcadia road. Theyre MASSIVE too. This needs to be addressed ASAP",
-                "date": "2021-04-14T07:26:28.321Z",
+                "date": "2021-04-12T18:35:29.076Z",
                 "category": "Incident Reports",
-                "image": "https://images.unsplash.com/photo-1601026909629-bad5e1122bc6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80",
                 "author": {
-                    "_id": "60769922ebfe4cedcade8713",
+                    "_id": "607492ef5d5cbfaa2b8b6403",
                     "email": "russ@gmail.com",
                     "firstName": "Russ",
                     "lastName": "Telen",
-                    "location": "Richmond",
-                    "avatar": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80"
+                    "location": "Richmond"
                 },
                 "__v": 0
             },
             {
-                "_id": "60769924ebfe4cedcade8720",
+                "_id": "607492f15d5cbfaa2b8b640c",
                 "title": "Missing stop sign",
                 "description": "Somone stole the stop sign @ the corner of Cook rd. Damn hoodlums..",
-                "date": "2021-04-14T07:26:28.322Z",
+                "date": "2021-04-12T18:35:29.077Z",
                 "category": "Incident Reports",
-                "image": "https://images.unsplash.com/photo-1592360964881-5f3d7459403f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
                 "author": {
-                    "_id": "60769922ebfe4cedcade8715",
+                    "_id": "607492ef5d5cbfaa2b8b6405",
                     "email": "sab@gmail.com",
                     "firstName": "Sab",
                     "lastName": "Kuah",
-                    "location": "Vancouver",
-                    "avatar": "https://images.unsplash.com/photo-1507331789086-893e9003c0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+                    "location": "Vancouver"
                 },
                 "__v": 0
             }
@@ -415,8 +379,7 @@
     {
         "title": "First Post !!",
         "description": "Weeooooo firs post yay",
-        "category": "Incident Reports",
-        "image": <optional string>
+        "category": "Incident Reports"
     }
 
 ### Sample Response:
@@ -444,8 +407,7 @@
     {
         "title": "Post title",
         "description": "Post description",
-        "category": "Incident Reports",
-        "image": <optional string>
+        "category": "Incident Reports"
     }
 
 ### Sample Body if editing only one property:
