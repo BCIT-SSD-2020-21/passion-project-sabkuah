@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import NewIncident from '../../components/CreateIncident';
+import React, { useState } from "react";
+import NewIncident from "../../components/CreateIncident";
 
-const CommunityIncidentsScreen = () => {
+const CommunityIncidentsScreen = ({ incidents }) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     return (
@@ -11,6 +11,10 @@ const CommunityIncidentsScreen = () => {
             </button>
             <h1>Incidents</h1>
             <NewIncident show={show} setShow={setShow} />
+
+            {incidents.map((incident) => (
+                <p>{incident.title}</p>
+            ))}
         </div>
     );
 };
