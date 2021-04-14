@@ -22,7 +22,7 @@ module.exports.getCommunityPosts = async (req, res) => {
       .select("-community")
       .populate({
         path: "author",
-        select: "firstName lastName email location",
+        select: "firstName lastName email location avatar",
       })
 
     res.send({ posts })
