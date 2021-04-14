@@ -24,6 +24,11 @@ module.exports.getAllPostComments = async (req, res) => {
 
     //   Find comments
     const comments = await Comment.find({ post: post._id })
+      .select("-post")
+      .populate({
+        path: "author",
+        select: "firstName lastName email location avatar",
+      })
 
     res.send({ comments, post: post.title })
   } catch (e) {
