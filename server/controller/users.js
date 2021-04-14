@@ -44,6 +44,8 @@ module.exports.registerUser = async (req, res) => {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          location: user.location,
+          avatar: user.avatar,
         })
 
         // send back token
@@ -74,6 +76,8 @@ module.exports.loginUser = (req, res) => {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
+      location: user.location,
+      avatar: user.avatar,
     })
 
     // send back token
