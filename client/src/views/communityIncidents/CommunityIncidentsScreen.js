@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NewIncident from "../../components/CreateIncident";
+import IncidentCard from "../../components/IncidentCard";
 
 const CommunityIncidentsScreen = ({ incidents }) => {
     const [show, setShow] = useState(false);
@@ -12,9 +13,11 @@ const CommunityIncidentsScreen = ({ incidents }) => {
             <h1>Incidents</h1>
             <NewIncident show={show} setShow={setShow} />
 
-            {incidents?.map((incident) => (
-                <h3>{incident.title}</h3>
-            ))}
+            <div className="card-flex">
+                {incidents?.map((incident) => (
+                    <IncidentCard incident={incident} />
+                ))}
+            </div>
         </div>
     );
 };
