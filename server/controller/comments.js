@@ -9,6 +9,30 @@ const Comment = require("../models/Comment")
 // LOGIC
 // ==============================================
 /**
+ * Retrieves all comments in a post
+ * @POST
+ * @param req.params :id, post id
+ * @returns {Array} list of comments in a post
+ * @throws Will throw an error if :id is invalid
+ */
+module.exports.getAllPostComments = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    //   Find post
+    const post = await Post.findById(id)
+
+    //   Find comments
+    const comments = await Comment.find({ post: post._id })
+
+    res.send({ comments, post: post.title })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
+  }
+}
+
+/**
  * Add a comment to a post
  * @function
  * @POST
