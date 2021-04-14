@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getAllCommunities } from '../../network/community';
 import SearchScreen from './SearchScreen';
 
-const Search = () => {
+const Search = ({ user }) => {
   const [communities, setCommunities] = useState(null);
-
-  const user = 'Sabrina';
 
   useEffect(() => {
     (async () => {

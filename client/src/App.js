@@ -67,7 +67,9 @@ function App() {
               <Route path='/register'>
                 <Register token={token} setToken={setToken} />
               </Route>
-              <Route path='/search' component={Search} />
+              <Route path='/search'>
+                <Search user={user} />
+              </Route>
               <Route path='/login'>
                 <Login token={token} setToken={setToken} />
               </Route>
