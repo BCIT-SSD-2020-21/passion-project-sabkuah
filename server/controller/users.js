@@ -19,7 +19,7 @@ const { generateToken } = require("../utils/jwt")
 module.exports.registerUser = async (req, res) => {
   try {
     // get body from form
-    const { email, firstName, lastName, location, password } = req.body
+    const { email, firstName, lastName, location, password, avatar } = req.body
     // create new User (only username and email)
     const user = new User({
       username: email,
@@ -27,7 +27,11 @@ module.exports.registerUser = async (req, res) => {
       firstName,
       lastName,
       location,
+      avatar: avatar
+        ? avatar
+        : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
     })
+
     // "register" user using .register()
     const registeredUser = await User.register(user, password)
 
