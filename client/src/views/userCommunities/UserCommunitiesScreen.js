@@ -12,19 +12,22 @@ const UserCommunitiesScreen = ({ communities }) => {
 
   return (
     <div>
-      <div className='d-flex justify-content-end'>
-        <Tooltip title='Add New Community'>
-          <button className='create-com-button mx-2' onClick={handleShow}>
-            <AddIcon />
-          </button>
-        </Tooltip>
-        <Tooltip title='Find More'>
-          <Link to='/user/communities/search'>
-            <button className='create-com-button mx-2'>
-              <SearchIcon />
+      <div className='d-flex justify-content-between'>
+        <h2>Your Communities</h2>
+        <div>
+          <Tooltip title='Add New Community'>
+            <button className='create-com-button mx-2' onClick={handleShow}>
+              <AddIcon />
             </button>
-          </Link>
-        </Tooltip>
+          </Tooltip>
+          <Tooltip title='Find More'>
+            <Link to='/user/communities/search'>
+              <button className='create-com-button mx-2'>
+                <SearchIcon />
+              </button>
+            </Link>
+          </Tooltip>
+        </div>
       </div>
 
       <div className='card-flex'>
