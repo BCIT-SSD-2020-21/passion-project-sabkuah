@@ -62,7 +62,7 @@ function App() {
         </Route>
 
         <Route path='/:path?'>
-          <Public>
+          <Public user={user}>
             <Switch>
               <Route path='/register'>
                 <Register token={token} setToken={setToken} />
