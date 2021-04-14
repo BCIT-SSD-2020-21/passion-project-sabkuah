@@ -7,7 +7,7 @@ import { addPost } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
 import { useParams } from 'react-router-dom';
 
-const CreatePost = ({ show, setShow }) => {
+const CreatePostModal = ({ show, setShow }) => {
     const [token, setToken] = useLocalStorage('token', '');
     const [post, setPost] = useState({
         title: '',
@@ -130,4 +130,4 @@ const CreatePost = ({ show, setShow }) => {
     );
 };
 
-export default CreatePost;
+export default CreatePostModal;
