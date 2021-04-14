@@ -3,6 +3,7 @@
 //==============================================
 const express = require("express")
 const dotenv = require("dotenv")
+const cors = require("cors")
 const session = require("express-session")
 const ExpressError = require("./utils/ExpressError")
 const { connectDb } = require("./utils/db")
@@ -16,7 +17,7 @@ const User = require("./models/User")
 //----------------------------------------------
 const userRoutes = require("./routes/users")
 const communityRoutes = require("./routes/communities")
-
+const postRoutes = require("./routes/posts")
 //==============================================
 // CONFIG
 //==============================================
@@ -25,6 +26,9 @@ dotenv.config()
 
 // init express
 const app = express()
+
+// This is CORS-enabled for all origins
+app.use(cors())
 
 // Parsing Middlewares
 app.use(express.urlencoded({ extended: true })) // application/x-www-form-urlencoded
@@ -58,6 +62,7 @@ passport.deserializeUser(User.deserializeUser())
 //==============================================
 app.use("/api/users", userRoutes)
 app.use("/api/communities", communityRoutes)
+app.use("/api/communities/:id/posts", postRoutes)
 
 //==============================================
 // Error Handlers

@@ -34,6 +34,7 @@ const seedDb = async () => {
     firstName: "Russ",
     lastName: "Telen",
     location: "Richmond",
+    commmunities: [],
   })
 
   const user2 = new User({
@@ -42,6 +43,7 @@ const seedDb = async () => {
     firstName: "Kal",
     lastName: "Tang",
     location: "Richmond",
+    commmunities: [],
   })
 
   const user3 = new User({
@@ -50,6 +52,7 @@ const seedDb = async () => {
     firstName: "Sab",
     lastName: "Kuah",
     location: "Vancouver",
+    commmunities: [],
   })
 
   // Save/Register Users
@@ -78,6 +81,13 @@ const seedDb = async () => {
     creator: user3._id,
   })
 
+  //   Push created communities to user.communities
+  //-------------------
+  user2.communities.push(comm1)
+  user3.communities.push(comm2)
+  await user2.save()
+  await user3.save()
+
   //   Save created communities
   //-------------------
   await comm1.save()
@@ -87,6 +97,10 @@ const seedDb = async () => {
   //-------------------
   comm1.members.push(user1._id)
   comm1.members.push(user3._id)
+  user1.communities.push(comm1._id)
+  user3.communities.push(comm1._id)
+  await user1.save()
+  await user3.save()
   await comm1.save()
 
   //   Create posts to a community

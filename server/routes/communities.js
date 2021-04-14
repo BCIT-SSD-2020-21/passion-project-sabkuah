@@ -11,10 +11,10 @@ const {
   editCommunity,
 } = require("../controller/communities")
 const { requireLogin } = require("../utils/middlewares")
+
 // ==============================================
 // ROUTES
 // ==============================================
-
 router.route("/").get(getAllCommunities).post(requireLogin, createCommunity)
 router.route("/:id").get(getCommunityById).patch(requireLogin, editCommunity)
 router.route("/:id/join").patch(requireLogin, joinCommunity)
