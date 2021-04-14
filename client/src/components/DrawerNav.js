@@ -76,7 +76,13 @@ function DrawerNav({ window, user, children }) {
       {/* <div className={classes.toolbar} /> */}
       <div id='dNav-user' className='d-flex flex-column justify-content-end'>
         <div className='mb-3'>
-          <Avatar src={user?.avatar} className='avatar-shadow' />
+          <Avatar
+            src={user?.avatar}
+            className='avatar-shadow'
+            onClick={() => {
+              setAvatarOpen(true);
+            }}
+          />
         </div>
         <div className='d-flex justify-content-between align-items-center'>
           <div>
