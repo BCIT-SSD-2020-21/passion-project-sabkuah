@@ -11,6 +11,7 @@ const CommunityDetail = () => {
 
   const handleGetCommunity = async () => {
     const response = await getCommunity({ id, token });
+    console.log('community', response.community);
     return response.community;
   };
 

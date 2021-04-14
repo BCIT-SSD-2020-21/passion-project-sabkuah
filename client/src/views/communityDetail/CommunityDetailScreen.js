@@ -39,6 +39,14 @@ const CommunityDetailScreen = ({ community }) => {
         </div>
       </div>
       {/* <div>{community && <Map community={community} styling='map' />}</div> */}
+      <div className='recent-posts'>
+        <h4>Recent Posts</h4>
+        {community?.contents.length ? (
+          community.contents.map((post) => <p>post.title</p>)
+        ) : (
+          <p>No posts in this community. Go add one now!</p>
+        )}
+      </div>
     </div>
   );
 };
