@@ -27,9 +27,7 @@ module.exports.registerUser = async (req, res) => {
       firstName,
       lastName,
       location,
-      avatar: avatar
-        ? avatar
-        : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+      avatar: avatar ? avatar : "",
     })
 
     // "register" user using .register()
