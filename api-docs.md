@@ -77,26 +77,29 @@
 ### Sample response:
 
     {
-        "user": {
-            "communities": [
-                {
-                    "_id": "607492f05d5cbfaa2b8b6406",
-                    "title": "Lansdowne",
-                    "description": "Awesome community near the mall and skytrain",
-                    "location": "Richmond"
-                },
-                {
-                    "_id": "6074acc58a2d09ac8741f084",
-                    "title": "Sab's Community",
-                    "description": "Test",
-                    "location": "Richmond"
+    "user": {
+        "communities": [
+            {
+                "_id": "607614077ad38dd3f2ba1498",
+                "title": "Lansdowne",
+                "description": "Awesome community near the mall and skytrain",
+                "location": "Richmond, BC",
+                "geometry": {
+                    "coordinates": [
+                        -123.1369,
+                        49.1633
+                    ],
+                    "_id": "607614077ad38dd3f2ba1499",
+                    "type": "Point"
                 }
-            ],
-            "_id": "607492ef5d5cbfaa2b8b6403",
-            "firstName": "Russ",
-            "lastName": "Telen"
-        }
+            }
+        ],
+        "_id": "607614057ad38dd3f2ba1495",
+        "firstName": "Russ",
+        "lastName": "Telen"
     }
+
+}
 
 <hr>
 
