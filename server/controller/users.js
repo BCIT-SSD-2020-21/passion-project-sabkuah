@@ -125,3 +125,37 @@ module.exports.getAllCommunitiesOfUser = catchAsync(async (req, res) => {
 
   res.send({ user: userModel })
 })
+
+module.exports.editUserAvatar = async (req, res) => {
+  try {
+    const user = await req.decodedUser
+    const userId = user._id
+
+    const { avatar } = req.body
+
+    // Find User
+    const userModel = await User.findById(userId)
+
+    // Check if user logged in === user being edited
+    if (!userModel._id.equals(userId)) {
+      res.send({ error: "You are not authorized to perform this action" })
+      return
+    }
+
+    //  Check if body is empty
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+      res.send({ error: "Body is empty" })
+      return
+    }
+
+    // userModel.avatar = avatar
+    await User.findByIdAndUpdate(userModel._id, {
+      avatar: avatar ? avatar : "",
+    })
+
+    res.send({ message: "Succesfully updated avatar" })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
+  }
+}
