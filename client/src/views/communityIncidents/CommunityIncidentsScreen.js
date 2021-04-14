@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NewIncident from "../../components/CreateIncident";
 import IncidentCard from "../../components/IncidentCard";
 
-const CommunityIncidentsScreen = ({ incidents }) => {
+const CommunityIncidentsScreen = ({ incidents, community }) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     return (

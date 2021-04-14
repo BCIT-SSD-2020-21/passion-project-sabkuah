@@ -7,6 +7,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import CommentIcon from "@material-ui/icons/Comment";
 
 const IncidentCard = ({ incident }) => {
     const classes = useStyles();
@@ -33,6 +35,7 @@ const IncidentCard = ({ incident }) => {
                                 {incident?.title}
                             </Typography>
                         </div>
+                        <CardMedia className={classes.media} image="" />
                         <div>
                             <Typography
                                 variant="body2"
@@ -44,7 +47,7 @@ const IncidentCard = ({ incident }) => {
                         </div>
                         <div className="flex-container">
                             {/* <Link to={`/user/communities/${community._id}`}> */}
-                            <button className="view-btn">View</button>
+                            {/* <button className="view-btn">View</button> */}
                             {/* </Link> */}
                         </div>
                     </CardContent>
@@ -58,5 +61,8 @@ export default IncidentCard;
 const useStyles = makeStyles({
     root: {
         width: 300,
+    },
+    media: {
+        height: 140,
     },
 });
