@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import NewIncident from '../../components/CreateIncident';
-import IncidentCard from '../../components/IncidentCard';
+import NewPost from '../../components/CreatePost';
+import NewPostCard from '../../components/PostCard';
 
-const CommunityIncidentsScreen = ({ incidents, community }) => {
+const CommunityPostScreen = ({ posts }) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
+
     return (
         <div>
             <button className="create-com-button" onClick={handleShow}>
                 New Post
             </button>
             <h1>Incidents</h1>
-            <NewIncident show={show} setShow={setShow} />
+            <NewPostCard show={show} setShow={setShow} />
 
             <div className="card-flex">
-                {incidents?.map((incident) => (
-                    <IncidentCard incident={incident} />
+                {posts?.map((post) => (
+                    <NewPost post={post} />
                 ))}
             </div>
         </div>
     );
 };
 
-export default CommunityIncidentsScreen;
+export default CommunityPostScreen;

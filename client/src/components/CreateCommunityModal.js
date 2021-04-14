@@ -2,62 +2,44 @@ import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import CreateIcon from '@material-ui/icons/Create';
-import { addIncident } from '../network/community';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import { addCommunity } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
-import { useParams } from 'react-router-dom';
 
-const CreateIncident = ({ show, setShow }) => {
-    const [token, setToken] = useLocalStorage('token', '');
-    const [incident, setIncident] = useState({
+const CreateCommunityModal = ({ show, setShow }) => {
+    const [token] = useLocalStorage('token', '');
+    const [community, setCommunity] = useState({
         title: '',
-        category: '',
+        location: '',
         description: '',
     });
-    let { id } = useParams();
 
-    const handleClose = () => {
-        setShow(false);
-    };
-
-    const handlePost = async (e) => {
+    const handleCreate = async (e) => {
         e.preventDefault();
         try {
-            const response = await addIncident(incident, token, id);
-            response && handleClose();
-
-            if (response.error) {
-                console.log(response.error);
-                alert(response.error);
-                return;
-            }
-            if (response.token) {
-                setToken(response.token);
-                console.log('Post successful', response.data);
-                alert(response.message);
-                handleClose();
-            }
+            const response = await addCommunity(community, token);
+            response && setShow(false);
         } catch (e) {
-            console.log('Error Posting Incident', e);
+            console.log('Error creating community', e);
         }
     };
+
     return (
         <div>
             <Modal
                 show={show}
-                onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
                 style={{ marginTop: '5%' }}
             >
-                <h2 className="modal-title">New Post</h2>
+                <h2 className="modal-title">Add Community</h2>
 
                 <div className="modal-body">
-                    <form className="modal-form" onSubmit={handlePost}>
+                    <form className="modal-form" onSubmit={handleCreate}>
                         <TextField
                             required
+                            value={community.title}
                             variant="outlined"
-                            value={incident.title}
                             label="Title"
                             placeholder="Title"
                             id="Title"
@@ -65,63 +47,63 @@ const CreateIncident = ({ show, setShow }) => {
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <CreateIcon />
+                                        <LocationCityIcon />
                                     </InputAdornment>
                                 ),
                             }}
                             onChange={(e) =>
-                                setIncident({
-                                    ...incident,
+                                setCommunity({
+                                    ...community,
                                     title: e.target.value,
                                 })
                             }
                         />
                         <TextField
                             required
-                            value={incident.category}
+                            value={community.location}
                             variant="outlined"
-                            label="Category"
-                            placeholder="Category"
-                            id="Category"
+                            label="location"
+                            placeholder="location"
+                            id="location"
                             className="modal-form-input"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <CreateIcon />
+                                        <LocationCityIcon />
                                     </InputAdornment>
                                 ),
                             }}
                             onChange={(e) =>
-                                setIncident({
-                                    ...incident,
-                                    category: e.target.value,
+                                setCommunity({
+                                    ...community,
+                                    location: e.target.value,
                                 })
                             }
                         />
                         <TextField
                             required
-                            value={incident.description}
+                            value={community.description}
                             variant="outlined"
                             label="Description"
-                            placeholder="Description"
-                            id="Description"
                             multiline={true}
                             id="email"
                             className="modal-form-input"
                             rows={5}
                             onChange={(e) =>
-                                setIncident({
-                                    ...incident,
+                                setCommunity({
+                                    ...community,
                                     description: e.target.value,
                                 })
                             }
                         />
-
                         <Modal.Footer>
-                            <button className="modal-btn" onClick={handleClose}>
+                            <button
+                                className="modal-btn"
+                                onClick={() => setShow(false)}
+                            >
                                 Close
                             </button>
-                            <button className="modal-btn">Post</button>
+                            <button className="modal-btn">Submit</button>
                         </Modal.Footer>
                     </form>
                 </div>
@@ -130,4 +112,4 @@ const CreateIncident = ({ show, setShow }) => {
     );
 };
 
-export default CreateIncident;
+export default CreateCommunityModal;
