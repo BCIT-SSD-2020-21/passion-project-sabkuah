@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
+import Map from './Map';
 
 const CommunityCard = ({ community }) => {
   const classes = useStyles();
@@ -15,7 +16,9 @@ const CommunityCard = ({ community }) => {
     <div className='my-3 shadow mx-1'>
       <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia className={classes.media} image='' />
+          <CardMedia className={classes.media}>
+            <Map community={community} styling='comm-card-style' />
+          </CardMedia>
           <CardContent className='comm-card'>
             <div
               style={{

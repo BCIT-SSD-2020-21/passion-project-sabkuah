@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 
-const Map = ({ community }) => {
+const Map = ({ community, styling }) => {
   const mapContainer = useRef();
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
@@ -35,7 +35,7 @@ const Map = ({ community }) => {
   }, []);
 
   return (
-    <div className='map'>
+    <div className={styling}>
       <div className='map-container' ref={mapContainer} />
     </div>
   );

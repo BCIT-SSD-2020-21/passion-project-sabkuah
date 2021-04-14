@@ -9,7 +9,7 @@ const CommunityScreen = ({ community }) => {
         <p>Description: {community?.description}</p>
         <p>Location: {community?.location}</p>
       </div>
-      <div>{community && <Map community={community} />}</div>
+      <div>{community && <Map community={community} styling='map' />}</div>
     </div>
   );
 };
