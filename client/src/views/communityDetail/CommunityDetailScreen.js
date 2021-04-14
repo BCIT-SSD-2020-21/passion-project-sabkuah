@@ -3,27 +3,36 @@ import Map from '../../components/Map';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ReportIcon from '@material-ui/icons/Report';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import { Badge } from '@material-ui/core';
+import { Badge, Tooltip } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const CommunityDetailScreen = ({ community }) => {
   return (
     <div>
       <div className='quick-controls row'>
-        <Badge badgeContent={4} overlap='circle' color='primary'>
-          <div className='qc-highlight'>
-            <EmojiPeopleIcon className='qc-icons' />
-          </div>
-        </Badge>
-        <Badge badgeContent={4} overlap='circle' color='primary'>
-          <div className='qc-highlight'>
-            <ReportIcon className='qc-icons' />
-          </div>
-        </Badge>
-        <Badge badgeContent={4} overlap='circle' color='primary'>
-          <div className='qc-highlight'>
-            <QuestionAnswerIcon className='qc-icons' />
-          </div>
-        </Badge>
+        <Link to={`/user/communities/${community?._id}/posts`}>
+          <Tooltip title='Social Posts'>
+            <Badge badgeContent={4} overlap='circle' color='primary'>
+              <div className='qc-highlight'>
+                <EmojiPeopleIcon className='qc-icons' />
+              </div>
+            </Badge>
+          </Tooltip>
+        </Link>
+        <Tooltip title='Incident Reports'>
+          <Badge badgeContent={4} overlap='circle' color='primary'>
+            <div className='qc-highlight'>
+              <ReportIcon className='qc-icons' />
+            </div>
+          </Badge>
+        </Tooltip>
+        <Tooltip title='Discussions'>
+          <Badge badgeContent={4} overlap='circle' color='primary'>
+            <div className='qc-highlight'>
+              <QuestionAnswerIcon className='qc-icons' />
+            </div>
+          </Badge>
+        </Tooltip>
       </div>
       <div className='d-flex justify-content-between'>
         <div>
@@ -42,7 +51,7 @@ const CommunityDetailScreen = ({ community }) => {
       <div className='recent-posts'>
         <h4>Recent Posts</h4>
         {community?.contents.length ? (
-          community.contents.map((post) => <p>post.title</p>)
+          community.contents.map((post) => <p>{post.title}</p>)
         ) : (
           <p>No posts in this community. Go add one now!</p>
         )}
