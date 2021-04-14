@@ -12,8 +12,8 @@ const CommunityIncidentsScreen = ({ incidents }) => {
             <h1>Incidents</h1>
             <NewIncident show={show} setShow={setShow} />
 
-            {incidents.map((incident) => (
-                <p>{incident.title}</p>
+            {incidents?.map((incident) => (
+                <h3>{incident.title}</h3>
             ))}
         </div>
     );

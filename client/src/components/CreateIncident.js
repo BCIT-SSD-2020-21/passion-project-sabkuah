@@ -24,8 +24,8 @@ const CreateIncident = ({ show, setShow }) => {
         e.preventDefault();
         try {
             const response = await addIncident(incident, token, id);
-            console.log(token);
-            console.log(incident);
+            response && handleClose();
+
             if (response.error) {
                 console.log(response.error);
                 alert(response.error);
