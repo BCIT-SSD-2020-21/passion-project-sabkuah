@@ -44,17 +44,12 @@ module.exports.getCommunityPosts = async (req, res) => {
 module.exports.createPost = async (req, res) => {
   try {
     const { id } = req.params
-    const { title, description, category } = req.body
+    const { title, description, category, image } = req.body
     const user = await req.decodedUser
     const userId = user._id
 
     // Find Community
     const community = await Community.findById(id)
-
-    if (!community) {
-      res.send({ message: "Community not found" })
-      return
-    }
 
     // Check if user logged in is a member of selected community
     const memberExists = community.members.indexOf(userId)
@@ -72,6 +67,7 @@ module.exports.createPost = async (req, res) => {
       description,
       date: new Date(),
       category,
+      image: image ? image : "",
       community: community._id,
       author: userId,
     })
