@@ -8,6 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const SearchScreen = ({
   user,
@@ -21,6 +22,8 @@ const SearchScreen = ({
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(communities);
   const handleShow = () => setShow(true);
+  const location = useLocation();
+  const dashboardUrl = '/user/communities/search';
 
   useEffect(() => {
     if (query.length) {
@@ -33,12 +36,18 @@ const SearchScreen = ({
 
   return (
     <Container>
-      <div className='mb-3'>
-        <h2 className='mt-3'>
-          {user && `Welcome back ${user?.firstName}! `}
-          Which communities are you a part of?
-        </h2>
-      </div>
+      {location.pathname === dashboardUrl ? (
+        <div className='mb-1'>
+          <h2 className='mt-3 text-center'>Find a new community!</h2>
+        </div>
+      ) : (
+        <div className='mb-3'>
+          <h2 className='mt-3'>
+            {user && `Welcome back ${user?.firstName}! `}
+            Which communities are you a part of?
+          </h2>
+        </div>
+      )}
 
       <div className='my-5'>
         <SearchInput query={query} setQuery={setQuery} />

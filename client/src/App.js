@@ -51,6 +51,9 @@ function App() {
               <PrivateRoute path='/user/communities/1/incidents'>
                 <CommunityIncidents />
               </PrivateRoute>
+              <PrivateRoute path='/user/communities/search'>
+                <Search user={user} />
+              </PrivateRoute>
               <PrivateRoute path='/user/communities/:id'>
                 <Community />
               </PrivateRoute>

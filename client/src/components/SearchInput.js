@@ -2,7 +2,7 @@ import { Container, Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ setQuery }) => {
   return (
     <Container>
       <div className='search'>
@@ -16,7 +16,7 @@ const SearchBar = ({ query, setQuery }) => {
           </IconButton>
           <InputBase
             className='input'
-            placeholder='Search'
+            placeholder='Begin your search'
             autoFocus={true}
             onChange={(e) => setQuery(e.target.value)}
           />

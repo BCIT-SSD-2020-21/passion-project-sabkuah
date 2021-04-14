@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { getAllCommunities, joinCommunity } from '../../network/community';
 import SearchScreen from './SearchScreen';
 import useLocalStorage from 'react-use-localstorage';
+import { useLocation } from 'react-router-dom';
 
 const Search = ({ user }) => {
   const [communities, setCommunities] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [joinResponse, setJoinResponse] = useState('');
   const [token] = useLocalStorage('token');
+  const location = useLocation();
 
   useEffect(() => {
+    console.log('location>>', location);
     (async () => {
       const response = await getAllCommunities();
       setCommunities(response.communities);
