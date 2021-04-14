@@ -66,7 +66,7 @@ passport.deserializeUser(User.deserializeUser())
 app.use("/api/users", userRoutes)
 app.use("/api/communities", communityRoutes)
 app.use("/api/communities/:id/posts", postRoutes)
-app.use("/api/posts/:id", commentRoutes)
+app.use("/api/posts/:id/comments", commentRoutes)
 
 //==============================================
 // Error Handlers
