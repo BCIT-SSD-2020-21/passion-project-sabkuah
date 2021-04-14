@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { TextField } from "@material-ui/core";
-import Modal from "react-bootstrap/Modal";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import CreateIcon from "@material-ui/icons/Create";
-import { addIncident } from "../network/community";
-import useLocalStorage from "react-use-localstorage";
-import { useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
+import Modal from 'react-bootstrap/Modal';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import CreateIcon from '@material-ui/icons/Create';
+import { addIncident } from '../network/community';
+import useLocalStorage from 'react-use-localstorage';
+import { useParams } from 'react-router-dom';
 
 const CreateIncident = ({ show, setShow }) => {
-    const [token, setToken] = useLocalStorage("token", "");
+    const [token, setToken] = useLocalStorage('token', '');
     const [incident, setIncident] = useState({
-        title: "",
-        category: "",
-        description: "",
+        title: '',
+        category: '',
+        description: '',
     });
     let { id } = useParams();
 
@@ -33,12 +33,12 @@ const CreateIncident = ({ show, setShow }) => {
             }
             if (response.token) {
                 setToken(response.token);
-                console.log("Post successful", response.data);
+                console.log('Post successful', response.data);
                 alert(response.message);
                 handleClose();
             }
         } catch (e) {
-            console.log("Error Posting Incident", e);
+            console.log('Error Posting Incident', e);
         }
     };
     return (
@@ -48,9 +48,9 @@ const CreateIncident = ({ show, setShow }) => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                style={{ marginTop: "5%" }}
+                style={{ marginTop: '5%' }}
             >
-                <h2 className="modal-title">New Incident</h2>
+                <h2 className="modal-title">New Post</h2>
 
                 <div className="modal-body">
                     <form className="modal-form" onSubmit={handlePost}>

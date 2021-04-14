@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import NewIncident from "../../components/CreateIncident";
-import IncidentCard from "../../components/IncidentCard";
+import React, { useState } from 'react';
+import NewIncident from '../../components/CreateIncident';
+import IncidentCard from '../../components/IncidentCard';
 
 const CommunityIncidentsScreen = ({ incidents, community }) => {
     const [show, setShow] = useState(false);
@@ -8,7 +8,7 @@ const CommunityIncidentsScreen = ({ incidents, community }) => {
     return (
         <div>
             <button className="create-com-button" onClick={handleShow}>
-                New Incident
+                New Post
             </button>
             <h1>Incidents</h1>
             <NewIncident show={show} setShow={setShow} />
