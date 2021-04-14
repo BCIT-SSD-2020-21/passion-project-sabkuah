@@ -22,9 +22,12 @@ const postSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  image: {
+    type: String,
+  },
   category: {
     type: String,
-    enum: ["Incident Reports"],
+    enum: ["Incident Reports", "Social Events", "Discussions"],
   },
   community: {
     type: Schema.Types.ObjectId,

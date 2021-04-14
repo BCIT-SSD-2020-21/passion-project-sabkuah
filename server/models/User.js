@@ -27,6 +27,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+  },
   communities: [
     {
       type: Schema.Types.ObjectId,

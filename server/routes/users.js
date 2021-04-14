@@ -9,6 +9,7 @@ const {
   loginUser,
   logoutUser,
   getAllCommunitiesOfUser,
+  editUserAvatar,
 } = require("../controller/users")
 const { requireLogin } = require("../utils/middlewares")
 // ==============================================
@@ -19,5 +20,6 @@ router.route("/register").post(registerUser)
 router.route("/login").post(passport.authenticate("local"), loginUser)
 router.route("/logout").post(logoutUser)
 router.route("/communities").get(requireLogin, getAllCommunitiesOfUser)
+router.route("/updateAvatar").patch(requireLogin, editUserAvatar)
 
 module.exports = router
