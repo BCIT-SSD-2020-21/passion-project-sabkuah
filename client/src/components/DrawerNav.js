@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Divider,
@@ -14,6 +14,14 @@ import {
   AppBar,
   Avatar,
   IconButton,
+  Tooltip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogActions,
+  Button,
 } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -25,6 +33,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Dashboard from '../views/dashboard/Dashboard';
 import { logoutUser } from '../network/user';
 import { useHistory } from 'react-router-dom';
@@ -35,7 +44,9 @@ const drawerWidth = 240;
 function DrawerNav({ window, user, children }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [avatarOpen, setAvatarOpen] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatar);
   const history = useHistory();
   const [, setToken] = useLocalStorage('token', '');
 
@@ -51,12 +62,16 @@ function DrawerNav({ window, user, children }) {
     history.replace('/');
   };
 
+  const handleAvatarClose = () => {
+    setAvatarOpen(false);
+  };
+
   const drawer = (
     <div>
       {/* <div className={classes.toolbar} /> */}
       <div id='dNav-user' className='d-flex flex-column justify-content-end'>
         <div className='mb-3'>
-          <Avatar />
+          <Avatar src={user?.avatar} className='avatar-shadow' />
         </div>
         <div className='d-flex justify-content-between align-items-center'>
           <div>
@@ -65,11 +80,13 @@ function DrawerNav({ window, user, children }) {
             </h5>
             <p className='text-muted'>{user?.email}</p>
           </div>
-          <IconButton>
-            <ExpandMoreIcon
-              style={{ color: 'white', backgroundColor: '#0acf83' }}
-            />
-          </IconButton>
+          <Tooltip title='Update Image'>
+            <IconButton onClick={() => setAvatarOpen(true)}>
+              <ExpandMoreIcon
+                style={{ color: 'white', backgroundColor: '#0acf83' }}
+              />
+            </IconButton>
+          </Tooltip>
         </div>
       </div>
       <Divider />
@@ -176,6 +193,49 @@ function DrawerNav({ window, user, children }) {
             {drawer}
           </Drawer>
         </Hidden>
+        <Dialog
+          open={avatarOpen}
+          onClose={handleAvatarClose}
+          aria-labelledby='form-dialog-title'
+        >
+          <DialogTitle id='form-dialog-title'>
+            <div className='row align-items-center justify-content-between'>
+              <div>Update Your Avatar</div>
+              <IconButton
+                aria-label='delete'
+                onClick={() => {
+                  setAvatarUrl('');
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          </DialogTitle>
+
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin='dense'
+              id='avatar'
+              label='Image URL'
+              value={avatarUrl}
+              type='url'
+              onChange={(e) => {
+                setAvatarUrl(e.target.value);
+              }}
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setAvatarOpen(false)} color='primary'>
+              Cancel
+            </Button>
+
+            <Button onClick={handleAvatarClose} color='primary'>
+              Update
+            </Button>
+          </DialogActions>
+        </Dialog>
       </nav>
       {/* CHILDREN TO DASHBOARD APPEAR UNDER THIS SECTION */}
       <main className={classes.content}>

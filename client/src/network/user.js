@@ -16,6 +16,7 @@ export async function registerUser(user) {
     lastName: user.lastName,
     location: user.location,
     password: user.password,
+    avatar: user.avatar,
   };
 
   try {

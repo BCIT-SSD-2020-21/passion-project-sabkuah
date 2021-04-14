@@ -8,6 +8,7 @@
 @import 'search';
 @import 'createModal';
 @import 'userCommunities';
+@import 'maps';
 
 .link:hover {
   color: inherit;
@@ -29,20 +30,6 @@
   justify-content: center;
 }
 
-.map-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-.map {
-  position: relative;
-  width: 400px;
-  height: 400px;
-}
-
-.comm-card-style {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.avatar-shadow {
+  box-shadow: $brand-green 0px 0px 0px 3px;
 }

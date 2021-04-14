@@ -30,10 +30,10 @@ const UserCommunitiesScreen = ({ communities }) => {
         </div>
       </div>
 
-      <div className='card-flex'>
+      {/* <div className='card-flex'>
         {communities &&
           communities.map((c) => <CommunityCard key={c._id} community={c} />)}
-      </div>
+      </div> */}
       <AddCommunity show={show} setShow={setShow} />
     </div>
   );
