@@ -7,7 +7,7 @@ import { addCommunity } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
 
 const CreateCommunity = ({ show, setShow }) => {
-  const [token, setToken] = useLocalStorage('token', '');
+  const [token] = useLocalStorage('token', '');
   const [community, setCommunity] = useState({
     title: '',
     location: '',

@@ -24,7 +24,25 @@
 }
 
 .flex-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.map-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.map {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.comm-card-style {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
