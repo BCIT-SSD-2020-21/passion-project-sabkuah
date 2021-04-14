@@ -104,6 +104,32 @@
 
 <hr>
 
+### `PATCH`
+
+### Update user avatar
+
+### `api/users/updateAvatar`
+
+### Sample Header:
+
+    {
+        authorization: 'Bearer ${token}'
+    }
+
+### Sample Body:
+
+    {
+        "avatar": <optional url string>
+    }
+
+### Sample Response:
+
+    {
+        "message": "Succesfully updated avatar"
+    }
+
+<hr>
+
 ## COMMUNITIES
 
 ### `GET`
