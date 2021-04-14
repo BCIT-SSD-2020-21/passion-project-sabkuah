@@ -65,3 +65,20 @@ export async function getCommunity({ id, token }) {
     console.log('Error:', e);
   }
 }
+
+export async function joinCommunity({ id, token }) {
+  try {
+    const response = await axios({
+      method: 'PATCH',
+      url: `${BASE_URL}/communities/${id}/join`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log('response from network call>>', response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e);
+  }
+}

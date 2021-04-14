@@ -4,7 +4,7 @@ import SearchInput from '../../components/SearchInput';
 import SearchResultCard from '../../components/SearchResultCard';
 import CreateCommunity from '../../components/CreateCommunity';
 
-const SearchScreen = ({ user, communities }) => {
+const SearchScreen = ({ user, communities, handleJoinCommunity }) => {
   const [show, setShow] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(communities);
@@ -39,7 +39,11 @@ const SearchScreen = ({ user, communities }) => {
         <div id='search-results'>
           {results?.length ? (
             results.map((community) => (
-              <SearchResultCard key={community._id} community={community} />
+              <SearchResultCard
+                key={community._id}
+                community={community}
+                handleJoinCommunity={handleJoinCommunity}
+              />
             ))
           ) : (
             <p>
