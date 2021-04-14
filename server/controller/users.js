@@ -114,7 +114,7 @@ module.exports.getAllCommunitiesOfUser = catchAsync(async (req, res) => {
     .select("communities firstName lastName")
     .populate({
       path: "communities",
-      select: "title description location",
+      select: "title description location geometry",
     })
 
   res.send({ user: userModel })
