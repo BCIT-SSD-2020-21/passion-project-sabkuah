@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CommunityScreen from './CommunityScreen';
+import CommunityDetailScreen from './CommunityDetailScreen';
 import useLocalStorage from 'react-use-localstorage';
 import { getCommunity } from '../../network/community';
 
-const Community = () => {
+const CommunityDetail = () => {
   const { id } = useParams();
   const [token] = useLocalStorage('token');
   const [community, setCommunity] = useState(null);
@@ -22,7 +22,7 @@ const Community = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <CommunityScreen community={community} />;
+  return <CommunityDetailScreen community={community} />;
 };
 
-export default Community;
+export default CommunityDetail;

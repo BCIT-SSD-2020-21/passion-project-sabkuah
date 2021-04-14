@@ -18,6 +18,7 @@ import jwtDecode from 'jwt-decode';
 import useLocalStorage from 'react-use-localstorage';
 import NotFound from './components/NotFound';
 import Community from './views/community/Community';
+import CommunityDetail from './views/communityDetail/CommunityDetail';
 
 function App() {
   const [token, setToken] = useLocalStorage('token');
@@ -56,7 +57,7 @@ function App() {
                 <Search user={user} />
               </PrivateRoute>
               <PrivateRoute path='/user/communities/:id'>
-                <Community />
+                <CommunityDetail />
               </PrivateRoute>
               <PrivateRoute path='/user/communities'>
                 <UserCommunities user={user} />
