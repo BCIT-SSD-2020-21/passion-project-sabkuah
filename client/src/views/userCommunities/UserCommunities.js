@@ -8,7 +8,6 @@ const UserCommunities = ({ user }) => {
   const [token] = useLocalStorage('token');
 
   const handleGetCommunities = async () => {
-    console.log('token sent to db>>>', token);
     const response = await getUserCommunities(token);
     return response;
   };
@@ -18,6 +17,7 @@ const UserCommunities = ({ user }) => {
       const data = await handleGetCommunities();
       setCommunities(data);
     })();
+    // eslint-disable-next-line
   }, []);
 
   return <UserCommunitiesScreen communities={communities} />;

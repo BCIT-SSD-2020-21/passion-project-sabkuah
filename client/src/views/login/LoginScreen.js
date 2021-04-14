@@ -11,7 +11,6 @@ const Login = ({ handleLogin }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log('user submitted in login form', user);
     handleLogin(user);
   };
 

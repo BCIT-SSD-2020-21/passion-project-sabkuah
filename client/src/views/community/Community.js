@@ -15,11 +15,11 @@ const Community = () => {
   };
 
   useEffect(() => {
-    console.log('ID>>>', id);
     (async () => {
       const data = await handleGetCommunity();
       setCommunity(data);
     })();
+    // eslint-disable-next-line
   }, []);
 
   return <CommunityScreen community={community} />;

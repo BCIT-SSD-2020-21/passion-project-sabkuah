@@ -24,13 +24,10 @@ function App() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    console.log('TOKEN', token);
     if (!token || token === '') {
-      console.log('no token');
       setUser(null);
       return;
     }
-    console.log('yes token');
     const userData = jwtDecode(token);
     setUser(userData);
   }, [token]);

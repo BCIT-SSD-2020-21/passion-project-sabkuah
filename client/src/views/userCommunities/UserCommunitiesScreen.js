@@ -19,7 +19,8 @@ const UserCommunitiesScreen = ({ communities }) => {
       itaque, mollitia quasi quidem obcaecati nihil! Aut eaque recusandae ea
       quae aliquam ipsum corporis. <br /> <br />
       <div className='card-flex'>
-        {communities && communities.map((c) => <CommunityCard community={c} />)}
+        {communities &&
+          communities.map((c) => <CommunityCard key={c._id} community={c} />)}
       </div>
     </div>
   );

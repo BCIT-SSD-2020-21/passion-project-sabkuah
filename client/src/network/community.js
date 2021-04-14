@@ -28,7 +28,6 @@ export async function addCommunity(community, token) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('Token>>>>> ', token);
     return response.data;
   } catch (e) {
     console.log('Error', e);
@@ -45,10 +44,6 @@ export async function getUserCommunities(token) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(
-      'getUserCommunities response.data>>>>',
-      response.data.user.communities
-    );
     return response.data.user.communities;
   } catch (e) {
     console.log('Error:', e);
@@ -65,7 +60,6 @@ export async function getCommunity({ id, token }) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('getCommunity response.data>>>>', response.data);
     return response.data;
   } catch (e) {
     console.log('Error:', e);

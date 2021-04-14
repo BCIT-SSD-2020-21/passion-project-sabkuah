@@ -8,6 +8,8 @@ const Map = ({ community, styling }) => {
   const [zoom, setZoom] = useState(12);
 
   useEffect(() => {
+    console.log('FYI >> map api called');
+
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/navigation-preview-night-v4',
@@ -32,6 +34,7 @@ const Map = ({ community, styling }) => {
       .addTo(map);
 
     return () => map.remove();
+    // eslint-disable-next-line
   }, []);
 
   return (
