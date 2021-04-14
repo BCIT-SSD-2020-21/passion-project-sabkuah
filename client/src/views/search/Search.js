@@ -23,7 +23,6 @@ const Search = ({ user }) => {
     }
     const response = await joinCommunity({ id, token });
     setJoinResponse(response);
-    console.log('joinres', joinResponse);
     setOpenDialog(true);
   };
 

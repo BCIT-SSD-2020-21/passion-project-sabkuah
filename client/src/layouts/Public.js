@@ -6,7 +6,7 @@ const Public = ({ children, user }) => {
   return (
     <div>
       <Navigation user={user} />
-      {children}
+      <div className='min-vh'>{children}</div>
       <Footer />
     </div>
   );

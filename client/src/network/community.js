@@ -76,7 +76,6 @@ export async function joinCommunity({ id, token }) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('response from network call>>', response.data);
     return response.data;
   } catch (e) {
     console.log('Error:', e);
