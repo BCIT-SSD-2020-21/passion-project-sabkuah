@@ -8,6 +8,7 @@ const mongoose = require("mongoose")
 const User = require("./models/User")
 const Post = require("./models/Post")
 const Community = require("./models/Community")
+const Comment = require("./models/Comment")
 
 // MAPBOX
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
@@ -29,6 +30,7 @@ const seedDb = async () => {
   await User.deleteMany({})
   await Post.deleteMany({})
   await Community.deleteMany({})
+  await Comment.deleteMany({})
 
   // Create Users
   //-------------------
@@ -171,6 +173,28 @@ const seedDb = async () => {
   comm1.contents.push(post1._id)
   comm1.contents.push(post2._id)
   await comm1.save()
+
+  // Create comments for a post
+  //-------------------
+  const comment1 = new Comment({
+    body:
+      "Aw man i know !! Drove down there the other day and they need to fix that soon!",
+    post: post1._id,
+    date: new Date(),
+    author: user3._id,
+  })
+
+  const comment2 = new Comment({
+    body: "^^ right !! sheeesh",
+    post: post1._id,
+    date: new Date(),
+    author: user1._id,
+  })
+
+  // Save comments to db
+  //-------------------
+  await comment1.save()
+  await comment2.save()
 }
 
 ;(async () => {

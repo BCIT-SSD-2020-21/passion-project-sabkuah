@@ -169,3 +169,26 @@ module.exports.editUserAvatar = async (req, res) => {
     res.send({ error: e.message })
   }
 }
+
+/**
+ * Retrieve user basic info
+ * @function
+ * @GET
+ * @returns {Object} User object
+ * @throws Will throw an error if :userId is invalid
+ */
+module.exports.getUserInfo = async (req, res) => {
+  try {
+    const user = await req.decodedUser
+    const userId = user._id
+
+    const userModel = await User.findById(userId).select(
+      "-communities -username"
+    )
+
+    res.send({ user: userModel })
+  } catch (e) {
+    console.log(e)
+    res.send({ error: e.message })
+  }
+}
