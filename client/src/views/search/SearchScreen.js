@@ -1,10 +1,22 @@
-import { Container } from '@material-ui/core';
+import { Container, Button } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import SearchInput from '../../components/SearchInput';
 import SearchResultCard from '../../components/SearchResultCard';
 import CreateCommunity from '../../components/CreateCommunity';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import { Link } from 'react-router-dom';
 
-const SearchScreen = ({ user, communities, handleJoinCommunity }) => {
+const SearchScreen = ({
+  user,
+  communities,
+  handleJoinCommunity,
+  openDialog,
+  handleCloseDialog,
+  dialogText,
+}) => {
   const [show, setShow] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(communities);
@@ -63,6 +75,29 @@ const SearchScreen = ({ user, communities, handleJoinCommunity }) => {
           </div>
         </div>
       )}
+      {/* ===== Dialog with join response ===== */}
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            {dialogText.message ? dialogText.message : dialogText.error}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Link to='/user/communities'>
+            <Button color='primary' autoFocus>
+              Visit Communities
+            </Button>
+          </Link>
+
+          <Button onClick={handleCloseDialog} color='primary'>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };

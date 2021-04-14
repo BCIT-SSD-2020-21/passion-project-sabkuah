@@ -5,6 +5,8 @@ import useLocalStorage from 'react-use-localstorage';
 
 const Search = ({ user }) => {
   const [communities, setCommunities] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [joinResponse, setJoinResponse] = useState('');
   const [token] = useLocalStorage('token');
 
   useEffect(() => {
@@ -19,10 +21,14 @@ const Search = ({ user }) => {
       alert('You must sign in before joining a community');
       return;
     }
-    console.log('com id', id);
     const response = await joinCommunity({ id, token });
-    alert(response.message || response.error);
-    //give user the option to redirect to dashboard
+    setJoinResponse(response);
+    console.log('joinres', joinResponse);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -30,6 +36,9 @@ const Search = ({ user }) => {
       user={user}
       communities={communities}
       handleJoinCommunity={handleJoinCommunity}
+      openDialog={openDialog}
+      handleCloseDialog={handleCloseDialog}
+      dialogText={joinResponse}
     />
   );
 };
