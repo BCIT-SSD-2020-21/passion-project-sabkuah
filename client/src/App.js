@@ -48,7 +48,7 @@ function App() {
         <Route path='/user/:path'>
           <User user={user}>
             <Switch>
-              <PrivateRoute path='/user/communities/1/incidents'>
+              <PrivateRoute path='/user/communities/:id/incidents'>
                 <CommunityIncidents />
               </PrivateRoute>
               <PrivateRoute path='/user/communities/search'>

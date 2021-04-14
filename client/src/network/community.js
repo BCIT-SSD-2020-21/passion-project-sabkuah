@@ -17,6 +17,55 @@ export async function getAllCommunities() {
   }
 }
 
+export async function addIncident(incident, token, id) {
+  try {
+    console.log('incident::: ', incident);
+    const response = await axios({
+      method: 'POST',
+      url: `${BASE_URL}/communities/${id}/posts`,
+      data: incident,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+
+    return response.data;
+  } catch (e) {
+    console.log('Error', e);
+  }
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: `${BASE_URL}/communities`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e);
+  }
+}
+
+export async function getPosts(token, id) {
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: `${BASE_URL}/communities/${id}/posts`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log('getUserCommunities response.data>>>>', response.data);
+    return response.data.posts;
+  } catch (e) {
+    console.log('Error:', e);
+  }
+}
+
 export async function addCommunity(community, token) {
   try {
     const response = await axios({
