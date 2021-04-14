@@ -85,3 +85,22 @@ export async function logoutUser() {
     alert('Error logging out');
   }
 }
+
+export async function updateAvatar({ token, avatar }) {
+  try {
+    const response = await axios({
+      method: 'PATCH',
+      url: `${BASE_URL}/users/updateAvatar`,
+      data: avatar,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log('avatar network response>>', response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e);
+    alert('Error updating profile image');
+  }
+}

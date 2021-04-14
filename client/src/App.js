@@ -29,6 +29,7 @@ function App() {
       return;
     }
     const userData = jwtDecode(token);
+    //call getUser here
     setUser(userData);
   }, [token]);
 

@@ -18,7 +18,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   TextField,
   DialogActions,
   Button,
@@ -35,7 +34,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Dashboard from '../views/dashboard/Dashboard';
-import { logoutUser } from '../network/user';
+import { logoutUser, updateAvatar } from '../network/user';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 
@@ -46,9 +45,9 @@ function DrawerNav({ window, user, children }) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState(user?.avatar);
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatar ? user.avatar : '');
   const history = useHistory();
-  const [, setToken] = useLocalStorage('token', '');
+  const [token, setToken] = useLocalStorage('token', '');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -62,7 +61,13 @@ function DrawerNav({ window, user, children }) {
     history.replace('/');
   };
 
-  const handleAvatarClose = () => {
+  const handleAvatarSave = async () => {
+    const avatar = {
+      avatar: avatarUrl,
+    };
+    const response = await updateAvatar({ token, avatar });
+    response.message ? alert(response.message) : alert(response.error);
+    //call getUser here
     setAvatarOpen(false);
   };
 
@@ -195,7 +200,7 @@ function DrawerNav({ window, user, children }) {
         </Hidden>
         <Dialog
           open={avatarOpen}
-          onClose={handleAvatarClose}
+          // onClose={handleAvatarSave}
           aria-labelledby='form-dialog-title'
         >
           <DialogTitle id='form-dialog-title'>
@@ -231,7 +236,7 @@ function DrawerNav({ window, user, children }) {
               Cancel
             </Button>
 
-            <Button onClick={handleAvatarClose} color='primary'>
+            <Button onClick={handleAvatarSave} color='primary'>
               Update
             </Button>
           </DialogActions>
