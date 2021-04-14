@@ -111,7 +111,7 @@ module.exports.getAllCommunitiesOfUser = catchAsync(async (req, res) => {
 
   // Find User By ID
   const userModel = await User.findById(userId)
-    .select("communities firstName lastName")
+    .select("communities firstName lastName avatar")
     .populate({
       path: "communities",
       select: "title description location geometry",
