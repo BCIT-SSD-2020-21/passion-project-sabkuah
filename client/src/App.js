@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect,
 } from 'react-router-dom';
 import Public from './layouts/Public';
 import User from './layouts/User';
@@ -13,77 +13,79 @@ import Register from './views/register/Register';
 import Login from './views/login/Login';
 import Search from './views/search/Search';
 import UserCommunities from './views/userCommunities/UserCommunities';
-import CommunityIncidents from './views/communityIncidents/CommunityIncidents';
+import CommunityPosts from './views/communityPost/CommunityPost';
 import jwtDecode from 'jwt-decode';
 import useLocalStorage from 'react-use-localstorage';
 import NotFound from './components/NotFound';
 import Community from './views/community/Community';
 
 function App() {
-  const [token, setToken] = useLocalStorage('token');
-  const [user, setUser] = useState();
+    const [token, setToken] = useLocalStorage('token');
+    const [user, setUser] = useState();
 
-  useEffect(() => {
-    if (!token || token === '') {
-      setUser(null);
-      return;
-    }
-    const userData = jwtDecode(token);
-    setUser(userData);
-  }, [token]);
+    useEffect(() => {
+        if (!token || token === '') {
+            setUser(null);
+            return;
+        }
+        const userData = jwtDecode(token);
+        setUser(userData);
+    }, [token]);
 
-  const PrivateRoute = ({ path, children, location, ...rest }) => (
-    <Route {...rest} path={path}>
-      {!!token ? (
-        children
-      ) : (
-        <Redirect to={{ pathname: '/login', state: { from: location } }} />
-      )}
-    </Route>
-  );
-
-  return (
-    <Router>
-      <Switch>
-        <Route path='/user/:path'>
-          <User user={user}>
-            <Switch>
-              <PrivateRoute path='/user/communities/:id/incidents'>
-                <CommunityIncidents />
-              </PrivateRoute>
-              <PrivateRoute path='/user/communities/search'>
-                <Search user={user} />
-              </PrivateRoute>
-              <PrivateRoute path='/user/communities/:id'>
-                <Community />
-              </PrivateRoute>
-              <PrivateRoute path='/user/communities'>
-                <UserCommunities user={user} />
-              </PrivateRoute>
-            </Switch>
-          </User>
+    const PrivateRoute = ({ path, children, location, ...rest }) => (
+        <Route {...rest} path={path}>
+            {!!token ? (
+                children
+            ) : (
+                <Redirect
+                    to={{ pathname: '/login', state: { from: location } }}
+                />
+            )}
         </Route>
+    );
 
-        <Route path='/:path?'>
-          <Public user={user}>
+    return (
+        <Router>
             <Switch>
-              <Route path='/register'>
-                <Register token={token} setToken={setToken} />
-              </Route>
-              <Route path='/search'>
-                <Search user={user} />
-              </Route>
-              <Route path='/login'>
-                <Login token={token} setToken={setToken} />
-              </Route>
-              <Route path='/' exact component={Landing} />
-              <Route component={NotFound} />
+                <Route path="/user/:path">
+                    <User user={user}>
+                        <Switch>
+                            <PrivateRoute path="/user/communities/:id/incidents">
+                                <CommunityPosts />
+                            </PrivateRoute>
+                            <PrivateRoute path="/user/communities/search">
+                                <Search user={user} />
+                            </PrivateRoute>
+                            <PrivateRoute path="/user/communities/:id">
+                                <Community />
+                            </PrivateRoute>
+                            <PrivateRoute path="/user/communities">
+                                <UserCommunities user={user} />
+                            </PrivateRoute>
+                        </Switch>
+                    </User>
+                </Route>
+
+                <Route path="/:path?">
+                    <Public user={user}>
+                        <Switch>
+                            <Route path="/register">
+                                <Register token={token} setToken={setToken} />
+                            </Route>
+                            <Route path="/search">
+                                <Search user={user} />
+                            </Route>
+                            <Route path="/login">
+                                <Login token={token} setToken={setToken} />
+                            </Route>
+                            <Route path="/" exact component={Landing} />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </Public>
+                </Route>
             </Switch>
-          </Public>
-        </Route>
-      </Switch>
-    </Router>
-  );
+        </Router>
+    );
 }
 
 export default App;

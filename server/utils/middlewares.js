@@ -20,10 +20,10 @@ module.exports.requireLogin = (req, res, next) => {
   const token = authorization ? authorization.split(" ")[1] : null
 
   //   Check if theres user in session
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ error: "no user in session" })
-    return
-  }
+  // if (!req.isAuthenticated()) {
+  //   res.status(401).send({ error: "no user in session" })
+  //   return
+  // }
 
   // Check if theres token in headers
   if (!token) {
