@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 
 const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
     // const [updatePost, setUpdatePost] = useState();
@@ -23,7 +24,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                 <form className="modal-form" onSubmit={handleUpdatePost}>
                     <TextField
                         required
-                        // value={post.title}
+                        value={post.title}
                         variant="outlined"
                         label="Title"
                         placeholder="Title"
@@ -32,7 +33,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    {/* <LocationCityIcon /> */}
+                                    <LocationCityIcon />
                                 </InputAdornment>
                             ),
                         }}
@@ -45,7 +46,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                     />
                     <TextField
                         required
-                        // value={post.location}
+                        value={post.location}
                         variant="outlined"
                         label="location"
                         placeholder="location"
@@ -54,7 +55,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    {/* <LocationCityIcon /> */}
+                                    <LocationCityIcon />
                                 </InputAdornment>
                             ),
                         }}
@@ -67,7 +68,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                     />
                     <TextField
                         required
-                        // value={post.description}
+                        value={post.description}
                         variant="outlined"
                         label="Description"
                         multiline={true}

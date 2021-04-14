@@ -13,7 +13,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CommentIcon from '@material-ui/icons/Comment';
 import EditPostModal from './EditPostModal';
 
-const PostCard = ({ incident }) => {
+const PostCard = ({ post }) => {
     const [showEditModal, setShowEditModal] = useState(false);
 
     const classes = useStyles();
@@ -29,7 +29,7 @@ const PostCard = ({ incident }) => {
                             }}
                         >
                             <div className="avatar-container">
-                                <Avatar>{incident?.title.slice(0, 1)}</Avatar>
+                                <Avatar>{post?.title.slice(0, 1)}</Avatar>
                             </div>
 
                             <Typography
@@ -37,7 +37,7 @@ const PostCard = ({ incident }) => {
                                 variant="h5"
                                 component="h2"
                             >
-                                {incident?.title}
+                                {post?.title}
                             </Typography>
                         </div>
                         <CardMedia className={classes.media} image="" />
@@ -47,7 +47,7 @@ const PostCard = ({ incident }) => {
                                 color="textSecondary"
                                 component="p"
                             >
-                                {incident?.description}
+                                {post?.description}
                             </Typography>
                         </div>
                         <div className="flex-container">
@@ -64,7 +64,7 @@ const PostCard = ({ incident }) => {
             <EditPostModal
                 showEditModal={showEditModal}
                 setShowEditModal={setShowEditModal}
-                incident={incident}
+                post={post}
             />
         </div>
     );
