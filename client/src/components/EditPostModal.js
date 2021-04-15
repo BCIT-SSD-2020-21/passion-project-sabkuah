@@ -65,6 +65,7 @@ const EditPostModal = ({
                     <TextField
                         variant="outlined"
                         label="Image URL"
+                        value={editedPost.image}
                         placeholder="Image URL"
                         id="Image URL"
                         className="modal-form-input"
