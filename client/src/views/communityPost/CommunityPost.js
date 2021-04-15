@@ -8,10 +8,11 @@ const CommunityPosts = () => {
     const [posts, setPosts] = useState(null);
     let { id } = useParams();
     const [token] = useLocalStorage('token');
-    const [displayEdit, setDisplayEdit] = useState('');
+    const [refreshEdit, setRefreshEdit] = useState('');
+    // const [refreshPost, setRefreshPost] = useState('')
 
     const handleEdit = async (data) => {
-        setDisplayEdit('');
+        setRefreshEdit('');
         const postData = {
             title: data.title,
             description: data.description,
@@ -19,7 +20,7 @@ const CommunityPosts = () => {
             image: data.image,
         };
         const response = await editPost(token, id, data._id, postData);
-        setDisplayEdit(response.message);
+        setRefreshEdit(response.message);
         alert(response.message);
     };
 
@@ -36,9 +37,15 @@ const CommunityPosts = () => {
         })();
         console.log(posts);
         //eslint-disable-next-line
-    }, [displayEdit]);
+    }, [refreshEdit]);
 
-    return <CommunityPostScreen posts={posts} handleEdit={handleEdit} />;
+    return (
+        <CommunityPostScreen
+            posts={posts}
+            handleEdit={handleEdit}
+            setRefreshEdit={setRefreshEdit}
+        />
+    );
 };
 
 export default CommunityPosts;

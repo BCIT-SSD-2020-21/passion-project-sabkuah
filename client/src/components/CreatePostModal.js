@@ -11,8 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import MenuItem from '@material-ui/core/MenuItem';
 
-const CreatePostModal = ({ show, setShow }) => {
+const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
     const classes = useStyles();
     const [token, setToken] = useLocalStorage('token', '');
     const [post, setPost] = useState({
@@ -28,7 +29,14 @@ const CreatePostModal = ({ show, setShow }) => {
         try {
             const response = await addPost(post, token, id);
 
+            response && setRefreshEdit(response);
             response && setShow(false);
+            setPost({
+                title: '',
+                category: '',
+                description: '',
+                image: '',
+            });
 
             if (response.error) {
                 console.log(response.error);
@@ -56,6 +64,12 @@ const CreatePostModal = ({ show, setShow }) => {
                 <h2 className="modal-title">New Post</h2>
 
                 <div className="modal-body">
+                    <button
+                        className="modal-btn"
+                        onClick={() => setShow(false)}
+                    >
+                        X
+                    </button>
                     <form className="modal-form" onSubmit={handlePost}>
                         <TextField
                             required
@@ -128,9 +142,9 @@ const CreatePostModal = ({ show, setShow }) => {
                                 Category
                             </InputLabel>
                             <Select
-                                native
-                                defaultValue=""
-                                id="grouped-native-select"
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={post.category}
                                 onChange={(e) =>
                                     setPost({
                                         ...post,
@@ -138,25 +152,21 @@ const CreatePostModal = ({ show, setShow }) => {
                                     })
                                 }
                                 value={post.category}
+                                required
                             >
-                                <option value="Report Incidents">
-                                    Report Incidents
-                                </option>
-                                <option value="Social Events">
+                                <MenuItem value="Incident Reports">
+                                    Incident Reports
+                                </MenuItem>
+                                <MenuItem value="Social Events">
                                     Social Events
-                                </option>
-
-                                <option value="Discussions">Discussions</option>
+                                </MenuItem>
+                                <MenuItem value="Discussions">
+                                    Discussions
+                                </MenuItem>
                             </Select>
                         </FormControl>
 
                         <Modal.Footer>
-                            <button
-                                className="modal-btn"
-                                onClick={() => setShow(false)}
-                            >
-                                Close
-                            </button>
                             <button className="modal-btn">Post</button>
                         </Modal.Footer>
                     </form>
