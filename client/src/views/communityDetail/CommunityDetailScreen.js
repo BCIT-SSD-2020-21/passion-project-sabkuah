@@ -37,20 +37,24 @@ const CommunityDetailScreen = ({ community, posts }) => {
                   </Badge>
                 </Tooltip>
               </Link>
-              <Tooltip title='Incident Reports'>
-                <Badge badgeContent={4} overlap='circle' color='primary'>
-                  <div className='qc-highlight'>
-                    <ReportIcon className='qc-icons' />
-                  </div>
-                </Badge>
-              </Tooltip>
-              <Tooltip title='Discussions'>
-                <Badge badgeContent={4} overlap='circle' color='primary'>
-                  <div className='qc-highlight'>
-                    <QuestionAnswerIcon className='qc-icons' />
-                  </div>
-                </Badge>
-              </Tooltip>
+              <Link to={`/user/communities/${community?._id}/posts`}>
+                <Tooltip title='Incident Reports'>
+                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                    <div className='qc-highlight'>
+                      <ReportIcon className='qc-icons' />
+                    </div>
+                  </Badge>
+                </Tooltip>
+              </Link>
+              <Link to={`/user/communities/${community?._id}/posts`}>
+                <Tooltip title='Discussions'>
+                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                    <div className='qc-highlight'>
+                      <QuestionAnswerIcon className='qc-icons' />
+                    </div>
+                  </Badge>
+                </Tooltip>
+              </Link>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const CommunityPostScreen = ({ posts }) => {
 
   return (
     <div>
-      <div className='row'>
+      <div className='row d-flex justify-content-between'>
         <button
           className='create-com-button'
           onClick={() => {
@@ -24,7 +24,7 @@ const CommunityPostScreen = ({ posts }) => {
           New Post
         </button>
       </div>
-      <h1>Posts</h1>
+      <h1 className='my-2 text-center'>Posts</h1>
       <CreatePostModal show={show} setShow={setShow} />
 
       <div className='card-flex'>
