@@ -16,6 +16,7 @@ const CommunityPosts = () => {
             title: data.title,
             description: data.description,
             category: data.category,
+            image: data.image,
         };
         const response = await editPost(token, id, data._id, postData);
         setDisplayEdit(response.message);
