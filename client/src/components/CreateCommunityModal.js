@@ -5,6 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import { addCommunity } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 const CreateCommunityModal = ({ show, setShow }) => {
     const [token] = useLocalStorage('token', '');
@@ -79,6 +80,20 @@ const CreateCommunityModal = ({ show, setShow }) => {
                                     location: e.target.value,
                                 })
                             }
+                        />
+                        <TextField
+                            variant="outlined"
+                            label="Image URL"
+                            placeholder="Image URL"
+                            id="Image URL"
+                            className="modal-form-input"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PhotoCameraIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
                         />
                         <TextField
                             required

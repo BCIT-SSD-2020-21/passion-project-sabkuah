@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 const EditPostModal = ({
     showEditModal,
@@ -55,6 +56,20 @@ const EditPostModal = ({
                             })
                         }
                     />
+                    <TextField
+                        variant="outlined"
+                        label="Image URL"
+                        placeholder="Image URL"
+                        id="Image URL"
+                        className="modal-form-input"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <PhotoCameraIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
 
                     <TextField
                         required
@@ -74,7 +89,7 @@ const EditPostModal = ({
                     />
                     <FormControl
                         className={classes.formControl}
-                        variant="filled"
+                        variant="standard"
                     >
                         <InputLabel
                             htmlFor="grouped-native-select"

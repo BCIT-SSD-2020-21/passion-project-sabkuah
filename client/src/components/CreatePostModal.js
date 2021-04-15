@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -10,11 +10,11 @@ import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 const CreatePostModal = ({ show, setShow }) => {
     const classes = useStyles();
     const [token, setToken] = useLocalStorage('token', '');
-    const [displayPost, setDisplayPost] = useState('');
     const [post, setPost] = useState({
         title: '',
         category: '',
@@ -22,18 +22,11 @@ const CreatePostModal = ({ show, setShow }) => {
     });
     let { id } = useParams();
 
-    const handlePost = async (data) => {
-        setDisplayPost('');
-        const postData = {
-            title: data.title,
-            description: data.description,
-            category: data.category,
-        };
+    const handlePost = async (e) => {
+        e.preventDefault();
         try {
-            const response = await addPost(post, token, data._id, postData);
-            setDisplayPost(response.message);
-            setShow(false);
-            alert(response.message);
+            const response = await addPost(post, token, id);
+            response && setShow(false);
 
             if (response.error) {
                 console.log(response.error);
@@ -50,16 +43,6 @@ const CreatePostModal = ({ show, setShow }) => {
             console.log('Error Posting Incident', e);
         }
     };
-    useEffect(() => {
-        (async () => {
-            const data = await handlePost();
-            console.log(data);
-            setPost(data);
-        })();
-        console.log(post);
-        //eslint-disable-next-line
-        console.log(displayPost);
-    }, []);
     return (
         <div>
             <Modal
@@ -94,9 +77,41 @@ const CreatePostModal = ({ show, setShow }) => {
                                 })
                             }
                         />
+                        <TextField
+                            variant="outlined"
+                            label="Image URL"
+                            placeholder="Image URL"
+                            id="Image URL"
+                            className="modal-form-input"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PhotoCameraIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <TextField
+                            required
+                            value={post.description}
+                            variant="outlined"
+                            label="Description"
+                            placeholder="Description"
+                            id="Description"
+                            multiline={true}
+                            id="email"
+                            className="modal-form-input"
+                            rows={5}
+                            onChange={(e) =>
+                                setPost({
+                                    ...post,
+                                    description: e.target.value,
+                                })
+                            }
+                        />
                         <FormControl
                             className={classes.formControl}
-                            variant="filled"
+                            variant="standard"
                         >
                             <InputLabel
                                 htmlFor="grouped-native-select"
@@ -126,24 +141,6 @@ const CreatePostModal = ({ show, setShow }) => {
                                 <option value="Discussions">Discussions</option>
                             </Select>
                         </FormControl>
-                        <TextField
-                            required
-                            value={post.description}
-                            variant="outlined"
-                            label="Description"
-                            placeholder="Description"
-                            id="Description"
-                            multiline={true}
-                            id="email"
-                            className="modal-form-input"
-                            rows={5}
-                            onChange={(e) =>
-                                setPost({
-                                    ...post,
-                                    description: e.target.value,
-                                })
-                            }
-                        />
 
                         <Modal.Footer>
                             <button
