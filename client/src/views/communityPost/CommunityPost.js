@@ -19,6 +19,7 @@ const CommunityPosts = () => {
         };
         const response = await editPost(token, id, data._id, postData);
         setEdit(response.message);
+        alert(edit);
     };
 
     const handleGetPosts = async () => {
