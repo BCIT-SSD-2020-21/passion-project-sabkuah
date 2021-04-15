@@ -99,12 +99,12 @@ const CommunityDetailScreen = ({ community, posts }) => {
         <h4>Recent Posts</h4>
         {posts?.length ? (
           posts?.slice(0, 3).map((post) => (
-            <Link
-              to={`/user/communities/${community?._id}/posts/${post?._id}`}
-              className='link'
-            >
-              <PostCard key={post._id} post={post} showEdit={false} />
-            </Link>
+            // <Link
+            //   to={`/user/communities/${community?._id}/posts/${post?._id}`}
+            //   className='link'
+            // >
+            <PostCard key={post._id} post={post} showEdit={false} />
+            // </Link>
           ))
         ) : (
           <p>No posts in this community. Go add one now!</p>
