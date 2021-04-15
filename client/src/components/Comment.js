@@ -14,12 +14,12 @@ const Comment = ({ comment, handleDeleteComment, postId }) => {
   }, []);
 
   return (
-    <div
-      className='w-100 ml-4 my-3 p-1'
-      style={{ backgroundColor: 'lightgray', borderRadius: '1rem' }}
-    >
-      <div className='row justify-content-between'>
-        <div className='row'>
+    <div className='ml-4 my-3 p-1'>
+      <div
+        className='d-flex justify-content-between'
+        style={{ backgroundColor: 'lightgray', borderRadius: '1rem' }}
+      >
+        <div className='d-flex align-items-center p-2'>
           <Avatar src={comment.author.avatar} className='mr-3' />
           <div className='mx-3'>
             <strong className='row'>

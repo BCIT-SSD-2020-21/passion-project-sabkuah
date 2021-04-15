@@ -112,15 +112,21 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
                     <CreateIcon />
                   </IconButton>
                 )}
-                <Badge
-                  badgeContent={post?.comments ? post.comments.length : '?'}
-                  overlap='circle'
-                  color='primary'
-                >
+                {comments ? (
+                  <Badge
+                    badgeContent={comments ? comments.length : '?'}
+                    overlap='circle'
+                    color='primary'
+                  >
+                    <IconButton>
+                      <CommentIcon />
+                    </IconButton>
+                  </Badge>
+                ) : (
                   <IconButton>
                     <CommentIcon />
                   </IconButton>
-                </Badge>
+                )}
               </div>
             </div>
           </div>
@@ -134,17 +140,22 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
         </div>
       </AccordionSummary>
       <AccordionDetails>
-        {/* ===== COMMENTS ===== */}
-        <div>
-          {comments?.length &&
-            comments?.map((comment) => (
-              <Comment
-                key={comment._id}
-                comment={comment}
-                postId={post._id}
-                handleDeleteComment={handleDeleteComment}
-              />
-            ))}
+        <div className='w-100'>
+          {/* ===== COMMENTS ===== */}
+          <div className='px-2'>
+            {comments?.length ? (
+              comments?.map((comment) => (
+                <Comment
+                  key={comment._id}
+                  comment={comment}
+                  postId={post._id}
+                  handleDeleteComment={handleDeleteComment}
+                />
+              ))
+            ) : (
+              <p>No comments yet!</p>
+            )}
+          </div>
           <div className='row px-2'>
             <TextField
               id='outlined-multiline-static'
