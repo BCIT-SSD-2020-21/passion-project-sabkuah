@@ -36,6 +36,12 @@ const CreateCommunityModal = ({ show, setShow }) => {
                 <h2 className="modal-title">Add Community</h2>
 
                 <div className="modal-body">
+                    <button
+                        className="modal-btn"
+                        onClick={() => setShow(false)}
+                    >
+                        X
+                    </button>
                     <form className="modal-form" onSubmit={handleCreate}>
                         <TextField
                             required
@@ -99,12 +105,6 @@ const CreateCommunityModal = ({ show, setShow }) => {
                             }
                         />
                         <Modal.Footer>
-                            <button
-                                className="modal-btn"
-                                onClick={() => setShow(false)}
-                            >
-                                Close
-                            </button>
                             <button className="modal-btn">Submit</button>
                         </Modal.Footer>
                     </form>
