@@ -36,10 +36,6 @@ const CommunityPosts = () => {
         console.log(posts);
     }, [edit]);
 
-    // useEffect(() => {
-    //     console.log(posts);
-    // }, [edit]);
-
     return <CommunityPostScreen posts={posts} handleEdit={handleEdit} />;
 };
 

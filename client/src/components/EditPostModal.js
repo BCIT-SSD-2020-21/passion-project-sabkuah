@@ -3,9 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import { editPost } from '../network/community';
-import useLocalStorage from 'react-use-localstorage';
-import { useParams } from 'react-router-dom';
 
 const EditPostModal = ({
     showEditModal,
@@ -16,8 +13,6 @@ const EditPostModal = ({
     const [editedPost, setEditedPost] = useState(post);
 
     const handleUpdatePost = async (e) => {
-        // console.log(post);
-        // console.log(editedPost);
         handleEdit(editedPost);
         e.preventDefault();
         setShowEditModal(false);
