@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
-// import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CommentIcon from '@material-ui/icons/Comment';
 import EditPostModal from './EditPostModal';
 import { Badge } from '@material-ui/core';
@@ -14,23 +12,44 @@ import jwtDecode from 'jwt-decode';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { getCommentsByPostId } from '../network/community';
+import { Card } from '@material-ui/core';
 
 const PostCard = ({ post, handleEdit, showEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token] = useLocalStorage('token');
+  const [comments, setComments] = useState([]);
+  const [refresh, newRefresh] = useState(false);
+  const [postId, setPostId] = useState(null);
 
   useEffect(() => {
     const user = jwtDecode(token);
     setCurrentUser(user);
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      const response = await getCommentsByPostId({ postId, token });
+      console.log('comments updated', response.comments);
+      setComments(response.comments);
+    })();
+  }, [refresh]);
+
+  const getCommentsForPostClicked = async (id) => {
+    newRefresh(false);
+    setPostId(id);
+    newRefresh(true);
+  };
+
   return (
-    <Accordion className='my-3 shadow mx-1 w-100'>
+    <Accordion
+      className='my-3 shadow mx-1 w-100'
+      onClick={() => getCommentsForPostClicked(post?._id)}
+    >
       <AccordionSummary aria-controls='panel2a-content' id='panel2a-header'>
         <div className='w-100'>
           <div className='ml-1 my-3 pl-3'>
@@ -83,11 +102,12 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
         </div>
       </AccordionSummary>
       <AccordionDetails>
+        {/* ===== COMMENTS ===== */}
         <div>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          {comments?.length &&
+            comments?.map((comment) => (
+              <Card key={comment._id}>{comment.body}</Card>
+            ))}
           <div className='row px-2'>
             <TextField
               id='outlined-multiline-static'
