@@ -30,7 +30,13 @@ const CommunityDetailScreen = ({ community, posts }) => {
             <div className='quick-controls row'>
               <Link to={`/user/communities/${community?._id}/posts`}>
                 <Tooltip title='Social Posts'>
-                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                  <Badge
+                    badgeContent={
+                      posts.filter((p) => p.category === 'Social Events').length
+                    }
+                    overlap='circle'
+                    color='primary'
+                  >
                     <div className='qc-highlight'>
                       <EmojiPeopleIcon className='qc-icons' />
                     </div>
@@ -39,7 +45,14 @@ const CommunityDetailScreen = ({ community, posts }) => {
               </Link>
               <Link to={`/user/communities/${community?._id}/posts`}>
                 <Tooltip title='Incident Reports'>
-                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                  <Badge
+                    badgeContent={
+                      posts.filter((p) => p.category === 'Incident Reports')
+                        .length
+                    }
+                    overlap='circle'
+                    color='primary'
+                  >
                     <div className='qc-highlight'>
                       <ReportIcon className='qc-icons' />
                     </div>
@@ -48,7 +61,13 @@ const CommunityDetailScreen = ({ community, posts }) => {
               </Link>
               <Link to={`/user/communities/${community?._id}/posts`}>
                 <Tooltip title='Discussions'>
-                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                  <Badge
+                    badgeContent={
+                      posts.filter((p) => p.category === 'Discussions').length
+                    }
+                    overlap='circle'
+                    color='primary'
+                  >
                     <div className='qc-highlight'>
                       <QuestionAnswerIcon className='qc-icons' />
                     </div>
