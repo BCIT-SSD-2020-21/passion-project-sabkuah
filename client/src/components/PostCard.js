@@ -15,7 +15,11 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { addNewComment, getCommentsByPostId } from '../network/community';
+import {
+  addNewComment,
+  getCommentsByPostId,
+  deleteComment,
+} from '../network/community';
 import { Card } from '@material-ui/core';
 import Comment from './Comment';
 
@@ -26,6 +30,7 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
   const [comments, setComments] = useState([]);
   const [refresh, newRefresh] = useState(false);
   const [refreshComments, setRefreshCommments] = useState(false);
+  const [refreshDelete, setRefreshDelete] = useState(false);
   const [postId, setPostId] = useState(null);
   const [newComment, setNewComment] = useState('');
 
@@ -40,7 +45,7 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
       console.log('comments updated', response.comments);
       setComments(response.comments);
     })();
-  }, [refresh, refreshComments]);
+  }, [refresh, refreshComments, refreshDelete]);
 
   const getCommentsForPostClicked = (id) => {
     newRefresh(false);
@@ -48,10 +53,10 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
     newRefresh(true);
   };
 
-  const handleAddNewComment = async (id) => {
+  const handleAddNewComment = async (postId) => {
     setRefreshCommments(false);
     const response = await addNewComment({
-      postId: id,
+      postId,
       token,
       comment: newComment,
     });
@@ -59,6 +64,17 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
     console.log('newComment res from DB', response);
     setRefreshCommments(true);
     setNewComment('');
+  };
+
+  const handleDeleteComment = async (postId, commentId) => {
+    setRefreshDelete(false);
+    const response = await deleteComment({
+      postId,
+      token,
+      commentId,
+    });
+    console.log('Response from delete>>', response);
+    setRefreshDelete(true);
   };
 
   return (
@@ -122,7 +138,12 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
         <div>
           {comments?.length &&
             comments?.map((comment) => (
-              <Comment key={comment._id} comment={comment} />
+              <Comment
+                key={comment._id}
+                comment={comment}
+                postId={post._id}
+                handleDeleteComment={handleDeleteComment}
+              />
             ))}
           <div className='row px-2'>
             <TextField
