@@ -5,10 +5,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import { addCommunity } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
-const CreateCommunityModal = ({ show, setShow }) => {
+const CreateCommunityModal = ({ show, setShow, setRefreshPost }) => {
     const [token] = useLocalStorage('token', '');
+
     const [community, setCommunity] = useState({
         title: '',
         location: '',
@@ -18,8 +18,12 @@ const CreateCommunityModal = ({ show, setShow }) => {
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
+            setRefreshPost(false);
             const response = await addCommunity(community, token);
+            console.log(response);
+            // response && setRefreshPost(response);
             response && setShow(false);
+            response && setRefreshPost(true);
         } catch (e) {
             console.log('Error creating community', e);
         }
