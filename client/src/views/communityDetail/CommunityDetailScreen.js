@@ -5,8 +5,9 @@ import ReportIcon from '@material-ui/icons/Report';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { Badge, Tooltip } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import PostCard from '../../components/PostCard';
 
-const CommunityDetailScreen = ({ community }) => {
+const CommunityDetailScreen = ({ community, posts }) => {
   return (
     <div>
       <div className='quick-controls row'>
@@ -50,8 +51,8 @@ const CommunityDetailScreen = ({ community }) => {
       {/* <div>{community && <Map community={community} styling='map' />}</div> */}
       <div className='recent-posts'>
         <h4>Recent Posts</h4>
-        {community?.contents.length ? (
-          community.contents.map((post) => <p>{post.title}</p>)
+        {posts?.length ? (
+          posts?.map((post) => <PostCard key={post._id} post={post} />)
         ) : (
           <p>No posts in this community. Go add one now!</p>
         )}
