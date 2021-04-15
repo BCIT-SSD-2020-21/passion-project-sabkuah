@@ -3,7 +3,7 @@ import CreatePostModal from '../../components/CreatePostModal';
 import PostCard from '../../components/PostCard';
 import { useHistory } from 'react-router-dom';
 
-const CommunityPostScreen = ({ posts }) => {
+const CommunityPostScreen = ({ posts, handleEdit }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const history = useHistory();
@@ -29,7 +29,7 @@ const CommunityPostScreen = ({ posts }) => {
 
       <div className='card-flex'>
         {posts?.map((post) => (
-          <PostCard post={post} />
+          <PostCard post={post} handleEdit={handleEdit} />
         ))}
       </div>
     </div>

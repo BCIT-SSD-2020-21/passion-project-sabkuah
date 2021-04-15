@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+// import Select from '@material-ui/core/Select';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import FormControl from '@material-ui/core/FormControl';
 
-const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
-  // const [updatePost, setUpdatePost] = useState();
+const EditPostModal = ({
+  showEditModal,
+  setShowEditModal,
+  post,
+  handleEdit,
+}) => {
+  const [editedPost, setEditedPost] = useState(post);
 
   const handleUpdatePost = async (e) => {
+    await handleEdit(editedPost);
     e.preventDefault();
+    setShowEditModal(false);
   };
 
   return (
@@ -18,12 +29,11 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
       style={{ marginTop: '5%' }}
     >
       <h2 className='modal-title'>Update Post</h2>
-
       <div className='modal-body'>
         <form className='modal-form' onSubmit={handleUpdatePost}>
           <TextField
             required
-            // value={post.title}
+            value={editedPost.title}
             variant='outlined'
             label='Title'
             placeholder='Title'
@@ -32,54 +42,74 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position='start'>
-                  {/* <LocationCityIcon /> */}
+                  <LocationCityIcon />
                 </InputAdornment>
               ),
             }}
-            // onChange={(e) =>
-            //     setCommunity({
-            //         ...community,
-            //         title: e.target.value,
-            //     })
-            // }
+            onChange={(e) =>
+              setEditedPost({
+                ...editedPost,
+                title: e.target.value,
+              })
+            }
           />
           <TextField
             required
-            // value={post.location}
+            value={editedPost.category}
             variant='outlined'
-            label='location'
-            placeholder='location'
-            id='location'
+            label='category'
+            placeholder='category'
+            id='category'
             className='modal-form-input'
             InputProps={{
               startAdornment: (
                 <InputAdornment position='start'>
-                  {/* <LocationCityIcon /> */}
+                  <LocationCityIcon />
                 </InputAdornment>
               ),
             }}
-            // onChange={(e) =>
-            //     setCommunity({
-            //         ...community,
-            //         location: e.target.value,
-            //     })
-            // }
+            onChange={(e) =>
+              setEditedPost({
+                ...editedPost,
+                category: e.target.value,
+              })
+            }
           />
+          {/* <FormControl>
+                        <InputLabel htmlFor="grouped-native-select">
+                            Category
+                        </InputLabel>
+                        <Select
+                            native
+                            defaultValue=""
+                            id="grouped-native-select"
+                        >
+                            <option aria-label="None" value="" />
+
+                            <option value={editedPost.category}>
+                                Report Incidents
+                            </option>
+                            <option value={2}>Social Events</option>
+
+                            <option value={3}>Option 3</option>
+                        </Select>
+                    </FormControl> */}
+
           <TextField
             required
-            // value={post.description}
+            value={editedPost.description}
             variant='outlined'
             label='Description'
             multiline={true}
             id='email'
             className='modal-form-input'
             rows={5}
-            // onChange={(e) =>
-            //     setCommunity({
-            //         ...community,
-            //         description: e.target.value,
-            //     })
-            // }
+            onChange={(e) =>
+              setEditedPost({
+                ...editedPost,
+                description: e.target.value,
+              })
+            }
           />
           <Modal.Footer>
             <button
@@ -88,7 +118,9 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
             >
               Close
             </button>
-            <button className='modal-btn'>Update</button>
+            <button type='submit' className='modal-btn'>
+              Update
+            </button>
           </Modal.Footer>
         </form>
       </div>

@@ -10,7 +10,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import EditPostModal from './EditPostModal';
 import { Badge } from '@material-ui/core';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, handleEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   return (
     <div className='my-3 shadow mx-1 w-100'>
@@ -54,6 +54,7 @@ const PostCard = ({ post }) => {
         showEditModal={showEditModal}
         setShowEditModal={setShowEditModal}
         post={post}
+        handleEdit={handleEdit}
       />
     </div>
   );
