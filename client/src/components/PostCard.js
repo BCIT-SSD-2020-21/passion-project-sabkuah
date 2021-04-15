@@ -20,7 +20,6 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
   useEffect(() => {
     const user = jwtDecode(token);
     setCurrentUser(user);
-    console.log('currentUser', user);
   }, []);
 
   return (

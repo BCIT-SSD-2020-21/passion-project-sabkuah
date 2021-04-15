@@ -32,7 +32,8 @@ const CommunityDetailScreen = ({ community, posts }) => {
                 <Tooltip title='Social Posts'>
                   <Badge
                     badgeContent={
-                      posts.filter((p) => p.category === 'Social Events').length
+                      posts?.filter((p) => p.category === 'Social Events')
+                        .length
                     }
                     overlap='circle'
                     color='primary'
@@ -47,7 +48,7 @@ const CommunityDetailScreen = ({ community, posts }) => {
                 <Tooltip title='Incident Reports'>
                   <Badge
                     badgeContent={
-                      posts.filter((p) => p.category === 'Incident Reports')
+                      posts?.filter((p) => p.category === 'Incident Reports')
                         .length
                     }
                     overlap='circle'
@@ -63,7 +64,7 @@ const CommunityDetailScreen = ({ community, posts }) => {
                 <Tooltip title='Discussions'>
                   <Badge
                     badgeContent={
-                      posts.filter((p) => p.category === 'Discussions').length
+                      posts?.filter((p) => p.category === 'Discussions').length
                     }
                     overlap='circle'
                     color='primary'
