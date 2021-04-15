@@ -16,8 +16,8 @@ const EditPostModal = ({
   const [editedPost, setEditedPost] = useState(post);
 
   const handleUpdatePost = async (e) => {
-    await handleEdit(editedPost);
     e.preventDefault();
+    await handleEdit(editedPost);
     setShowEditModal(false);
   };
 
