@@ -151,3 +151,22 @@ export async function getCommentsByPostId({ postId, token }) {
     console.log('Error:', e);
   }
 }
+
+export async function addNewComment({ postId, token, comment }) {
+  console.log('postID being sent>>>', postId);
+  const objComment = { body: comment };
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: `${BASE_URL}/posts/${postId}/comments`,
+      data: objComment,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.log('Error', e);
+  }
+}

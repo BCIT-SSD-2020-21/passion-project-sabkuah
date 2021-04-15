@@ -15,8 +15,9 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { getCommentsByPostId } from '../network/community';
+import { addNewComment, getCommentsByPostId } from '../network/community';
 import { Card } from '@material-ui/core';
+import Comment from './Comment';
 
 const PostCard = ({ post, handleEdit, showEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -24,7 +25,9 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
   const [token] = useLocalStorage('token');
   const [comments, setComments] = useState([]);
   const [refresh, newRefresh] = useState(false);
+  const [refreshComments, setRefreshCommments] = useState(false);
   const [postId, setPostId] = useState(null);
+  const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
     const user = jwtDecode(token);
@@ -37,12 +40,25 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
       console.log('comments updated', response.comments);
       setComments(response.comments);
     })();
-  }, [refresh]);
+  }, [refresh, refreshComments]);
 
-  const getCommentsForPostClicked = async (id) => {
+  const getCommentsForPostClicked = (id) => {
     newRefresh(false);
     setPostId(id);
     newRefresh(true);
+  };
+
+  const handleAddNewComment = async (id) => {
+    setRefreshCommments(false);
+    const response = await addNewComment({
+      postId: id,
+      token,
+      comment: newComment,
+    });
+    console.log('newComment text', newComment);
+    console.log('newComment res from DB', response);
+    setRefreshCommments(true);
+    setNewComment('');
   };
 
   return (
@@ -106,7 +122,7 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
         <div>
           {comments?.length &&
             comments?.map((comment) => (
-              <Card key={comment._id}>{comment.body}</Card>
+              <Comment key={comment._id} comment={comment} />
             ))}
           <div className='row px-2'>
             <TextField
@@ -115,10 +131,12 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
               multiline
               variant='outlined'
               className='w-100'
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position='end'>
-                    <IconButton>
+                    <IconButton onClick={() => handleAddNewComment(post._id)}>
                       <SendIcon />
                     </IconButton>
                   </InputAdornment>
