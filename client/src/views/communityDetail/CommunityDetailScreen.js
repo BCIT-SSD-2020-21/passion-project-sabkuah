@@ -3,7 +3,8 @@ import Map from '../../components/Map';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ReportIcon from '@material-ui/icons/Report';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import { Badge, Tooltip } from '@material-ui/core';
+import { Badge, Tooltip, Avatar } from '@material-ui/core';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import { Link } from 'react-router-dom';
 import PostCard from '../../components/PostCard';
 
@@ -23,6 +24,15 @@ const CommunityDetailScreen = ({ community, posts }) => {
               <span className='community-heading mr-2'>Location:</span>
               {community?.location}
             </p>
+            <AvatarGroup>
+              {community?.members.map((member) => (
+                <Avatar
+                  key={member._id}
+                  src={member.avatar}
+                  alt={member.firstName}
+                />
+              ))}
+            </AvatarGroup>
           </div>
 
           {/* ===== TOOLBAR ===== */}
@@ -30,7 +40,14 @@ const CommunityDetailScreen = ({ community, posts }) => {
             <div className='quick-controls row'>
               <Link to={`/user/communities/${community?._id}/posts`}>
                 <Tooltip title='Social Posts'>
-                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                  <Badge
+                    badgeContent={
+                      posts?.filter((p) => p.category === 'Social Events')
+                        .length
+                    }
+                    overlap='circle'
+                    color='primary'
+                  >
                     <div className='qc-highlight'>
                       <EmojiPeopleIcon className='qc-icons' />
                     </div>
@@ -39,7 +56,14 @@ const CommunityDetailScreen = ({ community, posts }) => {
               </Link>
               <Link to={`/user/communities/${community?._id}/posts`}>
                 <Tooltip title='Incident Reports'>
-                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                  <Badge
+                    badgeContent={
+                      posts?.filter((p) => p.category === 'Incident Reports')
+                        .length
+                    }
+                    overlap='circle'
+                    color='primary'
+                  >
                     <div className='qc-highlight'>
                       <ReportIcon className='qc-icons' />
                     </div>
@@ -48,7 +72,13 @@ const CommunityDetailScreen = ({ community, posts }) => {
               </Link>
               <Link to={`/user/communities/${community?._id}/posts`}>
                 <Tooltip title='Discussions'>
-                  <Badge badgeContent={4} overlap='circle' color='primary'>
+                  <Badge
+                    badgeContent={
+                      posts?.filter((p) => p.category === 'Discussions').length
+                    }
+                    overlap='circle'
+                    color='primary'
+                  >
                     <div className='qc-highlight'>
                       <QuestionAnswerIcon className='qc-icons' />
                     </div>
@@ -68,7 +98,14 @@ const CommunityDetailScreen = ({ community, posts }) => {
       <div className='recent-posts mt-3'>
         <h4>Recent Posts</h4>
         {posts?.length ? (
-          posts?.map((post) => <PostCard key={post._id} post={post} />)
+          posts?.slice(0, 3).map((post) => (
+            <Link
+              to={`/user/communities/${community?._id}/posts/${post?._id}`}
+              className='link'
+            >
+              <PostCard key={post._id} post={post} showEdit={false} />
+            </Link>
+          ))
         ) : (
           <p>No posts in this community. Go add one now!</p>
         )}

@@ -135,3 +135,19 @@ export async function joinCommunity({ id, token }) {
     console.log('Error:', e);
   }
 }
+
+export async function getCommentsByPostId({ postId, token }) {
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: `${BASE_URL}/posts/${postId}/comments`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e);
+  }
+}
