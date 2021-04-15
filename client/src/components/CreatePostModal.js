@@ -152,6 +152,7 @@ const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
                                     })
                                 }
                                 value={post.category}
+                                required
                             >
                                 <MenuItem value="Incident Reports">
                                     Incident Reports
