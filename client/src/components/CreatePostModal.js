@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import Modal from 'react-bootstrap/Modal';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -14,6 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 const CreatePostModal = ({ show, setShow }) => {
     const classes = useStyles();
     const [token, setToken] = useLocalStorage('token', '');
+    const [displayPost, setDisplayPost] = useState('');
     const [post, setPost] = useState({
         title: '',
         category: '',
@@ -21,11 +22,18 @@ const CreatePostModal = ({ show, setShow }) => {
     });
     let { id } = useParams();
 
-    const handlePost = async (e) => {
-        e.preventDefault();
+    const handlePost = async (data) => {
+        setDisplayPost('');
+        const postData = {
+            title: data.title,
+            description: data.description,
+            category: data.category,
+        };
         try {
-            const response = await addPost(post, token, id);
-            response && setShow(false);
+            const response = await addPost(post, token, data._id, postData);
+            setDisplayPost(response.message);
+            setShow(false);
+            alert(response.message);
 
             if (response.error) {
                 console.log(response.error);
@@ -42,6 +50,16 @@ const CreatePostModal = ({ show, setShow }) => {
             console.log('Error Posting Incident', e);
         }
     };
+    useEffect(() => {
+        (async () => {
+            const data = await handlePost();
+            console.log(data);
+            setPost(data);
+        })();
+        console.log(post);
+        //eslint-disable-next-line
+        console.log(displayPost);
+    }, []);
     return (
         <div>
             <Modal
