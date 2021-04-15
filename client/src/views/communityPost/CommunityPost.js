@@ -9,6 +9,7 @@ const CommunityPosts = () => {
     let { id } = useParams();
     const [token] = useLocalStorage('token');
     const [refreshEdit, setRefreshEdit] = useState('');
+    // const [refreshPost, setRefreshPost] = useState('')
 
     const handleEdit = async (data) => {
         setRefreshEdit('');
@@ -38,7 +39,13 @@ const CommunityPosts = () => {
         //eslint-disable-next-line
     }, [refreshEdit]);
 
-    return <CommunityPostScreen posts={posts} handleEdit={handleEdit} />;
+    return (
+        <CommunityPostScreen
+            posts={posts}
+            handleEdit={handleEdit}
+            setRefreshEdit={setRefreshEdit}
+        />
+    );
 };
 
 export default CommunityPosts;
