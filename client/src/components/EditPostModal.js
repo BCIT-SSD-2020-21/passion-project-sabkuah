@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
+import { editPost } from '../network/community';
+import useLocalStorage from 'react-use-localstorage';
+import { useParams } from 'react-router-dom';
 
 const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
-    // const [updatePost, setUpdatePost] = useState();
+    const [editedPost, setEditedPost] = useState({ post });
 
     const handleUpdatePost = async (e) => {
         e.preventDefault();
@@ -24,7 +27,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                 <form className="modal-form" onSubmit={handleUpdatePost}>
                     <TextField
                         required
-                        value={post.title}
+                        value={editedPost.title}
                         variant="outlined"
                         label="Title"
                         placeholder="Title"
@@ -38,19 +41,19 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                             ),
                         }}
                         // onChange={(e) =>
-                        //     setCommunity({
-                        //         ...community,
+                        //     setEditedPost({
+                        //         ...post,
                         //         title: e.target.value,
                         //     })
                         // }
                     />
                     <TextField
                         required
-                        value={post.location}
+                        value={editedPost.category}
                         variant="outlined"
-                        label="location"
-                        placeholder="location"
-                        id="location"
+                        label="category"
+                        placeholder="category"
+                        id="category"
                         className="modal-form-input"
                         InputProps={{
                             startAdornment: (
@@ -68,7 +71,7 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                     />
                     <TextField
                         required
-                        value={post.description}
+                        value={editedPost.description}
                         variant="outlined"
                         label="Description"
                         multiline={true}

@@ -58,8 +58,38 @@ export async function getPosts(token, id) {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log('getUserCommunities response.data>>>>', response.data);
         return response.data.posts;
+    } catch (e) {
+        console.log('Error:', e);
+    }
+}
+
+export async function editPost(token, id, postId, post) {
+    try {
+        const response = await axios({
+            method: 'PATCH',
+            url: `${BASE_URL}/communities/${id}/posts/${postId}`,
+            data: post,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        console.log('Edit posts response data>>> ', response.data);
+        return response.data.posts;
+    } catch (e) {
+        console.log('Error:', e);
+    }
+
+    try {
+        const response = await axios({
+            method: 'GET',
+            url: `${BASE_URL}/communities`,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+        });
+        return response.data;
     } catch (e) {
         console.log('Error:', e);
     }

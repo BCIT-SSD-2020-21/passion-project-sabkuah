@@ -16,15 +16,11 @@ const CreatePostModal = ({ show, setShow }) => {
     });
     let { id } = useParams();
 
-    const handleClose = () => {
-        setShow(false);
-    };
-
     const handlePost = async (e) => {
         e.preventDefault();
         try {
             const response = await addPost(post, token, id);
-            response && handleClose();
+            response && setShow(false);
 
             if (response.error) {
                 console.log(response.error);
@@ -35,7 +31,7 @@ const CreatePostModal = ({ show, setShow }) => {
                 setToken(response.token);
                 console.log('Post successful', response.data);
                 alert(response.message);
-                handleClose();
+                setShow(false);
             }
         } catch (e) {
             console.log('Error Posting Incident', e);
@@ -45,7 +41,6 @@ const CreatePostModal = ({ show, setShow }) => {
         <div>
             <Modal
                 show={show}
-                onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
                 style={{ marginTop: '5%' }}
@@ -118,7 +113,10 @@ const CreatePostModal = ({ show, setShow }) => {
                         />
 
                         <Modal.Footer>
-                            <button className="modal-btn" onClick={handleClose}>
+                            <button
+                                className="modal-btn"
+                                onClick={() => setShow(false)}
+                            >
                                 Close
                             </button>
                             <button className="modal-btn">Post</button>
