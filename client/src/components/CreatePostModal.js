@@ -56,6 +56,12 @@ const CreatePostModal = ({ show, setShow }) => {
                 <h2 className="modal-title">New Post</h2>
 
                 <div className="modal-body">
+                    <button
+                        className="modal-btn"
+                        onClick={() => setShow(false)}
+                    >
+                        X
+                    </button>
                     <form className="modal-form" onSubmit={handlePost}>
                         <TextField
                             required
@@ -151,12 +157,6 @@ const CreatePostModal = ({ show, setShow }) => {
                         </FormControl>
 
                         <Modal.Footer>
-                            <button
-                                className="modal-btn"
-                                onClick={() => setShow(false)}
-                            >
-                                Close
-                            </button>
                             <button className="modal-btn">Post</button>
                         </Modal.Footer>
                     </form>
