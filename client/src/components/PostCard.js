@@ -15,8 +15,13 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { getCommentsByPostId } from '../network/community';
+import {
+  addNewComment,
+  getCommentsByPostId,
+  deleteComment,
+} from '../network/community';
 import { Card } from '@material-ui/core';
+import Comment from './Comment';
 
 const PostCard = ({ post, handleEdit, showEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -24,7 +29,10 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
   const [token] = useLocalStorage('token');
   const [comments, setComments] = useState([]);
   const [refresh, newRefresh] = useState(false);
+  const [refreshComments, setRefreshCommments] = useState(false);
+  const [refreshDelete, setRefreshDelete] = useState(false);
   const [postId, setPostId] = useState(null);
+  const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
     const user = jwtDecode(token);
@@ -37,12 +45,36 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
       console.log('comments updated', response.comments);
       setComments(response.comments);
     })();
-  }, [refresh]);
+  }, [refresh, refreshComments, refreshDelete]);
 
-  const getCommentsForPostClicked = async (id) => {
+  const getCommentsForPostClicked = (id) => {
     newRefresh(false);
     setPostId(id);
     newRefresh(true);
+  };
+
+  const handleAddNewComment = async (postId) => {
+    setRefreshCommments(false);
+    const response = await addNewComment({
+      postId,
+      token,
+      comment: newComment,
+    });
+    console.log('newComment text', newComment);
+    console.log('newComment res from DB', response);
+    setRefreshCommments(true);
+    setNewComment('');
+  };
+
+  const handleDeleteComment = async (postId, commentId) => {
+    setRefreshDelete(false);
+    const response = await deleteComment({
+      postId,
+      token,
+      commentId,
+    });
+    console.log('Response from delete>>', response);
+    setRefreshDelete(true);
   };
 
   return (
@@ -60,7 +92,11 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
             <Typography variant='body2' component='p'>
               {post?.description}
             </Typography>
-            <CardMedia image={post?.image ? post.image : ''} />
+            {post?.image && (
+              <div className='d-flex justify-content-center my-2'>
+                <img src={post.image} style={{ height: '300px' }} alt='test' />
+              </div>
+            )}
           </div>
 
           <div className='comm-card pl-4 pt-2'>
@@ -80,15 +116,21 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
                     <CreateIcon />
                   </IconButton>
                 )}
-                <Badge
-                  badgeContent={post?.comments ? post.comments.length : '?'}
-                  overlap='circle'
-                  color='primary'
-                >
+                {comments ? (
+                  <Badge
+                    badgeContent={comments ? comments.length : '?'}
+                    overlap='circle'
+                    color='primary'
+                  >
+                    <IconButton>
+                      <CommentIcon />
+                    </IconButton>
+                  </Badge>
+                ) : (
                   <IconButton>
                     <CommentIcon />
                   </IconButton>
-                </Badge>
+                )}
               </div>
             </div>
           </div>
@@ -102,12 +144,22 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
         </div>
       </AccordionSummary>
       <AccordionDetails>
-        {/* ===== COMMENTS ===== */}
-        <div>
-          {comments?.length &&
-            comments?.map((comment) => (
-              <Card key={comment._id}>{comment.body}</Card>
-            ))}
+        <div className='w-100'>
+          {/* ===== COMMENTS ===== */}
+          <div className='px-2'>
+            {comments?.length ? (
+              comments?.map((comment) => (
+                <Comment
+                  key={comment._id}
+                  comment={comment}
+                  postId={post._id}
+                  handleDeleteComment={handleDeleteComment}
+                />
+              ))
+            ) : (
+              <p>No comments yet!</p>
+            )}
+          </div>
           <div className='row px-2'>
             <TextField
               id='outlined-multiline-static'
@@ -115,10 +167,12 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
               multiline
               variant='outlined'
               className='w-100'
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position='end'>
-                    <IconButton>
+                    <IconButton onClick={() => handleAddNewComment(post._id)}>
                       <SendIcon />
                     </IconButton>
                   </InputAdornment>
