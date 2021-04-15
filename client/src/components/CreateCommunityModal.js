@@ -13,6 +13,7 @@ const CreateCommunityModal = ({ show, setShow }) => {
         title: '',
         location: '',
         description: '',
+        image: '',
     });
 
     const handleCreate = async (e) => {
@@ -94,6 +95,12 @@ const CreateCommunityModal = ({ show, setShow }) => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={(e) =>
+                                setCommunity({
+                                    ...community,
+                                    image: e.target.value,
+                                })
+                            }
                         />
                         <TextField
                             required

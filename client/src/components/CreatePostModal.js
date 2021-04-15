@@ -19,6 +19,7 @@ const CreatePostModal = ({ show, setShow }) => {
         title: '',
         category: '',
         description: '',
+        image: '',
     });
     let { id } = useParams();
 
@@ -26,6 +27,7 @@ const CreatePostModal = ({ show, setShow }) => {
         e.preventDefault();
         try {
             const response = await addPost(post, token, id);
+
             response && setShow(false);
 
             if (response.error) {
@@ -90,6 +92,12 @@ const CreatePostModal = ({ show, setShow }) => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={(e) =>
+                                setPost({
+                                    ...post,
+                                    image: e.target.value,
+                                })
+                            }
                         />
                         <TextField
                             required
