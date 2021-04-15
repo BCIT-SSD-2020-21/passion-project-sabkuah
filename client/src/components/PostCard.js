@@ -92,7 +92,11 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
             <Typography variant='body2' component='p'>
               {post?.description}
             </Typography>
-            <CardMedia image={post?.image ? post.image : ''} />
+            {post?.image && (
+              <div className='d-flex justify-content-center my-2'>
+                <img src={post.image} style={{ height: '300px' }} alt='test' />
+              </div>
+            )}
           </div>
 
           <div className='comm-card pl-4 pt-2'>
