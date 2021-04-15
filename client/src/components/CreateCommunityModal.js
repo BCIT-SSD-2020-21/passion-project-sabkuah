@@ -5,6 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import { addCommunity } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 const CreateCommunityModal = ({ show, setShow }) => {
     const [token] = useLocalStorage('token', '');
@@ -80,6 +81,7 @@ const CreateCommunityModal = ({ show, setShow }) => {
                                 })
                             }
                         />
+
                         <TextField
                             required
                             value={community.description}
