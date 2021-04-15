@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Avatar } from '@material-ui/core';
 
 const Navigation = ({ user }) => {
   return (
@@ -13,7 +13,11 @@ const Navigation = ({ user }) => {
         {user ? (
           <Nav className='ml-auto'>
             <Nav.Link className='nav-links' href='/user/communities'>
-              <AccountCircleIcon /> {user?.firstName}'s Dashboard
+              <div className='row align-items-center'>
+                <Avatar src={user?.avatar} className='mx-2 avatar-shadow' />{' '}
+                {user?.firstName}
+                's Dashboard
+              </div>
             </Nav.Link>
           </Nav>
         ) : (

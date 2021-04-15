@@ -40,8 +40,6 @@ const seedDb = async () => {
     firstName: "Russ",
     lastName: "Telen",
     location: "Richmond",
-    avatar:
-      "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=339&q=80",
     commmunities: [],
   })
 
@@ -51,8 +49,6 @@ const seedDb = async () => {
     firstName: "Kal",
     lastName: "Tang",
     location: "Richmond",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
     commmunities: [],
   })
 
@@ -62,8 +58,6 @@ const seedDb = async () => {
     firstName: "Sab",
     lastName: "Kuah",
     location: "Vancouver",
-    avatar:
-      "https://images.unsplash.com/photo-1507331789086-893e9003c0e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
     commmunities: [],
   })
 
@@ -145,8 +139,6 @@ const seedDb = async () => {
       "I damn near broke my suspension today. Way too many potholes on Arcadia road. Theyre MASSIVE too. This needs to be addressed ASAP",
     date: new Date(),
     category: "Incident Reports",
-    image:
-      "https://images.unsplash.com/photo-1601026909629-bad5e1122bc6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80",
     community: comm1._id,
     author: user1._id,
   })
@@ -157,8 +149,6 @@ const seedDb = async () => {
       "Somone stole the stop sign @ the corner of Cook rd. Damn hoodlums..",
     date: new Date(),
     category: "Incident Reports",
-    image:
-      "https://images.unsplash.com/photo-1592360964881-5f3d7459403f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
     community: comm1._id,
     author: user3._id,
   })
