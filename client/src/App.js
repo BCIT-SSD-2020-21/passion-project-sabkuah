@@ -18,6 +18,7 @@ import jwtDecode from 'jwt-decode';
 import useLocalStorage from 'react-use-localstorage';
 import NotFound from './components/NotFound';
 import CommunityDetail from './views/communityDetail/CommunityDetail';
+import PostDetail from './views/postDetail/PostDetail';
 
 function App() {
   const [token, setToken] = useLocalStorage('token');
@@ -49,6 +50,9 @@ function App() {
         <Route path='/user/:path'>
           <User user={user}>
             <Switch>
+              <PrivateRoute path='/user/communities/:id/posts/:postId'>
+                <PostDetail />
+              </PrivateRoute>
               <PrivateRoute path='/user/communities/:id/posts'>
                 <CommunityPosts />
               </PrivateRoute>
