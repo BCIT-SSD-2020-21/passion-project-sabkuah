@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -9,9 +9,20 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import EditPostModal from './EditPostModal';
 import { Badge } from '@material-ui/core';
+import useLocalStorage from 'react-use-localstorage';
+import jwtDecode from 'jwt-decode';
 
 const PostCard = ({ post, handleEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [token] = useLocalStorage('token');
+
+  useEffect(() => {
+    const user = jwtDecode(token);
+    setCurrentUser(user);
+    console.log('currentUser', user);
+  }, []);
+
   return (
     <div className='my-3 shadow mx-1 w-100'>
       <Card className='post-card'>
@@ -23,7 +34,7 @@ const PostCard = ({ post, handleEdit }) => {
           <Typography variant='body2' component='p'>
             {post?.description}
           </Typography>
-          <CardMedia image={post?.image} />
+          <CardMedia image={post?.image ? post.image : ''} />
         </div>
 
         <div className='comm-card pl-4 pt-2'>
@@ -43,9 +54,11 @@ const PostCard = ({ post, handleEdit }) => {
                   <CommentIcon />
                 </IconButton>
               </Badge>
-              <IconButton onClick={() => setShowEditModal(true)}>
-                <CreateIcon />
-              </IconButton>
+              {currentUser?._id === post.author?._id && (
+                <IconButton onClick={() => setShowEditModal(true)}>
+                  <CreateIcon />
+                </IconButton>
+              )}
             </div>
           </div>
         </div>
