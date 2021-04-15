@@ -204,6 +204,7 @@ function DrawerNav({ window, user, children }) {
             {drawer}
           </Drawer>
         </Hidden>
+        {/* ===== DIALOG FOR CHANGING AVATAR ===== */}
         <Dialog
           open={avatarOpen}
           // onClose={handleAvatarSave}
