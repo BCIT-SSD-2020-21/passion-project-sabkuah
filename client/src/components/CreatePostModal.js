@@ -31,6 +31,12 @@ const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
 
             response && setRefreshEdit(response);
             response && setShow(false);
+            setPost({
+                title: '',
+                category: '',
+                description: '',
+                image: '',
+            });
 
             if (response.error) {
                 console.log(response.error);
