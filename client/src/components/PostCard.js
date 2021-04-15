@@ -49,7 +49,11 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
               </p>
             </div>
             <div className='mr-3'>
-              <Badge badgeContent={4} overlap='circle' color='primary'>
+              <Badge
+                badgeContent={post?.comments ? post.comments.length : '?'}
+                overlap='circle'
+                color='primary'
+              >
                 <IconButton>
                   <CommentIcon />
                 </IconButton>
