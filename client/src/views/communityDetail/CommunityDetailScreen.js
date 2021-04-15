@@ -10,10 +10,11 @@ import PostCard from '../../components/PostCard';
 const CommunityDetailScreen = ({ community, posts }) => {
   return (
     <div>
-      <div className='d-flex justify-content-between'>
-        <div className='d-flex flex-column justify-content-between w-100'>
+      <div className='row'>
+        {/* ===== COMMUNITY INFO ===== */}
+        <div className='col-xs-12 col-lg-6 d-flex justify-content-between flex-column'>
           <div>
-            <h1 className='community-title'>{community?.title}</h1>
+            <h1 className='community-title mr-2'>{community?.title}</h1>
             <p>
               <span className='community-heading mr-2'>Description:</span>
               {community?.description}
@@ -23,6 +24,8 @@ const CommunityDetailScreen = ({ community, posts }) => {
               {community?.location}
             </p>
           </div>
+
+          {/* ===== TOOLBAR ===== */}
           <div className='d-flex justify-content-center'>
             <div className='quick-controls row'>
               <Link to={`/user/communities/${community?._id}/posts`}>
@@ -51,8 +54,13 @@ const CommunityDetailScreen = ({ community, posts }) => {
             </div>
           </div>
         </div>
-        <div>{community && <Map community={community} styling='map' />}</div>
+
+        {/* ===== COMMUNITY MAP ===== */}
+        <div className='col-xs-12 col-lg-6 d-flex justify-content-center'>
+          {community && <Map community={community} styling='map' />}
+        </div>
       </div>
+      {/* ===== RECENT POSTS ===== */}
       <div className='recent-posts mt-3'>
         <h4>Recent Posts</h4>
         {posts?.length ? (

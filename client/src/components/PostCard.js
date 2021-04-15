@@ -15,19 +15,20 @@ const PostCard = ({ post }) => {
   return (
     <div className='my-3 shadow mx-1 w-100'>
       <Card className='post-card'>
-        <div className='row ml-1 my-3 pl-3'>
-          <div>
+        <div className='ml-1 my-3 pl-3'>
+          <div className='d-flex row justify-content-between w-100 pl-3'>
             <h5 className='mb-2'>{post?.title}</h5>
-            <Typography variant='body2' component='p'>
-              {post?.description}
-            </Typography>
-            <CardMedia image={post?.image} />
+            <p>{post?.category}</p>
           </div>
+          <Typography variant='body2' component='p'>
+            {post?.description}
+          </Typography>
+          <CardMedia image={post?.image} />
         </div>
 
         <div className='comm-card pl-4 pt-2'>
           <div className='row justify-content-between pr-3'>
-            <div className='row w-25 d-flex align-content-center ml-3 my-1'>
+            <div className='row w-50 d-flex align-content-center ml-3 my-1'>
               <div className='avatar-container'>
                 <Avatar src={post?.author.avatar} />
               </div>
