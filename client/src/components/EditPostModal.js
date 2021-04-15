@@ -102,26 +102,6 @@ const EditPostModal = ({
                             <option value="Discussions">Discussions</option>
                         </Select>
                     </FormControl>
-                    {/* <select
-                        className="customer-select"
-                        onChange={(e) =>
-                            setEditedPost({
-                                ...editedPost,
-                                category: e.target.value,
-                            })
-                        }
-                        value={editedPost.category}
-                    >
-                        {console.log(
-                            'Edited categories>>>',
-                            editedPost.category
-                        )}
-                        <option value="Report Incidents">
-                            Report Incidents
-                        </option>
-                        <option value="Social Events">Social Events</option>
-                        <option value="Discussions">Discussions</option>
-                    </select> */}
                     <Modal.Footer>
                         <button
                             className="modal-btn"

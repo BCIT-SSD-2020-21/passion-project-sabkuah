@@ -6,8 +6,13 @@ import CreateIcon from '@material-ui/icons/Create';
 import { addPost } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
 import { useParams } from 'react-router-dom';
+import FormControl from '@material-ui/core/FormControl';
+import { makeStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const CreatePostModal = ({ show, setShow }) => {
+    const classes = useStyles();
     const [token, setToken] = useLocalStorage('token', '');
     const [post, setPost] = useState({
         title: '',
@@ -71,28 +76,38 @@ const CreatePostModal = ({ show, setShow }) => {
                                 })
                             }
                         />
-                        <TextField
-                            required
-                            value={post.category}
-                            variant="outlined"
-                            label="Category"
-                            placeholder="Category"
-                            id="Category"
-                            className="modal-form-input"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <CreateIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            onChange={(e) =>
-                                setPost({
-                                    ...post,
-                                    category: e.target.value,
-                                })
-                            }
-                        />
+                        <FormControl
+                            className={classes.formControl}
+                            variant="filled"
+                        >
+                            <InputLabel
+                                htmlFor="grouped-native-select"
+                                autoWidth={true}
+                            >
+                                Category
+                            </InputLabel>
+                            <Select
+                                native
+                                defaultValue=""
+                                id="grouped-native-select"
+                                onChange={(e) =>
+                                    setPost({
+                                        ...post,
+                                        category: e.target.value,
+                                    })
+                                }
+                                value={post.category}
+                            >
+                                <option value="Report Incidents">
+                                    Report Incidents
+                                </option>
+                                <option value="Social Events">
+                                    Social Events
+                                </option>
+
+                                <option value="Discussions">Discussions</option>
+                            </Select>
+                        </FormControl>
                         <TextField
                             required
                             value={post.description}
@@ -129,3 +144,10 @@ const CreatePostModal = ({ show, setShow }) => {
 };
 
 export default CreatePostModal;
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(2),
+        minWidth: '67%',
+    },
+}));
