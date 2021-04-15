@@ -29,7 +29,12 @@ const CommunityPostScreen = ({ posts, handleEdit }) => {
 
       <div className='card-flex'>
         {posts?.map((post) => (
-          <PostCard key={post._id} post={post} handleEdit={handleEdit} />
+          <PostCard
+            key={post._id}
+            post={post}
+            handleEdit={handleEdit}
+            showEdit={true}
+          />
         ))}
       </div>
     </div>

@@ -12,7 +12,7 @@ import { Badge } from '@material-ui/core';
 import useLocalStorage from 'react-use-localstorage';
 import jwtDecode from 'jwt-decode';
 
-const PostCard = ({ post, handleEdit }) => {
+const PostCard = ({ post, handleEdit, showEdit }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token] = useLocalStorage('token');
@@ -48,13 +48,13 @@ const PostCard = ({ post, handleEdit }) => {
                 {post?.date}
               </p>
             </div>
-            <div>
+            <div className='mr-3'>
               <Badge badgeContent={4} overlap='circle' color='primary'>
                 <IconButton>
                   <CommentIcon />
                 </IconButton>
               </Badge>
-              {currentUser?._id === post.author?._id && (
+              {showEdit && currentUser?._id === post.author?._id && (
                 <IconButton onClick={() => setShowEditModal(true)}>
                   <CreateIcon />
                 </IconButton>

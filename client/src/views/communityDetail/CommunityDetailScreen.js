@@ -68,7 +68,9 @@ const CommunityDetailScreen = ({ community, posts }) => {
       <div className='recent-posts mt-3'>
         <h4>Recent Posts</h4>
         {posts?.length ? (
-          posts?.map((post) => <PostCard key={post._id} post={post} />)
+          posts?.map((post) => (
+            <PostCard key={post._id} post={post} showEdit={false} />
+          ))
         ) : (
           <p>No posts in this community. Go add one now!</p>
         )}
