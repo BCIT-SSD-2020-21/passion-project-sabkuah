@@ -13,7 +13,6 @@ const CreateCommunityModal = ({ show, setShow }) => {
         title: '',
         location: '',
         description: '',
-        image: '',
     });
 
     const handleCreate = async (e) => {
@@ -82,26 +81,7 @@ const CreateCommunityModal = ({ show, setShow }) => {
                                 })
                             }
                         />
-                        <TextField
-                            variant="outlined"
-                            label="Image URL"
-                            placeholder="Image URL"
-                            id="Image URL"
-                            className="modal-form-input"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <PhotoCameraIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            onChange={(e) =>
-                                setCommunity({
-                                    ...community,
-                                    image: e.target.value,
-                                })
-                            }
-                        />
+
                         <TextField
                             required
                             value={community.description}
