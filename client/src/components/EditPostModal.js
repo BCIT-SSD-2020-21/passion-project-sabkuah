@@ -6,6 +6,8 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import { makeStyles } from '@material-ui/core/styles';
+import { editPost } from '../network/community';
 
 const EditPostModal = ({
     showEditModal,
@@ -14,6 +16,7 @@ const EditPostModal = ({
     handleEdit,
 }) => {
     const [editedPost, setEditedPost] = useState(post);
+    const classes = useStyles();
 
     const handleUpdatePost = async (e) => {
         e.preventDefault();
@@ -75,25 +78,6 @@ const EditPostModal = ({
               })
             }
           /> */}
-                    <FormControl>
-                        <InputLabel htmlFor="grouped-native-select">
-                            Category
-                        </InputLabel>
-                        <Select
-                            native
-                            defaultValue=""
-                            id="grouped-native-select"
-                        >
-                            <option aria-label="None" value="" />
-
-                            <option value={editedPost.category}>
-                                Report Incidents
-                            </option>
-                            <option value={2}>Social Events</option>
-
-                            <option value={3}>Option 3</option>
-                        </Select>
-                    </FormControl>
 
                     <TextField
                         required
@@ -111,6 +95,55 @@ const EditPostModal = ({
                             })
                         }
                     />
+                    <FormControl
+                        className={classes.formControl}
+                        variant="filled"
+                    >
+                        <InputLabel
+                            htmlFor="grouped-native-select"
+                            autoWidth={true}
+                        >
+                            Category
+                        </InputLabel>
+                        <Select
+                            native
+                            defaultValue=""
+                            id="grouped-native-select"
+                            onChange={(e) =>
+                                setEditedPost({
+                                    ...editedPost,
+                                    category: e.target.value,
+                                })
+                            }
+                        >
+                            <option value="Report Incidents">
+                                Report Incidents
+                            </option>
+                            <option value="Social Events">Social Events</option>
+
+                            <option value="Discussions">Discussions</option>
+                        </Select>
+                    </FormControl>
+                    {/* <select
+                        className="customer-select"
+                        onChange={(e) =>
+                            setEditedPost({
+                                ...editedPost,
+                                category: e.target.value,
+                            })
+                        }
+                        value={editedPost.category}
+                    >
+                        {console.log(
+                            'Edited categories>>>',
+                            editedPost.category
+                        )}
+                        <option value="Report Incidents">
+                            Report Incidents
+                        </option>
+                        <option value="Social Events">Social Events</option>
+                        <option value="Discussions">Discussions</option>
+                    </select> */}
                     <Modal.Footer>
                         <button
                             className="modal-btn"
@@ -129,3 +162,10 @@ const EditPostModal = ({
 };
 
 export default EditPostModal;
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(2),
+        minWidth: '67%',
+    },
+}));
