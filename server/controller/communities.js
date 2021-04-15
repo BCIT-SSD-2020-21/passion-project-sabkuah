@@ -27,7 +27,7 @@ module.exports.getAllCommunities = catchAsync(async (req, res) => {
     .select("title location description")
     .populate({
       path: "creator",
-      select: "email firstName lastName",
+      select: "email firstName lastName avatar location",
     })
 
   if (!communities) {
@@ -55,16 +55,16 @@ module.exports.getCommunityById = catchAsync(async (req, res) => {
       select: "title",
       populate: {
         path: "author",
-        select: "firstName lastName email",
+        select: "firstName lastName email location avatar",
       },
     })
     .populate({
       path: "members",
-      select: "email firstName lastName",
+      select: "email firstName lastName location avatar",
     })
     .populate({
       path: "creator",
-      select: "email firstName lastName",
+      select: "email firstName lastName location avatar",
     })
 
   if (!community) {
