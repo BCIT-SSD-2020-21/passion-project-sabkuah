@@ -56,6 +56,11 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
                 </p>
               </div>
               <div className='mr-3'>
+                {showEdit && currentUser?._id === post.author?._id && (
+                  <IconButton onClick={() => setShowEditModal(true)}>
+                    <CreateIcon />
+                  </IconButton>
+                )}
                 <Badge
                   badgeContent={post?.comments ? post.comments.length : '?'}
                   overlap='circle'
@@ -65,11 +70,6 @@ const PostCard = ({ post, handleEdit, showEdit }) => {
                     <CommentIcon />
                   </IconButton>
                 </Badge>
-                {showEdit && currentUser?._id === post.author?._id && (
-                  <IconButton onClick={() => setShowEditModal(true)}>
-                    <CreateIcon />
-                  </IconButton>
-                )}
               </div>
             </div>
           </div>
