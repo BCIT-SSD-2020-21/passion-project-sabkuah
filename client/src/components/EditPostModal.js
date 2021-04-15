@@ -33,6 +33,12 @@ const EditPostModal = ({
         >
             <h2 className="modal-title">Update Post</h2>
             <div className="modal-body">
+                <button
+                    className="modal-btn"
+                    onClick={() => setShowEditModal(false)}
+                >
+                    X
+                </button>
                 <form className="modal-form" onSubmit={handleUpdatePost}>
                     <TextField
                         required
@@ -69,6 +75,12 @@ const EditPostModal = ({
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={(e) =>
+                            setEditedPost({
+                                ...editedPost,
+                                image: e.target.value,
+                            })
+                        }
                     />
 
                     <TextField
@@ -118,12 +130,6 @@ const EditPostModal = ({
                         </Select>
                     </FormControl>
                     <Modal.Footer>
-                        <button
-                            className="modal-btn"
-                            onClick={() => setShowEditModal(false)}
-                        >
-                            Close
-                        </button>
                         <button type="submit" className="modal-btn">
                             Update
                         </button>
