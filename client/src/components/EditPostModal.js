@@ -3,6 +3,9 @@ import Modal from 'react-bootstrap/Modal';
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const EditPostModal = ({
     showEditModal,
@@ -73,6 +76,26 @@ const EditPostModal = ({
                             })
                         }
                     />
+                    {/* <FormControl>
+                        <InputLabel htmlFor="grouped-native-select">
+                            Category
+                        </InputLabel>
+                        <Select
+                            native
+                            defaultValue=""
+                            id="grouped-native-select"
+                        >
+                            <option aria-label="None" value="" />
+
+                            <option value={editedPost.category}>
+                                Report Incidents
+                            </option>
+                            <option value={2}>Social Events</option>
+
+                            <option value={3}>Option 3</option>
+                        </Select>
+                    </FormControl> */}
+
                     <TextField
                         required
                         value={editedPost.description}
