@@ -30,6 +30,7 @@ const CommunityDetail = () => {
       console.log('GET POSTS >>>', data);
       setPosts(data);
     })();
+    // eslint-disable-next-line
   }, []);
 
   return <CommunityDetailScreen community={community} posts={posts} />;

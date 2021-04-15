@@ -11,6 +11,7 @@ const Comment = ({ comment, handleDeleteComment, postId }) => {
   useEffect(() => {
     const user = jwtDecode(token);
     setCurrentUser(user);
+    // eslint-disable-next-line
   }, []);
 
   return (
