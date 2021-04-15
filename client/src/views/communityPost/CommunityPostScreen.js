@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import CreatePostModal from '../../components/CreatePostModal';
 import PostCard from '../../components/PostCard';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 
 const CommunityPostScreen = ({ posts, handleEdit }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const history = useHistory();
+  const { id } = useParams();
 
   return (
     <div>
@@ -27,9 +28,20 @@ const CommunityPostScreen = ({ posts, handleEdit }) => {
       <h1 className='my-2 text-center'>Posts</h1>
       <CreatePostModal show={show} setShow={setShow} />
 
-      <div className='card-flex'>
+      <div>
         {posts?.map((post) => (
-          <PostCard post={post} handleEdit={handleEdit} />
+          // <Link
+          //   to={`/user/communities/${id}/posts/${post?._id}`}
+          //   className='link'
+          //   key={post._id}
+          // >
+          <PostCard
+            key={post._id}
+            post={post}
+            handleEdit={handleEdit}
+            showEdit={true}
+          />
+          // </Link>
         ))}
       </div>
     </div>
