@@ -7,11 +7,20 @@ import { editPost } from '../network/community';
 import useLocalStorage from 'react-use-localstorage';
 import { useParams } from 'react-router-dom';
 
-const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
-    const [editedPost, setEditedPost] = useState({ post });
+const EditPostModal = ({
+    showEditModal,
+    setShowEditModal,
+    post,
+    handleEdit,
+}) => {
+    const [editedPost, setEditedPost] = useState(post);
 
     const handleUpdatePost = async (e) => {
+        // console.log(post);
+        // console.log(editedPost);
+        handleEdit(editedPost);
         e.preventDefault();
+        setShowEditModal(false);
     };
 
     return (
@@ -40,12 +49,12 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                                 </InputAdornment>
                             ),
                         }}
-                        // onChange={(e) =>
-                        //     setEditedPost({
-                        //         ...post,
-                        //         title: e.target.value,
-                        //     })
-                        // }
+                        onChange={(e) =>
+                            setEditedPost({
+                                ...editedPost,
+                                title: e.target.value,
+                            })
+                        }
                     />
                     <TextField
                         required
@@ -62,12 +71,12 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                                 </InputAdornment>
                             ),
                         }}
-                        // onChange={(e) =>
-                        //     setCommunity({
-                        //         ...community,
-                        //         location: e.target.value,
-                        //     })
-                        // }
+                        onChange={(e) =>
+                            setEditedPost({
+                                ...editedPost,
+                                category: e.target.value,
+                            })
+                        }
                     />
                     <TextField
                         required
@@ -78,12 +87,12 @@ const EditPostModal = ({ showEditModal, setShowEditModal, post }) => {
                         id="email"
                         className="modal-form-input"
                         rows={5}
-                        // onChange={(e) =>
-                        //     setCommunity({
-                        //         ...community,
-                        //         description: e.target.value,
-                        //     })
-                        // }
+                        onChange={(e) =>
+                            setEditedPost({
+                                ...editedPost,
+                                description: e.target.value,
+                            })
+                        }
                     />
                     <Modal.Footer>
                         <button

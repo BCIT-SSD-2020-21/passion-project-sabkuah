@@ -13,7 +13,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CommentIcon from '@material-ui/icons/Comment';
 import EditPostModal from './EditPostModal';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, handleEdit }) => {
     const [showEditModal, setShowEditModal] = useState(false);
 
     const classes = useStyles();
@@ -65,6 +65,7 @@ const PostCard = ({ post }) => {
                 showEditModal={showEditModal}
                 setShowEditModal={setShowEditModal}
                 post={post}
+                handleEdit={handleEdit}
             />
         </div>
     );

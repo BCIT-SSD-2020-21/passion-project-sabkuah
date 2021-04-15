@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreatePostModal from '../../components/CreatePostModal';
 import PostCard from '../../components/PostCard';
 
-const CommunityPostScreen = ({ posts }) => {
+const CommunityPostScreen = ({ posts, handleEdit }) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
 
@@ -16,7 +16,7 @@ const CommunityPostScreen = ({ posts }) => {
 
             <div className="card-flex">
                 {posts?.map((post) => (
-                    <PostCard post={post} />
+                    <PostCard post={post} handleEdit={handleEdit} />
                 ))}
             </div>
         </div>

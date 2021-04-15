@@ -34,18 +34,18 @@ export async function addPost(post, token, id) {
     } catch (e) {
         console.log('Error', e);
     }
-    try {
-        const response = await axios({
-            method: 'GET',
-            url: `${BASE_URL}/communities`,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
-        });
-        return response.data;
-    } catch (e) {
-        console.log('Error:', e);
-    }
+    // try {
+    //     const response = await axios({
+    //         method: 'GET',
+    //         url: `${BASE_URL}/communities`,
+    //         headers: {
+    //             'Access-Control-Allow-Origin': '*',
+    //         },
+    //     });
+    //     return response.data;
+    // } catch (e) {
+    //     console.log('Error:', e);
+    // }
 }
 
 export async function getPosts(token, id) {
@@ -76,19 +76,6 @@ export async function editPost(token, id, postId, post) {
             },
         });
         console.log('Edit posts response data>>> ', response.data);
-        return response.data.posts;
-    } catch (e) {
-        console.log('Error:', e);
-    }
-
-    try {
-        const response = await axios({
-            method: 'GET',
-            url: `${BASE_URL}/communities`,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
-        });
         return response.data;
     } catch (e) {
         console.log('Error:', e);
