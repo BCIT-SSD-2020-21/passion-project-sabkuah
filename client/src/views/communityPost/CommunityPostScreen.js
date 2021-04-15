@@ -30,13 +30,18 @@ const CommunityPostScreen = ({ posts, handleEdit }) => {
 
       <div>
         {posts?.map((post) => (
-          <Link
-            to={`/user/communities/${id}/posts/${post?._id}`}
-            className='link'
+          // <Link
+          //   to={`/user/communities/${id}/posts/${post?._id}`}
+          //   className='link'
+          //   key={post._id}
+          // >
+          <PostCard
             key={post._id}
-          >
-            <PostCard post={post} handleEdit={handleEdit} showEdit={true} />
-          </Link>
+            post={post}
+            handleEdit={handleEdit}
+            showEdit={true}
+          />
+          // </Link>
         ))}
       </div>
     </div>
