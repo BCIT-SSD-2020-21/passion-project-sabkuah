@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const EditPostModal = ({
     showEditModal,
@@ -111,8 +112,39 @@ const EditPostModal = ({
                             Category
                         </InputLabel>
                         <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={editedPost.category}
+                            onChange={(e) =>
+                                setEditedPost({
+                                    ...editedPost,
+                                    category: e.target.value,
+                                })
+                            }
+                            value={editedPost.category}
+                            required
+                        >
+                            <MenuItem value="Incident Reports">
+                                Incident Reports
+                            </MenuItem>
+                            <MenuItem value="Social Events">
+                                Social Events
+                            </MenuItem>
+                            <MenuItem value="Discussions">Discussions</MenuItem>
+                        </Select>
+                    </FormControl>
+                    {/* <FormControl
+                        className={classes.formControl}
+                        variant="standard"
+                    >
+                        <InputLabel
+                            htmlFor="grouped-native-select"
+                            autoWidth={true}
+                        >
+                            Category
+                        </InputLabel>
+                        <Select
                             native
-                            defaultValue=""
                             id="grouped-native-select"
                             onChange={(e) =>
                                 setEditedPost({
@@ -121,15 +153,17 @@ const EditPostModal = ({
                                 })
                             }
                             value={editedPost.category}
+                            required
                         >
-                            <option value="Report Incidents">
-                                Report Incidents
-                            </option>
-                            <option value="Social Events">Social Events</option>
-
-                            <option value="Discussions">Discussions</option>
+                            <MenuItem value="Incident Reports">
+                                Incident Reports
+                            </MenuItem>
+                            <MenuItem value="Social Events">
+                                Social Events
+                            </MenuItem>
+                            <MenuItem value="Discussions">Discussions</MenuItem>
                         </Select>
-                    </FormControl>
+                    </FormControl> */}
                     <Modal.Footer>
                         <button type="submit" className="modal-btn">
                             Update
