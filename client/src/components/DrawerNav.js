@@ -25,9 +25,9 @@ import {
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-// import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-// import ChatIcon from '@material-ui/icons/Chat';
-// import WarningIcon from '@material-ui/icons/Warning';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import ChatIcon from '@material-ui/icons/Chat';
+import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -114,24 +114,24 @@ function DrawerNav({ window, user, children }) {
             <ListItemText primary='Communities' />
           </ListItem>
         </Link>
-        {/* <ListItem button>
+        <ListItem button>
           <ListItemIcon>
-            <QuestionAnswerIcon className="dNav-icon" />
+            <QuestionAnswerIcon className='dNav-icon' />
           </ListItemIcon>
-          <ListItemText primary="Discussions" />
+          <ListItemText primary='Discussions' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <WarningIcon className="dNav-icon" />
+            <WarningIcon className='dNav-icon' />
           </ListItemIcon>
-          <ListItemText primary="Alerts" />
+          <ListItemText primary='Alerts' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <ChatIcon className="dNav-icon" />
+            <ChatIcon className='dNav-icon' />
           </ListItemIcon>
-          <ListItemText primary="Messages" />
-        </ListItem> */}
+          <ListItemText primary='Messages' />
+        </ListItem>
       </List>
       <Divider />
       <List>
