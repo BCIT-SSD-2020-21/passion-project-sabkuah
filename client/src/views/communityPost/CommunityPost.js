@@ -4,16 +4,12 @@ import useLocalStorage from 'react-use-localstorage';
 import { useParams } from 'react-router-dom';
 import { getPosts, editPost } from '../../network/community';
 import toastr from 'toastr';
-import Calendar from 'react-calendar';
-import Messaging from '../../components/Messaging';
-// import Weather from "../../components/Weather"
 
 const CommunityPosts = () => {
   const [posts, setPosts] = useState(null);
   let { id } = useParams();
   const [token] = useLocalStorage('token');
   const [refreshEdit, setRefreshEdit] = useState('');
-  const [value, onChange] = useState(new Date());
   // const [refreshPost, setRefreshPost] = useState('')
 
   const handleEdit = async (data) => {
