@@ -7,6 +7,12 @@
     min-width: 70%;
 }
 
+@media only screen and (min-width: 300px) {
+    #register-pg {
+        width: 90%;
+    }
+}
+
 @media only screen and (min-width: 992px) {
     #register-pg {
         width: 50%;
