@@ -23,9 +23,7 @@ const CommunityCard = ({ community }) => {
                 <Typography gutterBottom variant='h5' component='h2'>
                   {community?.title}
                 </Typography>
-                <Typography variant='body2' color='textSecondary' component='p'>
-                  {community?.description}
-                </Typography>
+                <p className='comm-card-desc'>{community?.description}</p>
               </div>
             </CardContent>
           </CardActionArea>
