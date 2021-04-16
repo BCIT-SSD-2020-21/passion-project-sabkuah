@@ -13,7 +13,7 @@ const Map = ({ styling, didRefresh, id }) => {
   const handleGetCommunity = async () => {
     const response = await getCommunity({ id, token })
     // console.log("community", response.community)
-    return response.community
+    return response?.community
   }
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Map = ({ styling, didRefresh, id }) => {
         .setLngLat(data ? data?.geometry.coordinates : [lng, lat]) // community.geometry.coordinates
         .setPopup(
           new mapboxgl.Popup({ offset: 25 }).setHTML(
-            `<h3>${data.title}</h3><p>${data.location}</p>`
+            `<h3>${data?.title}</h3><p>${data?.location}</p>`
           )
         )
         .addTo(map)
