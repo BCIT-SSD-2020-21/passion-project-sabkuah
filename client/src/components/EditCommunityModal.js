@@ -1,31 +1,53 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { TextField } from "@material-ui/core"
 import Modal from "react-bootstrap/Modal"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import LocationCityIcon from "@material-ui/icons/LocationCity"
-import { addCommunity } from "../network/community"
+import { editCommunity } from "../network/community"
 import useLocalStorage from "react-use-localstorage"
+import { getCommunity } from "../network/community"
 
-const EditCommunityModal = ({ community, show, setShow }) => {
+const EditCommunityModal = ({ id, show, setShow }) => {
   const [token] = useLocalStorage("token", "")
 
-  const [title, setTitle] = useState(community.title)
-  const [description, setDescription] = useState(community.description)
-  const [location, setLocation] = useState(community.location)
+  const [community, setCommunity] = useState(null)
+
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [location, setLocation] = useState("")
+
+  const handleGetCommunity = async () => {
+    const response = await getCommunity({ id, token })
+    // console.log("community", response.community)
+    return response.community
+  }
 
   const handleComunityUpdate = async (e) => {
     e.preventDefault()
     try {
-      console.log({ title, description, location })
-      //   const response = await addCommunity(community, token)
-      //   console.log(response)
-      //   // response && setRefreshPost(response);
+      const communityData = { title, description, location }
+      const response = await editCommunity(communityData, token, id)
+      console.log(response)
+      // response && setRefreshPost(response);
       //   response && setShow(false)
     } catch (e) {
       console.log("Error creating community", e)
     }
   }
 
+  useEffect(() => {
+    ;(async () => {
+      const data = await handleGetCommunity()
+      setTitle(data.title)
+      setDescription(data.description)
+      setLocation(data.location)
+      setCommunity(data)
+    })()
+
+    // eslint-disable-next-line
+  }, [id])
+
+  console.log("COMMUNITTTY", { title, description, location })
   return (
     <div>
       {community ? (

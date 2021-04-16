@@ -11,7 +11,7 @@ import EditIcon from "@material-ui/icons/Edit"
 import IconButton from "@material-ui/core/IconButton"
 import EditCommunityModal from "../../components/EditCommunityModal"
 
-const CommunityDetailScreen = ({ community, posts }) => {
+const CommunityDetailScreen = ({ id, community, posts }) => {
   const [show, setShow] = useState(false)
 
   const handleShow = () => {
@@ -125,6 +125,7 @@ const CommunityDetailScreen = ({ community, posts }) => {
         )}
       </div>
       <EditCommunityModal
+        id={id}
         show={show}
         setShow={setShow}
         community={community}

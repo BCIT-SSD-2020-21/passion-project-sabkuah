@@ -41,7 +41,7 @@ const CommunityDetail = () => {
     <div>
       <div className="row">
         <div className="col-xs-12 col-lg-9 animate__animated animate__fadeInLeft">
-          <CommunityDetailScreen community={community} posts={posts} />
+          <CommunityDetailScreen id={id} community={community} posts={posts} />
         </div>
         <div className="col-xs-12 col-lg-3 animate__animated animate__fadeInRight">
           <Weather community={community} />
