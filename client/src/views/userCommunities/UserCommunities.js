@@ -4,7 +4,7 @@ import UserCommunitiesScreen from "./UserCommunitiesScreen"
 import useLocalStorage from "react-use-localstorage"
 import Calendar from "react-calendar"
 import Messaging from "../../components/Messaging"
-import Weather from "../../components/Weather"
+// import Weather from "../../components/Weather"
 
 const UserCommunities = ({ user }) => {
   const [communities, setCommunities] = useState(null)

@@ -6,7 +6,7 @@ import { getPosts, editPost } from "../../network/community"
 import toastr from "toastr"
 import Calendar from "react-calendar"
 import Messaging from "../../components/Messaging"
-import Weather from "../../components/Weather"
+// import Weather from "../../components/Weather"
 
 const CommunityPosts = () => {
   const [posts, setPosts] = useState(null)
