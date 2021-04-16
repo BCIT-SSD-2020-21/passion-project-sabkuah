@@ -49,6 +49,7 @@ const CommunityDetail = ({ user }) => {
             community={community}
             posts={posts}
             setDidRefresh={setDidRefresh}
+            didRefresh={didRefresh}
           />
         </div>
         <div className="col-xs-12 col-lg-3 animate__animated animate__fadeInRight">

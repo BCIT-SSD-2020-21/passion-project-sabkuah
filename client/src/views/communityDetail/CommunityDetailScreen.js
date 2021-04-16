@@ -17,6 +17,7 @@ const CommunityDetailScreen = ({
   community,
   posts,
   setDidRefresh,
+  didRefresh,
 }) => {
   const [show, setShow] = useState(false)
 
@@ -113,7 +114,14 @@ const CommunityDetailScreen = ({
 
         {/* ===== COMMUNITY MAP ===== */}
         <div className="col-xs-12 col-lg-6 d-flex justify-content-center">
-          {community && <Map community={community} styling="map" />}
+          {community && (
+            <Map
+              id={id}
+              didRefresh={didRefresh}
+              community={community}
+              styling="map"
+            />
+          )}
         </div>
       </div>
       {/* ===== RECENT POSTS ===== */}
