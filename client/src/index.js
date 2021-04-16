@@ -9,6 +9,8 @@ import "react-calendar/dist/Calendar.css"
 import mapboxgl from "mapbox-gl/dist/mapbox-gl-csp"
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker"
+import "../node_modules/toastr/build/toastr.min.css"
+import "../node_modules/toastr/build/toastr.min"
 import toastr from "toastr"
 
 toastr.options = {
