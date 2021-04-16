@@ -4,7 +4,13 @@
     box-shadow: 0 2rem 2rem -1.8rem $brand-blue;
     margin-top: 2%;
     margin-bottom: 5%;
-    min-width: 85%;
+    min-width: 70%;
+}
+
+@media only screen and (min-width: 300px) {
+    #register-pg {
+        width: 90%;
+    }
 }
 
 @media only screen and (min-width: 992px) {
