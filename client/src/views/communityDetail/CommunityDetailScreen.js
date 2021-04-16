@@ -32,7 +32,7 @@ const CommunityDetailScreen = ({
           <div>
             <div className="row">
               <h1 className="community-title mr-2">{community?.title}</h1>
-              {user?._id == community?.creator._id && (
+              {user?._id === community?.creator._id && (
                 <IconButton onClick={handleShow}>
                   <EditIcon />
                 </IconButton>
