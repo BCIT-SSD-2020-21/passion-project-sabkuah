@@ -49,7 +49,7 @@ function App() {
         <Route path='/user/:path'>
           <User user={user}>
             <Switch>
-              <PrivateRoute path='/user/communities/:id/posts'>
+              <PrivateRoute path='/user/communities/:id/posts/:category'>
                 <CommunityPosts />
               </PrivateRoute>
               <PrivateRoute path='/user/communities/search'>

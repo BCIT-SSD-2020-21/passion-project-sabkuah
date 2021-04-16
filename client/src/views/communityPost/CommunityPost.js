@@ -7,10 +7,9 @@ import toastr from 'toastr';
 
 const CommunityPosts = () => {
   const [posts, setPosts] = useState(null);
-  let { id } = useParams();
+  let { id, category } = useParams();
   const [token] = useLocalStorage('token');
   const [refreshEdit, setRefreshEdit] = useState('');
-  // const [refreshPost, setRefreshPost] = useState('')
 
   const handleEdit = async (data) => {
     setRefreshEdit('');
@@ -23,7 +22,6 @@ const CommunityPosts = () => {
     const response = await editPost(token, id, data._id, postData);
     setRefreshEdit(response.message);
     toastr['success'](response.message);
-    // alert(response.message)
   };
 
   const handleGetPosts = async () => {
@@ -31,11 +29,27 @@ const CommunityPosts = () => {
     return response;
   };
 
+  let filterBy;
+  switch (category) {
+    case 'social':
+      filterBy = 'Social Events';
+      break;
+    case 'incidents':
+      filterBy = 'Incident Reports';
+      break;
+    case 'discussions':
+      filterBy = 'Discussions';
+      break;
+    default:
+      filterBy = '';
+  }
+
   useEffect(() => {
     (async () => {
       const data = await handleGetPosts();
-      console.log(data);
-      setPosts(data);
+      const filteredPosts = data.filter((post) => post.category === filterBy);
+      console.log(filteredPosts);
+      setPosts(filteredPosts);
     })();
     console.log(posts);
     //eslint-disable-next-line
@@ -46,6 +60,7 @@ const CommunityPosts = () => {
       posts={posts}
       handleEdit={handleEdit}
       setRefreshEdit={setRefreshEdit}
+      category={filterBy}
     />
   );
 };

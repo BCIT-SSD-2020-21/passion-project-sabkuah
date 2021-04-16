@@ -44,7 +44,7 @@ const CommunityDetailScreen = ({ community, posts }) => {
           {/* ===== TOOLBAR ===== */}
           <div className='d-flex justify-content-center'>
             <div className='quick-controls row'>
-              <Link to={`/user/communities/${community?._id}/posts`}>
+              <Link to={`/user/communities/${community?._id}/posts/social`}>
                 <Tooltip title='Social Posts'>
                   <Badge
                     badgeContent={
@@ -60,7 +60,7 @@ const CommunityDetailScreen = ({ community, posts }) => {
                   </Badge>
                 </Tooltip>
               </Link>
-              <Link to={`/user/communities/${community?._id}/posts`}>
+              <Link to={`/user/communities/${community?._id}/posts/incidents`}>
                 <Tooltip title='Incident Reports'>
                   <Badge
                     badgeContent={
@@ -76,7 +76,9 @@ const CommunityDetailScreen = ({ community, posts }) => {
                   </Badge>
                 </Tooltip>
               </Link>
-              <Link to={`/user/communities/${community?._id}/posts`}>
+              <Link
+                to={`/user/communities/${community?._id}/posts/discussions`}
+              >
                 <Tooltip title='Discussions'>
                   <Badge
                     badgeContent={
