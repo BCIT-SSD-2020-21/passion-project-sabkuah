@@ -2,14 +2,14 @@ import { Paper } from '@material-ui/core';
 import React from 'react';
 import ChatRecipient from './ChatRecipient';
 
-const Messaging = () => {
+const Messaging = ({ community }) => {
   return (
-    <Paper className='px-2 py-4 my-5'>
-      <h4>Messages</h4>
+    <Paper className='px-2 py-4 my-5' style={{ backgroundColor: '#f3f3f3' }}>
+      <h5 className='text-center mb-2 brand-font'>Community Members</h5>
       <div>
-        <ChatRecipient name='Mary Gibson' community='Vancouver West' />
-        <ChatRecipient name='Russ Telen' community='Vancouver West' />
-        <ChatRecipient name='Kalvin Tang' community='Kerrisdale-Arbutus' />
+        {community?.members.map((member) => (
+          <ChatRecipient key={member._id} member={member} />
+        ))}
       </div>
     </Paper>
   );

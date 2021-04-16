@@ -15,7 +15,9 @@ const CommunityDetailScreen = ({ community, posts }) => {
         {/* ===== COMMUNITY INFO ===== */}
         <div className='col-xs-12 col-lg-6 d-flex justify-content-between flex-column'>
           <div>
-            <h1 className='community-title mr-2'>{community?.title}</h1>
+            <h1 className='community-title mr-2 text-center'>
+              {community?.title}
+            </h1>
             <p>
               <span className='community-heading mr-2'>Description:</span>
               {community?.description}
@@ -23,6 +25,10 @@ const CommunityDetailScreen = ({ community, posts }) => {
             <p>
               <span className='community-heading mr-2'>Location:</span>
               {community?.location}
+            </p>
+            <p>
+              <span className='community-heading mr-2'>Creator:</span>
+              {community?.creator.firstName} {community?.creator.lastName}
             </p>
             <AvatarGroup>
               {community?.members.map((member) => (
@@ -96,16 +102,13 @@ const CommunityDetailScreen = ({ community, posts }) => {
       </div>
       {/* ===== RECENT POSTS ===== */}
       <div className='recent-posts mt-3'>
-        <h4>Recent Posts</h4>
+        <h3 className='text-center brand-font pt-4 pb-1'>Recent Posts</h3>
         {posts?.length ? (
-          posts?.slice(0, 3).map((post) => (
-            // <Link
-            //   to={`/user/communities/${community?._id}/posts/${post?._id}`}
-            //   className='link'
-            // >
-            <PostCard key={post._id} post={post} showEdit={false} />
-            // </Link>
-          ))
+          posts
+            ?.slice(0, 3)
+            .map((post) => (
+              <PostCard key={post._id} post={post} showEdit={false} />
+            ))
         ) : (
           <p>No posts in this community. Go add one now!</p>
         )}

@@ -1,18 +1,13 @@
 import React from 'react';
 import { Card, CardHeader, Avatar } from '@material-ui/core';
 
-const ChatRecipient = ({ name, community }) => {
+const ChatRecipient = ({ member }) => {
   return (
     <Card className='my-2'>
       <CardHeader
-        avatar={<Avatar aria-label={name}>{name.slice(0, 1)}</Avatar>}
-        // action={
-        //   <IconButton aria-label='settings'>
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title={name}
-        subheader={community}
+        avatar={<Avatar aria-label={member?.firstName} src={member?.avatar} />}
+        title={`${member.firstName} ${member.lastName}`}
+        subheader={member.location}
       />
     </Card>
   );

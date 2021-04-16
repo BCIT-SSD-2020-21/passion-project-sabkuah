@@ -32,14 +32,16 @@ const Dashboard = ({ children }) => {
           {children}
         </div>
 
-        <div className='col-xs-12 col-lg-3 col-xs-12 col-lg-3 animate__animated animate__fadeInRight'>
-          {location.pathname !== USER_COMMUNITY_URL && (
-            <Weather community={community} />
-          )}
-          <Calendar onChange={onChange} value={value} />
-          {location.pathname !== USER_COMMUNITY_URL && (
-            <Messaging community={community} />
-          )}
+        <div className='col-xs-12 col-lg-3 col-xs-12 col-lg-3 animate__animated animate__fadeInRight '>
+          <div className='d-flex justify-content-center flex-column'>
+            {location.pathname !== USER_COMMUNITY_URL && (
+              <Weather community={community} />
+            )}
+            <Calendar onChange={onChange} value={value} />
+            {location.pathname !== USER_COMMUNITY_URL && (
+              <Messaging community={community} />
+            )}
+          </div>
         </div>
       </div>
     </div>
