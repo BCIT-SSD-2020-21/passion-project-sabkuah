@@ -43,7 +43,7 @@ const SearchResultCard = ({ community, handleJoinCommunity }) => {
       <div style={{ fontSize: '1.35rem' }}>{community.title}</div>
 
       <div className='row mt-2'>
-        <div className='mx-2'>
+        <div className='mx-2 text-muted'>
           <RoomIcon style={{ color: '#0acf83' }} /> {community?.location}
         </div>
       </div>
