@@ -36,11 +36,7 @@ const UserCommunitiesScreen = ({
 
       <div className="card-flex">
         {communities &&
-          communities.map((c) => (
-            <div className="animate__animated animate__zoomIn">
-              <CommunityCard key={c._id} community={c} />
-            </div>
-          ))}
+          communities.map((c) => <CommunityCard key={c._id} community={c} />)}
       </div>
       <AddCommunity
         show={show}
