@@ -16,7 +16,7 @@ const CommunityCard = ({ community }) => {
         <Card className={classes.root}>
           <CardActionArea>
             <CardMedia className={classes.media}>
-              <Map community={community} styling='comm-card-style' />
+              <Map id={community._id} styling='comm-card-style' />
             </CardMedia>
             <CardContent className='comm-card'>
               <div className='d-flex flex-column align-items-center'>

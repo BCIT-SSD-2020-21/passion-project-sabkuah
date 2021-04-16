@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Map from '../../components/Map';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ReportIcon from '@material-ui/icons/Report';
@@ -7,17 +7,38 @@ import { Badge, Tooltip, Avatar } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import { Link } from 'react-router-dom';
 import PostCard from '../../components/PostCard';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import EditCommunityModal from '../../components/EditCommunityModal';
 
-const CommunityDetailScreen = ({ community, posts }) => {
+const CommunityDetailScreen = ({
+  user,
+  id,
+  community,
+  posts,
+  setDidRefresh,
+  didRefresh,
+}) => {
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <div>
       <div className='row'>
         {/* ===== COMMUNITY INFO ===== */}
         <div className='col-xs-12 col-lg-6 d-flex justify-content-between flex-column'>
           <div>
-            <h1 className='community-title mr-2 text-center'>
-              {community?.title}
-            </h1>
+            <div className='row'>
+              <h1 className='community-title mr-2'>{community?.title}</h1>
+              {user?._id === community?.creator._id && (
+                <IconButton onClick={handleShow}>
+                  <EditIcon />
+                </IconButton>
+              )}
+            </div>
             <p>
               <span className='community-heading mr-2'>Description:</span>
               {community?.description}
@@ -99,7 +120,14 @@ const CommunityDetailScreen = ({ community, posts }) => {
 
         {/* ===== COMMUNITY MAP ===== */}
         <div className='col-xs-12 col-lg-6 d-flex justify-content-center'>
-          {community && <Map community={community} styling='map' />}
+          {community && (
+            <Map
+              id={id}
+              didRefresh={didRefresh}
+              community={community}
+              styling='map'
+            />
+          )}
         </div>
       </div>
       {/* ===== RECENT POSTS ===== */}
@@ -115,6 +143,15 @@ const CommunityDetailScreen = ({ community, posts }) => {
           <p>No posts in this community. Go add one now!</p>
         )}
       </div>
+      <EditCommunityModal
+        id={id}
+        show={show}
+        setShow={setShow}
+        community={community}
+        setDidRefresh={setDidRefresh}
+        // refreshPost={refreshPost}
+        // setRefreshPost={setRefreshPost}
+      />
     </div>
   );
 };
