@@ -25,9 +25,9 @@ import {
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import ChatIcon from '@material-ui/icons/Chat';
-import WarningIcon from '@material-ui/icons/Warning';
+// import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+// import ChatIcon from '@material-ui/icons/Chat';
+// import WarningIcon from '@material-ui/icons/Warning';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';

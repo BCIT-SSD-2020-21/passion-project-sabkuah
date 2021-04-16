@@ -16,7 +16,7 @@ const Dashboard = ({ children }) => {
 
   useEffect(() => {
     const communityId = location.pathname.substr(18, 35);
-    console.log('community ID >>', communityId);
+    //console.log('community ID >>', communityId);
     // console.log('location', location);
     communityId &&
       communityId !== 'search' &&
@@ -25,6 +25,7 @@ const Dashboard = ({ children }) => {
         console.log('community response', response?.community);
         setCommunity(response.community);
       })();
+    //eslint-disable-next-line
   }, []);
 
   return (

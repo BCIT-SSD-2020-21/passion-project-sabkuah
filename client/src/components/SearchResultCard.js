@@ -1,4 +1,4 @@
-import { Card, CardHeader, Avatar, IconButton } from '@material-ui/core';
+import { Card, Avatar, IconButton } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 // import PeopleIcon from '@material-ui/icons/People';
 import RoomIcon from '@material-ui/icons/Room';
