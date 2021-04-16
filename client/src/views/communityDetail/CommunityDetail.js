@@ -3,12 +3,16 @@ import { useParams } from "react-router-dom"
 import CommunityDetailScreen from "./CommunityDetailScreen"
 import useLocalStorage from "react-use-localstorage"
 import { getCommunity, getPosts } from "../../network/community"
+import Calendar from "react-calendar"
+import Messaging from "../../components/Messaging"
+import Weather from "../../components/Weather"
 
 const CommunityDetail = () => {
   const { id } = useParams()
   const [token] = useLocalStorage("token")
   const [community, setCommunity] = useState(null)
   const [posts, setPosts] = useState(null)
+  const [value, onChange] = useState(new Date())
 
   const handleGetCommunity = async () => {
     const response = await getCommunity({ id, token })
@@ -34,9 +38,18 @@ const CommunityDetail = () => {
   }, [])
 
   return (
-    <>
-      <CommunityDetailScreen community={community} posts={posts} />
-    </>
+    <div>
+      <div className="row">
+        <div className="col-xs-12 col-lg-9">
+          <CommunityDetailScreen community={community} posts={posts} />
+        </div>
+        <div className="col-xs-12 col-lg-3">
+          <Weather community={community} />
+          <Calendar onChange={onChange} value={value} />
+          <Messaging />
+        </div>
+      </div>
+    </div>
   )
 }
 
