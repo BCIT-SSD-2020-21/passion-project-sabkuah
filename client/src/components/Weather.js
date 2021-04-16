@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { getCommunity } from '../network/community';
+import useLocalStorage from 'react-use-localstorage';
 
 import axios from 'axios';
 require('dotenv').config();
 
-const Weather = ({ community, communityId, location }) => {
+const Weather = ({ communityId }) => {
   const [weather, setWeather] = useState(null);
+  const [token] = useLocalStorage('token', '');
 
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
   const BASE_URL_WEATHER = process.env.REACT_APP_BASE_URL_WEATHER;
 
+  const handleGetCommunity = async () => {
+    const response = await getCommunity({ id: communityId, token });
+    // console.log('community', response.community);
+    return response?.community;
+  };
+
   const fetchWeatherData = async () => {
     try {
+      const community = await handleGetCommunity();
+
       const res = await axios({
         method: 'GET',
         url: BASE_URL_WEATHER,
@@ -36,9 +47,9 @@ const Weather = ({ community, communityId, location }) => {
       setWeather(weatherData);
     })();
     // eslint-disable-next-line
-  }, [communityId, community]);
+  }, [communityId]);
 
-  console.log('community in weahter', community);
+  // console.log('community in weahter', community);
   return (
     <div className='d-flex justify-content-center mb-4 shadow p-3'>
       <div>
@@ -60,7 +71,7 @@ const Weather = ({ community, communityId, location }) => {
               <strong>Temperature:</strong> {weather?.main.temp} &#176;C{' '}
             </p>
             <p className='text-center'>
-              <strong>Location:</strong> {community?.location}
+              <strong>Location:</strong> {weather?.name}
             </p>
           </>
         ) : (
