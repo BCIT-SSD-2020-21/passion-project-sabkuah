@@ -9,7 +9,6 @@ const CommunityDetail = ({ user }) => {
   const [token] = useLocalStorage('token');
   const [community, setCommunity] = useState(null);
   const [posts, setPosts] = useState(null);
-  const [value, onChange] = useState(new Date());
   const [didRefresh, setDidRefresh] = useState(false);
 
   const handleGetCommunity = async () => {
