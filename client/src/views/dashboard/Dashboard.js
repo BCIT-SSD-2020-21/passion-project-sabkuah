@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import Messaging from '../../components/Messaging';
+import React from "react"
 
 const Dashboard = ({ children }) => {
-  const [value, onChange] = useState(new Date());
-
   return (
     <div>
-      <div className='row'>
-        <div className='col-xs-12 col-lg-9'>{children}</div>
+      {children}
+      {/* <div className="row">
+        <div className="col-xs-12 col-lg-9">{children}</div>
 
         <div
-          className='col-xs-12 col-lg-3'
+          className="col-xs-12 col-lg-3"
           // style={{ backgroundColor: 'lightgrey' }}
         >
+          <Weather />
           <Calendar onChange={onChange} value={value} />
           <Messaging />
         </div>
-      </div>
+      </div> */}
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

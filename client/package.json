@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "dotenv": "^8.2.0",
     "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.2.0",
@@ -23,6 +24,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-use-localstorage": "^3.5.3",
+    "toastr": "^2.1.4",
     "web-vitals": "^1.1.1",
     "worker-loader": "^3.0.8"
   },
