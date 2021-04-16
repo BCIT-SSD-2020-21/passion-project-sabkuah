@@ -7,7 +7,7 @@ import Calendar from "react-calendar"
 import Messaging from "../../components/Messaging"
 import Weather from "../../components/Weather"
 
-const CommunityDetail = () => {
+const CommunityDetail = ({ user }) => {
   const { id } = useParams()
   const [token] = useLocalStorage("token")
   const [community, setCommunity] = useState(null)
@@ -44,6 +44,7 @@ const CommunityDetail = () => {
       <div className="row">
         <div className="col-xs-12 col-lg-9 animate__animated animate__fadeInLeft">
           <CommunityDetailScreen
+            user={user}
             id={id}
             community={community}
             posts={posts}

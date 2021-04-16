@@ -11,7 +11,13 @@ import EditIcon from "@material-ui/icons/Edit"
 import IconButton from "@material-ui/core/IconButton"
 import EditCommunityModal from "../../components/EditCommunityModal"
 
-const CommunityDetailScreen = ({ id, community, posts, setDidRefresh }) => {
+const CommunityDetailScreen = ({
+  user,
+  id,
+  community,
+  posts,
+  setDidRefresh,
+}) => {
   const [show, setShow] = useState(false)
 
   const handleShow = () => {
@@ -26,9 +32,11 @@ const CommunityDetailScreen = ({ id, community, posts, setDidRefresh }) => {
           <div>
             <div className="row">
               <h1 className="community-title mr-2">{community?.title}</h1>
-              <IconButton onClick={handleShow}>
-                <EditIcon />
-              </IconButton>
+              {user?._id == community?.creator._id && (
+                <IconButton onClick={handleShow}>
+                  <EditIcon />
+                </IconButton>
+              )}
             </div>
             <p>
               <span className="community-heading mr-2">Description:</span>
