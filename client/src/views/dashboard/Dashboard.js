@@ -13,20 +13,28 @@ const Dashboard = ({ children }) => {
   const USER_SEARCH_URL = '/user/communities/search';
   const [token] = useLocalStorage('token');
   const [community, setCommunity] = useState(null);
+  const [communityId, setCommunityId] = useState('');
+
+  //eslint-disable-next-line
+  useEffect(() => {
+    console.log('comm ID updated');
+    setCommunityId(location.pathname.split('/')[3]);
+    console.log('NEW SUBSTRING>>>>>>>>>>>>', location.pathname.split('/')[3]);
+  });
 
   useEffect(() => {
-    const communityId = location.pathname.substr(18, 35);
-    //console.log('community ID >>', communityId);
-    // console.log('location', location);
+    //setCommunityId(location.pathname.substr(18, 35));
+    console.log('community ID >>', communityId);
+    console.log('location in dashboard', location);
     communityId &&
       communityId !== 'search' &&
       (async () => {
         const response = await getCommunity({ id: communityId, token });
         console.log('community response', response?.community);
-        setCommunity(response.community);
+        setCommunity(response?.community);
       })();
     //eslint-disable-next-line
-  }, []);
+  }, [communityId]);
 
   return (
     <div>
@@ -39,7 +47,11 @@ const Dashboard = ({ children }) => {
           <div className='d-flex justify-content-center flex-column'>
             {location.pathname !== USER_COMMUNITY_URL &&
               location.pathname !== USER_SEARCH_URL && (
-                <Weather community={community} />
+                <Weather
+                  community={community}
+                  communityId={communityId}
+                  location={location}
+                />
               )}
             <Calendar onChange={onChange} value={value} />
             {location.pathname !== USER_COMMUNITY_URL &&

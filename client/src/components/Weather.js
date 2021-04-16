@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 require('dotenv').config();
 
-const Weather = ({ community }) => {
+const Weather = ({ community, communityId, location }) => {
   const [weather, setWeather] = useState(null);
 
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -17,8 +17,8 @@ const Weather = ({ community }) => {
         url: BASE_URL_WEATHER,
         params: {
           appid: API_KEY,
-          lon: community.geometry.coordinates[0],
-          lat: community.geometry.coordinates[1],
+          lon: community?.geometry.coordinates[0],
+          lat: community?.geometry.coordinates[1],
           units: 'metric',
         },
       });
@@ -36,8 +36,9 @@ const Weather = ({ community }) => {
       setWeather(weatherData);
     })();
     // eslint-disable-next-line
-  }, [community]);
+  }, [communityId, community]);
 
+  console.log('community in weahter', community);
   return (
     <div className='d-flex justify-content-center mb-4 shadow p-3'>
       <div>
