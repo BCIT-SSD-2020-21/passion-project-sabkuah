@@ -40,7 +40,7 @@ const Weather = ({ community }) => {
   }, [community])
 
   return (
-    <div className="d-flex justify-content-center mb-4">
+    <div className="d-flex justify-content-center mb-4 shadow p-3">
       <div>
         <h4 className="text-center"> Today's Weather</h4>
         {weather ? (
