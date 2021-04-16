@@ -7,14 +7,6 @@ require("dotenv").config()
 const Weather = ({ community }) => {
   const [weather, setWeather] = useState(null)
 
-  // const community = {
-  //   geometry: {
-  //     coordinates: [-123.1336, 49.1666],
-  //   },
-  //   location: "Richmond, BC",
-  //   _id: "6078d72775f50219bdf21e83",
-  // }
-
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
   const BASE_URL_WEATHER = process.env.REACT_APP_BASE_URL_WEATHER
 
@@ -44,6 +36,7 @@ const Weather = ({ community }) => {
       setWeather(weatherData)
     })()
     console.log("hello")
+    // eslint-disable-next-line
   }, [community])
 
   return (
