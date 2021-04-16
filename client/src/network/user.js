@@ -1,5 +1,7 @@
-import axios from 'axios';
-const BASE_URL = 'https://block-watch.herokuapp.com/api';
+import axios from "axios"
+import toastr from "toastr"
+
+const BASE_URL = "https://block-watch.herokuapp.com/api"
 
 /**
  * Registers user in database
@@ -17,21 +19,22 @@ export async function registerUser(user) {
     location: user.location,
     password: user.password,
     avatar: user.avatar,
-  };
+  }
 
   try {
     const response = await axios({
-      method: 'POST',
+      method: "POST",
       url: `${BASE_URL}/users/register`,
       data: newUser,
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
       },
-    });
-    return response.data;
+    })
+    return response.data
   } catch (error) {
-    console.log('Error: ', error);
-    alert('Error: ', error);
+    console.log("Error: ", error)
+    toastr["error"](error)
+    // alert("Error: ", error)
   }
 }
 
@@ -46,20 +49,21 @@ export async function loginUser(user) {
   const currentUser = {
     ...user,
     username: user.email,
-  };
+  }
   try {
     const token = await axios({
-      method: 'POST',
+      method: "POST",
       url: `${BASE_URL}/users/login`,
       data: currentUser,
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
       },
-    });
-    return token.data.accessToken;
+    })
+    return token.data.accessToken
   } catch (e) {
-    console.log('Error:', e);
-    alert('Incorrect username or password');
+    console.log("Error:", e)
+    toastr["error"]("Incorrect username or password")
+    // alert("Incorrect username or password")
   }
 }
 
@@ -72,35 +76,37 @@ export async function loginUser(user) {
 export async function logoutUser() {
   try {
     const response = await axios({
-      method: 'POST',
+      method: "POST",
       url: `${BASE_URL}/users/logout`,
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
       },
-    });
-    console.log('logout response>>', response);
-    return response;
+    })
+    console.log("logout response>>", response)
+    return response
   } catch (e) {
-    console.log('Error:', e);
-    alert('Error logging out');
+    console.log("Error:", e)
+    toastr["error"]("Error logging out")
+    // alert("Error logging out")
   }
 }
 
 export async function updateAvatar({ token, avatar }) {
   try {
     const response = await axios({
-      method: 'PATCH',
+      method: "PATCH",
       url: `${BASE_URL}/users/updateAvatar`,
       data: avatar,
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,
       },
-    });
-    console.log('avatar network response>>', response.data);
-    return response.data;
+    })
+    console.log("avatar network response>>", response.data)
+    return response.data
   } catch (e) {
-    console.log('Error:', e);
-    alert('Error updating profile image');
+    console.log("Error:", e)
+    toastr["error"]("Error updating profile image")
+    // alert("Error updating profile image")
   }
 }

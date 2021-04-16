@@ -1,84 +1,86 @@
-import React, { useState } from 'react';
-import { TextField } from '@material-ui/core';
-import Modal from 'react-bootstrap/Modal';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import CreateIcon from '@material-ui/icons/Create';
-import { addPost } from '../network/community';
-import useLocalStorage from 'react-use-localstorage';
-import { useParams } from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useState } from "react"
+import { TextField } from "@material-ui/core"
+import Modal from "react-bootstrap/Modal"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import CreateIcon from "@material-ui/icons/Create"
+import { addPost } from "../network/community"
+import useLocalStorage from "react-use-localstorage"
+import { useParams } from "react-router-dom"
+import FormControl from "@material-ui/core/FormControl"
+import { makeStyles } from "@material-ui/core/styles"
+import Select from "@material-ui/core/Select"
+import InputLabel from "@material-ui/core/InputLabel"
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera"
+import MenuItem from "@material-ui/core/MenuItem"
+import toastr from "toastr"
 
 const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
-  const classes = useStyles();
-  const [token, setToken] = useLocalStorage('token', '');
+  const classes = useStyles()
+  const [token, setToken] = useLocalStorage("token", "")
   const [post, setPost] = useState({
-    title: '',
-    category: '',
-    description: '',
-    image: '',
-  });
-  let { id } = useParams();
+    title: "",
+    category: "",
+    description: "",
+    image: "",
+  })
+  let { id } = useParams()
 
   const handlePost = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const response = await addPost(post, token, id);
+      const response = await addPost(post, token, id)
 
-      response && setRefreshEdit(response);
-      response && setShow(false);
+      response && setRefreshEdit(response)
+      response && setShow(false)
       setPost({
-        title: '',
-        category: '',
-        description: '',
-        image: '',
-      });
+        title: "",
+        category: "",
+        description: "",
+        image: "",
+      })
 
       if (response.error) {
-        console.log(response.error);
-        alert(response.error);
-        return;
+        console.log(response.error)
+        toastr["error"](response.error)
+        // alert(response.error)
+        return
       }
       if (response.token) {
-        setToken(response.token);
-        console.log('Post successful', response.data);
-        alert(response.message);
-        setShow(false);
+        setToken(response.token)
+        toastr["success"](response.message)
+        // alert(response.message)
+        setShow(false)
       }
     } catch (e) {
-      console.log('Error Posting Incident', e);
+      console.log("Error Posting Incident", e)
     }
-  };
+  }
   return (
     <div>
       <Modal
         show={show}
-        backdrop='static'
+        backdrop="static"
         keyboard={false}
-        style={{ marginTop: '5%' }}
+        style={{ marginTop: "5%" }}
       >
-        <h2 className='modal-title'>New Post</h2>
+        <h2 className="modal-title">New Post</h2>
 
-        <div className='modal-body'>
-          <button className='modal-btn' onClick={() => setShow(false)}>
+        <div className="modal-body">
+          <button className="modal-btn" onClick={() => setShow(false)}>
             X
           </button>
-          <form className='modal-form' onSubmit={handlePost}>
+          <form className="modal-form" onSubmit={handlePost}>
             <TextField
               required
-              variant='outlined'
+              variant="outlined"
               value={post.title}
-              label='Title'
-              placeholder='Title'
-              id='Title'
-              className='modal-form-input'
+              label="Title"
+              placeholder="Title"
+              id="Title"
+              className="modal-form-input"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start'>
+                  <InputAdornment position="start">
                     <CreateIcon />
                   </InputAdornment>
                 ),
@@ -91,14 +93,14 @@ const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
               }
             />
             <TextField
-              variant='outlined'
-              label='Image URL'
-              placeholder='Image URL'
-              id='Image URL'
-              className='modal-form-input'
+              variant="outlined"
+              label="Image URL"
+              placeholder="Image URL"
+              id="Image URL"
+              className="modal-form-input"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start'>
+                  <InputAdornment position="start">
                     <PhotoCameraIcon />
                   </InputAdornment>
                 ),
@@ -113,12 +115,12 @@ const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
             <TextField
               required
               value={post.description}
-              variant='outlined'
-              label='Description'
-              placeholder='Description'
-              id='Description'
+              variant="outlined"
+              label="Description"
+              placeholder="Description"
+              id="Description"
               multiline={true}
-              className='modal-form-input'
+              className="modal-form-input"
               rows={5}
               onChange={(e) =>
                 setPost({
@@ -127,13 +129,13 @@ const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
                 })
               }
             />
-            <FormControl className={classes.formControl} variant='standard'>
-              <InputLabel htmlFor='grouped-native-select' autoWidth={true}>
+            <FormControl className={classes.formControl} variant="standard">
+              <InputLabel htmlFor="grouped-native-select" autoWidth={true}>
                 Category
               </InputLabel>
               <Select
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
                 value={post.category}
                 onChange={(e) =>
                   setPost({
@@ -143,27 +145,27 @@ const CreatePostModal = ({ show, setShow, setRefreshEdit }) => {
                 }
                 required
               >
-                <MenuItem value='Incident Reports'>Incident Reports</MenuItem>
-                <MenuItem value='Social Events'>Social Events</MenuItem>
-                <MenuItem value='Discussions'>Discussions</MenuItem>
+                <MenuItem value="Incident Reports">Incident Reports</MenuItem>
+                <MenuItem value="Social Events">Social Events</MenuItem>
+                <MenuItem value="Discussions">Discussions</MenuItem>
               </Select>
             </FormControl>
 
             <Modal.Footer>
-              <button className='modal-btn'>Post</button>
+              <button className="modal-btn">Post</button>
             </Modal.Footer>
           </form>
         </div>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default CreatePostModal;
+export default CreatePostModal
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
-    minWidth: '67%',
+    minWidth: "67%",
   },
-}));
+}))
