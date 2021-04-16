@@ -59,7 +59,7 @@ function App() {
                 <CommunityDetail />
               </PrivateRoute>
               <PrivateRoute path='/user/communities'>
-                <UserCommunities user={user} />
+                <UserCommunities />
               </PrivateRoute>
             </Switch>
           </User>
