@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Avatar,
-  IconButton,
-} from '@material-ui/core';
+import { Card, Avatar, IconButton } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 // import PeopleIcon from '@material-ui/icons/People';
 import RoomIcon from '@material-ui/icons/Room';
@@ -17,51 +11,44 @@ const SearchResultCard = ({ community, handleJoinCommunity }) => {
 
   return (
     <Card className='my-3 search-result-card col-xs-10 col-md-5'>
-      <CardHeader
-        avatar={
-          <Avatar
-            style={{ backgroundColor: '#192935' }}
-            alt={community.title}
-            className='mx-3'
-          >
-            {community.title.slice(0, 1)}
-          </Avatar>
-        }
-        action={
-          <>
-            <IconButton
-              aria-label='settings'
-              onClick={() => handleJoinCommunity(community._id)}
-            >
-              <AddIcon style={{ color: '#0acf83' }} />
-            </IconButton>
+      <div className='d-flex justify-content-between pt-2'>
+        <Avatar
+          style={{ backgroundColor: '#192935' }}
+          alt={community.title}
+          className='mx-3'
+        >
+          {community.title.slice(0, 1)}
+        </Avatar>
 
-            <IconButton
-              aria-label='add to favorites'
-              onClick={() => setLiked(!liked)}
-            >
-              {liked ? (
-                <FavoriteIcon style={{ color: '#0acf83' }} />
-              ) : (
-                <FavoriteBorderIcon style={{ color: '#0acf83' }} />
-              )}
-            </IconButton>
-          </>
-        }
-        title={<div style={{ fontSize: '1.35rem' }}>{community.title}</div>}
-        subheader={
-          <div className='row mt-2'>
-            <div className='mx-2'>
-              <RoomIcon style={{ color: '#0acf83' }} /> {community.location}
-            </div>
-            {/* <div className='mx-2'>
-              <PeopleIcon style={{ color: '#0acf83' }} />{' '}
-              {community.members.length}
-            </div> */}
-          </div>
-        }
-      />
-      <CardContent>{community.description}</CardContent>
+        <div>
+          <IconButton
+            aria-label='settings'
+            onClick={() => handleJoinCommunity(community._id)}
+          >
+            <AddIcon style={{ color: '#0acf83' }} />
+          </IconButton>
+
+          <IconButton
+            aria-label='add to favorites'
+            onClick={() => setLiked(!liked)}
+          >
+            {liked ? (
+              <FavoriteIcon style={{ color: '#0acf83' }} />
+            ) : (
+              <FavoriteBorderIcon style={{ color: '#0acf83' }} />
+            )}
+          </IconButton>
+        </div>
+      </div>
+      <div style={{ fontSize: '1.35rem' }}>{community.title}</div>
+
+      <div className='row mt-2'>
+        <div className='mx-2 text-muted'>
+          <RoomIcon style={{ color: '#0acf83' }} /> {community?.location}
+        </div>
+      </div>
+
+      <p className='comm-card-desc'>{community?.description}</p>
     </Card>
   );
 };

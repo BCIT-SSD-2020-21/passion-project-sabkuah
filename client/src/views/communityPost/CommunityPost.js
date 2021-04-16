@@ -1,68 +1,68 @@
-import React, { useState, useEffect } from "react"
-import CommunityPostScreen from "./CommunityPostScreen"
-import useLocalStorage from "react-use-localstorage"
-import { useParams } from "react-router-dom"
-import { getPosts, editPost } from "../../network/community"
-import toastr from "toastr"
-import Calendar from "react-calendar"
-import Messaging from "../../components/Messaging"
-// import Weather from "../../components/Weather"
+import React, { useState, useEffect } from 'react';
+import CommunityPostScreen from './CommunityPostScreen';
+import useLocalStorage from 'react-use-localstorage';
+import { useParams } from 'react-router-dom';
+import { getPosts, editPost } from '../../network/community';
+import toastr from 'toastr';
 
 const CommunityPosts = () => {
-  const [posts, setPosts] = useState(null)
-  let { id } = useParams()
-  const [token] = useLocalStorage("token")
-  const [refreshEdit, setRefreshEdit] = useState("")
-  const [value, onChange] = useState(new Date())
-  // const [refreshPost, setRefreshPost] = useState('')
+  const [posts, setPosts] = useState(null);
+  let { id, category } = useParams();
+  const [token] = useLocalStorage('token');
+  const [refreshEdit, setRefreshEdit] = useState('');
 
   const handleEdit = async (data) => {
-    setRefreshEdit("")
+    setRefreshEdit('');
     const postData = {
       title: data.title,
       description: data.description,
       category: data.category,
       image: data.image,
-    }
-    const response = await editPost(token, id, data._id, postData)
-    setRefreshEdit(response.message)
-    toastr["success"](response.message)
-    // alert(response.message)
-  }
+    };
+    const response = await editPost(token, id, data._id, postData);
+    setRefreshEdit(response.message);
+    toastr['success'](response.message);
+  };
 
   const handleGetPosts = async () => {
-    const response = await getPosts(token, id)
-    return response
+    const response = await getPosts(token, id);
+    return response;
+  };
+
+  let filterBy;
+  switch (category) {
+    case 'social':
+      filterBy = 'Social Events';
+      break;
+    case 'incidents':
+      filterBy = 'Incident Reports';
+      break;
+    case 'discussions':
+      filterBy = 'Discussions';
+      break;
+    default:
+      filterBy = '';
   }
 
   useEffect(() => {
-    ;(async () => {
-      const data = await handleGetPosts()
-      console.log(data)
-      setPosts(data)
-    })()
-    console.log(posts)
+    (async () => {
+      const data = await handleGetPosts();
+      const filteredPosts = data.filter((post) => post.category === filterBy);
+      console.log(filteredPosts);
+      setPosts(filteredPosts);
+    })();
+    console.log(posts);
     //eslint-disable-next-line
-  }, [refreshEdit])
+  }, [refreshEdit]);
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-xs-12 col-lg-9 animate__animated animate__fadeInLeft">
-          <CommunityPostScreen
-            posts={posts}
-            handleEdit={handleEdit}
-            setRefreshEdit={setRefreshEdit}
-          />
-        </div>
-        <div className="col-xs-12 col-lg-3 animate__animated animate__fadeInRight">
-          {/* <Weather community={community} /> */}
-          <Calendar onChange={onChange} value={value} />
-          <Messaging />
-        </div>
-      </div>
-    </div>
-  )
-}
+    <CommunityPostScreen
+      posts={posts}
+      handleEdit={handleEdit}
+      setRefreshEdit={setRefreshEdit}
+      category={filterBy}
+    />
+  );
+};
 
-export default CommunityPosts
+export default CommunityPosts;
