@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import CircularProgress from "@material-ui/core/CircularProgress"
+
 import axios from "axios"
 require("dotenv").config()
 
@@ -39,7 +41,7 @@ const Weather = ({ community }) => {
     <div className="d-flex justify-content-center mb-4">
       <div>
         <h4 className="text-center"> Today's Weather</h4>
-        {weather && (
+        {weather ? (
           <>
             <div className="d-flex justify-content-center">
               <img
@@ -59,6 +61,10 @@ const Weather = ({ community }) => {
               <strong>Location:</strong> {community?.location}
             </p>
           </>
+        ) : (
+          <div className="d-flex justify-content-center">
+            <CircularProgress />
+          </div>
         )}
       </div>
     </div>
