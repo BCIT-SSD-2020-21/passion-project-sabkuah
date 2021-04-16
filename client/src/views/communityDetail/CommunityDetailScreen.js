@@ -13,7 +13,10 @@ import EditCommunityModal from "../../components/EditCommunityModal"
 
 const CommunityDetailScreen = ({ community, posts }) => {
   const [show, setShow] = useState(false)
-  const handleShow = () => setShow(true)
+
+  const handleShow = () => {
+    setShow(true)
+  }
 
   return (
     <div>
@@ -124,6 +127,7 @@ const CommunityDetailScreen = ({ community, posts }) => {
       <EditCommunityModal
         show={show}
         setShow={setShow}
+        community={community}
         // refreshPost={refreshPost}
         // setRefreshPost={setRefreshPost}
       />

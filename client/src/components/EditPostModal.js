@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import { TextField } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import LocationCityIcon from '@material-ui/icons/LocationCity';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useState } from "react"
+import Modal from "react-bootstrap/Modal"
+import { TextField } from "@material-ui/core"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import LocationCityIcon from "@material-ui/icons/LocationCity"
+import Select from "@material-ui/core/Select"
+import InputLabel from "@material-ui/core/InputLabel"
+import FormControl from "@material-ui/core/FormControl"
+import { makeStyles } from "@material-ui/core/styles"
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera"
+import MenuItem from "@material-ui/core/MenuItem"
 
 const EditPostModal = ({
   showEditModal,
@@ -16,41 +16,41 @@ const EditPostModal = ({
   post,
   handleEdit,
 }) => {
-  const [editedPost, setEditedPost] = useState(post);
-  const classes = useStyles();
+  const [editedPost, setEditedPost] = useState(post)
+  const classes = useStyles()
 
   const handleUpdatePost = async (e) => {
-    e.preventDefault();
-    await handleEdit(editedPost);
-    setShowEditModal(false);
-  };
+    e.preventDefault()
+    await handleEdit(editedPost)
+    setShowEditModal(false)
+  }
 
   return (
     <div>
       <Modal
         show={showEditModal}
-        backdrop='static'
+        backdrop="static"
         keyboard={false}
-        style={{ marginTop: '5%' }}
+        style={{ marginTop: "5%" }}
         // autoFocus={true}
       >
-        <h2 className='modal-title'>Update Post</h2>
-        <div className='modal-body'>
-          <button className='modal-btn' onClick={() => setShowEditModal(false)}>
+        <h2 className="modal-title">Update Post</h2>
+        <div className="modal-body">
+          <button className="modal-btn" onClick={() => setShowEditModal(false)}>
             X
           </button>
-          <form className='modal-form' onSubmit={handleUpdatePost}>
+          <form className="modal-form" onSubmit={handleUpdatePost}>
             <TextField
               required
               value={editedPost.title}
-              variant='outlined'
-              label='Title'
-              placeholder='Title'
-              id='Title'
-              className='modal-form-input'
+              variant="outlined"
+              label="Title"
+              placeholder="Title"
+              id="Title"
+              className="modal-form-input"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start'>
+                  <InputAdornment position="start">
                     <LocationCityIcon />
                   </InputAdornment>
                 ),
@@ -63,15 +63,15 @@ const EditPostModal = ({
               }
             />
             <TextField
-              variant='outlined'
-              label='Image URL'
+              variant="outlined"
+              label="Image URL"
               value={editedPost.image}
-              placeholder='Image URL'
-              id='Image URL'
-              className='modal-form-input'
+              placeholder="Image URL"
+              id="Image URL"
+              className="modal-form-input"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start'>
+                  <InputAdornment position="start">
                     <PhotoCameraIcon />
                   </InputAdornment>
                 ),
@@ -87,11 +87,11 @@ const EditPostModal = ({
             <TextField
               required
               value={editedPost.description}
-              variant='outlined'
-              label='Description'
+              variant="outlined"
+              label="Description"
               multiline={true}
-              id='email'
-              className='modal-form-input'
+              id="email"
+              className="modal-form-input"
               rows={5}
               onChange={(e) =>
                 setEditedPost({
@@ -100,13 +100,13 @@ const EditPostModal = ({
                 })
               }
             />
-            <FormControl className={classes.formControl} variant='standard'>
-              <InputLabel htmlFor='grouped-native-select' autoWidth={true}>
+            <FormControl className={classes.formControl} variant="standard">
+              <InputLabel htmlFor="grouped-native-select" autoWidth={true}>
                 Category
               </InputLabel>
               <Select
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
                 value={editedPost.category}
                 onChange={(e) =>
                   setEditedPost({
@@ -116,9 +116,9 @@ const EditPostModal = ({
                 }
                 required
               >
-                <MenuItem value='Incident Reports'>Incident Reports</MenuItem>
-                <MenuItem value='Social Events'>Social Events</MenuItem>
-                <MenuItem value='Discussions'>Discussions</MenuItem>
+                <MenuItem value="Incident Reports">Incident Reports</MenuItem>
+                <MenuItem value="Social Events">Social Events</MenuItem>
+                <MenuItem value="Discussions">Discussions</MenuItem>
               </Select>
             </FormControl>
             {/* <FormControl
@@ -153,7 +153,7 @@ const EditPostModal = ({
                         </Select>
                     </FormControl> */}
             <Modal.Footer>
-              <button type='submit' className='modal-btn'>
+              <button type="submit" className="modal-btn">
                 Update
               </button>
             </Modal.Footer>
@@ -161,14 +161,14 @@ const EditPostModal = ({
         </div>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default EditPostModal;
+export default EditPostModal
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
-    minWidth: '67%',
+    minWidth: "67%",
   },
-}));
+}))
