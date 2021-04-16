@@ -14,9 +14,7 @@ const Dashboard = ({ children }) => {
   const [community, setCommunity] = useState(null);
 
   useEffect(() => {
-    console.log('useLocation>>', location);
     const communityId = location.pathname.substr(18, 35);
-    console.log('SUBSTRING>>>>>>>', communityId);
     communityId &&
       (async () => {
         const response = await getCommunity({ id: communityId, token });

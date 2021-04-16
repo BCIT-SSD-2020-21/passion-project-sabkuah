@@ -35,7 +35,6 @@ const Weather = ({ community }) => {
       const weatherData = await fetchWeatherData();
       setWeather(weatherData);
     })();
-    console.log('hello');
     // eslint-disable-next-line
   }, [community]);
 
