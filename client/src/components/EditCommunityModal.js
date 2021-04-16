@@ -6,8 +6,9 @@ import LocationCityIcon from "@material-ui/icons/LocationCity"
 import { editCommunity } from "../network/community"
 import useLocalStorage from "react-use-localstorage"
 import { getCommunity } from "../network/community"
+import toastr from "toastr"
 
-const EditCommunityModal = ({ id, show, setShow }) => {
+const EditCommunityModal = ({ setDidRefresh, id, show, setShow }) => {
   const [token] = useLocalStorage("token", "")
 
   const [community, setCommunity] = useState(null)
@@ -25,11 +26,13 @@ const EditCommunityModal = ({ id, show, setShow }) => {
   const handleComunityUpdate = async (e) => {
     e.preventDefault()
     try {
+      setDidRefresh(false)
       const communityData = { title, description, location }
       const response = await editCommunity(communityData, token, id)
       console.log(response)
-      // response && setRefreshPost(response);
-      //   response && setShow(false)
+      response && toastr["success"](response.message)
+      response && setShow(false)
+      setDidRefresh(true)
     } catch (e) {
       console.log("Error creating community", e)
     }
@@ -43,11 +46,9 @@ const EditCommunityModal = ({ id, show, setShow }) => {
       setLocation(data.location)
       setCommunity(data)
     })()
-
     // eslint-disable-next-line
   }, [id])
 
-  console.log("COMMUNITTTY", { title, description, location })
   return (
     <div>
       {community ? (

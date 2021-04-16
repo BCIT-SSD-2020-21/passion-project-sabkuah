@@ -13,6 +13,7 @@ const CommunityDetail = () => {
   const [community, setCommunity] = useState(null)
   const [posts, setPosts] = useState(null)
   const [value, onChange] = useState(new Date())
+  const [didRefresh, setDidRefresh] = useState(false)
 
   const handleGetCommunity = async () => {
     const response = await getCommunity({ id, token })
@@ -25,8 +26,9 @@ const CommunityDetail = () => {
       const data = await handleGetCommunity()
       setCommunity(data)
     })()
+    console.log(didRefresh)
     // eslint-disable-next-line
-  }, [])
+  }, [didRefresh])
 
   useEffect(() => {
     ;(async () => {
@@ -41,7 +43,12 @@ const CommunityDetail = () => {
     <div>
       <div className="row">
         <div className="col-xs-12 col-lg-9 animate__animated animate__fadeInLeft">
-          <CommunityDetailScreen id={id} community={community} posts={posts} />
+          <CommunityDetailScreen
+            id={id}
+            community={community}
+            posts={posts}
+            setDidRefresh={setDidRefresh}
+          />
         </div>
         <div className="col-xs-12 col-lg-3 animate__animated animate__fadeInRight">
           <Weather community={community} />

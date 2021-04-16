@@ -11,7 +11,7 @@ import EditIcon from "@material-ui/icons/Edit"
 import IconButton from "@material-ui/core/IconButton"
 import EditCommunityModal from "../../components/EditCommunityModal"
 
-const CommunityDetailScreen = ({ id, community, posts }) => {
+const CommunityDetailScreen = ({ id, community, posts, setDidRefresh }) => {
   const [show, setShow] = useState(false)
 
   const handleShow = () => {
@@ -129,6 +129,7 @@ const CommunityDetailScreen = ({ id, community, posts }) => {
         show={show}
         setShow={setShow}
         community={community}
+        setDidRefresh={setDidRefresh}
         // refreshPost={refreshPost}
         // setRefreshPost={setRefreshPost}
       />
