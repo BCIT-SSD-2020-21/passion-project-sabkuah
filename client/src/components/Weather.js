@@ -2,15 +2,8 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 require("dotenv").config()
 
-const Weather = () => {
+const Weather = ({ community }) => {
   const [weather, setWeather] = useState(null)
-
-  const community = {
-    geometry: {
-      coordinates: [-123.1336, 49.1666],
-    },
-    location: "Richmond, BC",
-  }
 
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
   const BASE_URL_WEATHER = process.env.REACT_APP_BASE_URL_WEATHER
@@ -45,7 +38,7 @@ const Weather = () => {
   return (
     <div className="d-flex justify-content-center mb-4">
       <div>
-        <h1 className="text-center">Weather</h1>
+        <h4 className="text-center"> Today's Weather</h4>
         {weather && (
           <>
             <div className="d-flex justify-content-center">
