@@ -64,7 +64,7 @@ const CommunityDetailScreen = ({
 
           {/* ===== TOOLBAR ===== */}
           <div className='d-flex justify-content-center'>
-            <div className='quick-controls row'>
+            <div className='quick-controls row d-flex justify-content-center'>
               <Link to={`/user/communities/${community?._id}/posts/social`}>
                 <Tooltip title='Social Posts'>
                   <Badge
