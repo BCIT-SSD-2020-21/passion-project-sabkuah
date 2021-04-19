@@ -53,7 +53,9 @@ const Dashboard = ({ children }) => {
                   location={location}
                 />
               )}
-            <Calendar onChange={onChange} value={value} />
+            <div className='d-flex justify-content-center'>
+              <Calendar onChange={onChange} value={value} />
+            </div>
             {location.pathname !== USER_COMMUNITY_URL &&
               location.pathname !== USER_SEARCH_URL && (
                 <Messaging community={community} />
